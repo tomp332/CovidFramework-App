@@ -7,7 +7,9 @@ const Register = () =>{
             <div className="title">
                 <Title size="400" text1="REGISTER"  open={true} />
             </div>
+            <div className="register-form">
 
+            </div>
         </div>
     );
 };

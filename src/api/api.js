@@ -1,22 +1,24 @@
-import Cookies from 'js-cookie';
+import axios from "axios";
 
 export const logout = async() =>{
-    const response = await fetch('http://10.0.0.7:443/session/logout')
-        .then(response=>response);
-    return response.status === 200;
+    const result = await axios({
+        method:'get',
+        url:'http://10.0.0.7:443/api/logout',
+        withCredentials:true
+    });
+
+    return result.status === 200;
 }
 
-export const login = async (values)=>{
-    const requestOptions = {
-        method: 'POST',
-        credentials: "omit",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
-    };
-    const response = await fetch('http://10.0.0.7:443/login',requestOptions)
-        .then(response => response);
-    // console.log(Cookie.);
-    return response.status === 200;
+export const login = async(values)=> {
+    const result = await axios({
+        method:'post',
+        url:'http://10.0.0.7:443/login',
+        data: {
+            username:values.username,
+            password:values.password,
+        },
+        withCredentials:true
+    });
+    return result.status === 200;
 }
-
-

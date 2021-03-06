@@ -1,10 +1,12 @@
 import "./Settings.css";
 import React from 'react';
-
+import Title from "react-titles/Title6";
 const Settings = () =>{
     return(
-        <div className="Test">
-            <h6>Welcome to settings</h6>
+        <div className="settingsPageWrapper">
+            <div className="title">
+                <Title size="300" text1="SETTINGS"  open={true} />
+            </div>
         </div>
     )
 }

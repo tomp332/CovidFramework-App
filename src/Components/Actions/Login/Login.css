@@ -12,38 +12,38 @@ rect:nth-child(2){
     margin: 2em auto;
 }
 
-
-.login-buttons{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
 .login-inputs p{
     color:red;
 }
-/*.buttons-login button{*/
-/*    font-size: 1.5em;*/
-/*    padding:6px 16px;*/
-/*}*/
+.login-inputs{
+    margin: 3vh 5vh;
+}
+#username::placeholder{
+    opacity: 60%;
+}
+#password::placeholder{
+    opacity: 60%;
+}
 
-/*.form-button{*/
-/*    justify-content: flex-end;*/
-/*    display: flex;*/
 
-/*    padding-top: 10vh;*/
-/*}*/
+.login-inputs input{
+    padding: 12px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    height:2.5vh;
+    color:black;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    margin: 8px auto;
+    width: 15em;
+    vertical-align: middle;
+    text-align: left;
+}
+.login-inputs input:hover{
+    background-color: #adadad;
+}
 
-/*.login-form{*/
-/*    justify-content: flex-end;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    position: relative;*/
-/*}*/
-
-/*.login-inputs{*/
-
-/*}*/
-
-button{
+.login-form button{
     background:#97d049;
     padding: 6px 14px;
     margin-left: 48px;
@@ -55,9 +55,41 @@ button{
     font-weight: 80;
     transition: background 0.3s;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-button:hover{
+.login-form button:hover{
     cursor: pointer;
     color: black;
     background: rgba(153, 209, 75, 0.8);
+}
+
+
+.additional-buttons button {
+
+    background:#97d049;
+    padding: 8px 18px;
+    margin-top: 10vh;
+    margin-left: 2vh;
+    border-radius: 10px;
+    border:none;
+    outline: none;
+    font-size: 1em;
+    min-width: 160px;
+    font-weight: 80;
+    transition: background 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.additional-buttons button:hover{
+    cursor: pointer;
+    color: black;
+    background: rgba(153, 209, 75, 0.8);
+}
+.submit-button{
+    align-items: center;
+    display: block;
+    margin: 4vh 5vh;
+}
+.classic__Wrapper-sc-1ycp7u6-0{
+    margin: 0 auto;
 }

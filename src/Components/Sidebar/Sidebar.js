@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import {
     ProSidebar,
     Menu,
@@ -18,7 +18,7 @@ import logoLarge from '../../media/logoLarge.png';
 import {Link} from "@material-ui/core";
 import UserContext from '../User';
 import {logout} from '../../api/api';
-
+import cookies from 'react-cookies';
 
 const Sidebar = () => {
     const [menuCollapse, setMenuCollapse] = useState(false);
@@ -35,7 +35,7 @@ const Sidebar = () => {
                 isAuthenticated: false
             })
         }
-        console.log(userInfo.username);
+        cookies.remove('session_id');
     }
 
     const Icon =()=>{
@@ -94,7 +94,7 @@ const Sidebar = () => {
                         </Menu>
                     </SidebarContent>
                     <SidebarFooter>
-                        {(userInfo.username === null) ? (
+                        {(!userInfo.isAuthenticated) ? (
                             <Menu iconShape="square">
                                 <MenuItem icon={<FiLogOut />}>
                                     <NavLink to="/login">Login</NavLink>
