@@ -2,20 +2,30 @@ import React, {useState} from 'react';
 import ReactRouter from "./Routes/AllRoutes";
 import './App.css';
 import UserContext from "./Components/User";
+import cookies from 'react-cookies';
+
+let user = {
+    username:null,
+    isAuthenticated:false
+};
 
 function App() {
-  const user = {
-        username: null,
-        isAuthenticated:false
-  };
-  const [userInfo, setUserInfo]  = useState(user);
+    const token = cookies.load('session_id');
+    const username = cookies.load('username');
+    if(token){
+        user = {
+            username:username,
+            isAuthenticated:true
+        };
+    }
 
-  return (
-      <div className="wrapper">
-      <UserContext.Provider value={{userInfo,setUserInfo}}>
-          <ReactRouter />
-      </UserContext.Provider>
-      </div>
-  );
+    const [userInfo, setUserInfo]= useState(user);
+    return (
+        <div className="wrapper">
+            <UserContext.Provider value={{userInfo,setUserInfo}}>
+                <ReactRouter />
+            </UserContext.Provider>
+        </div>
+      );
 }
 export default App;

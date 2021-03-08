@@ -11,3 +11,7 @@ rect:nth-child(2){
     justify-content: start;
     margin: 2em auto;
 }
+.clients-table{
+    color:white;
+    background: white;
+}
