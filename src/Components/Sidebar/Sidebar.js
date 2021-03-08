@@ -36,6 +36,7 @@ const Sidebar = () => {
             })
         }
         cookies.remove('session_id');
+        cookies.remove('session');
     }
 
     const Icon =()=>{

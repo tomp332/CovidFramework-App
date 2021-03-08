@@ -11,8 +11,8 @@ let user = {
 
 function App() {
     const token = cookies.load('session_id');
-    const username = cookies.load('username');
-    if(token){
+    const username = cookies.load('session');
+    if(token !== null){
         user = {
             username:username,
             isAuthenticated:true

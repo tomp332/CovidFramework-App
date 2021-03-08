@@ -12,6 +12,35 @@ rect:nth-child(2){
     margin: 2em auto;
 }
 .clients-table{
+    border-radius: 15px;
+    border-color: transparent;
+    border-style: none;
+    background:#F5FFFA;;
     color:white;
-    background: white;
+    width: 90%;
+    text-align: center;
+}
+.row-buttons{
+    display: table-cell;
+    margin: 0 auto;
+}
+#action-column{
+    width: 20%;
+}
+.row-buttons{
+    display: flex;
+    margin-left: 2px;
+}
+
+.kill-command-button{
+    padding-left: 20px;
+}
+
+
+.kill-command-button button{
+    width:100%;
+}
+
+.send-command-button button{
+    width:100%;
 }
