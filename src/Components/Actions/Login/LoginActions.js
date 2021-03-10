@@ -8,7 +8,8 @@ const LoginActions =(validateInfo)=> {
     const {setUserInfo} = useContext(UserContext);
     const [values, setValues] = useState({
             username: '',
-            password: ''
+            password: '',
+            loginError: false
     });
     const history = useHistory();
     const [errors, setErrors] = useState({})
@@ -27,14 +28,23 @@ const LoginActions =(validateInfo)=> {
         setErrors(validateInfo(values));
         setIfSubmited(true);
         const checkLogIn = await login(values);
-        if(checkLogIn){
+        if(checkLogIn) {
             setUserInfo({
-                username:values.username,
+                username: values.username,
                 isAuthenticated: true
             })
+            values.loginError = false;
+            setErrors(validateInfo(values))
+            setTimeout(function(){
+                console.log("");
+            }, 1700);
+            history.push("/home");
+        }else{
+            values.loginError = true;
+            setErrors(validateInfo(values))
         }
         setIfSubmited(false);
-        history.push("/home");
+
     };
 
     return {handleChange, values, handleSubmit, errors,ifSubmited};

@@ -11,8 +11,22 @@ export const logout = async() =>{
 
 export const login = async(values)=> {
     const result = await axios({
+        method: 'post',
+        url: 'http://10.0.0.7:443/login',
+        data: {
+            username: values.username,
+            password: values.password,
+        },
+        withCredentials: true
+    }).catch(err => {console.log(err);return err});
+    console.log(result);
+    return result.status === 200;
+}
+
+export const register = (values)=> {
+    const result = axios({
         method:'post',
-        url:'http://10.0.0.7:443/login',
+        url:'http://10.0.0.7:443/register',
         data: {
             username:values.username,
             password:values.password,
@@ -20,8 +34,4 @@ export const login = async(values)=> {
         withCredentials:true
     });
     return result.status === 200;
-}
-
-export const decrypt = (encodedCookie)=>{
-
 }

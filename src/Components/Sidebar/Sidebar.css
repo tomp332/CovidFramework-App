@@ -72,7 +72,8 @@
     width: 180px;
 }
 #sidebar-custom{
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 #pro-menu-item{
     padding-top: 2vh;

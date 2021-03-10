@@ -9,9 +9,9 @@ import Map from '../Components/GoogleMap/Map';
 import './AllRoutes.css';
 import Login from "../Components/Actions/Login/Login";
 import Index from "../Components/Index/Index";
-import Register from "../Components/Actions/Register/Register";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import UserContext from '../Components/User';
+import ClientControl from "../Components/Clients/ClientControl";
 
 const ReactRouter = () => {
     const {userInfo} = useContext(UserContext);
@@ -20,10 +20,10 @@ const ReactRouter = () => {
                 <Sidebar/>
                 <Switch>
                     <Route path="/" exact component={Index}/>
-                    <Route path="/register" component={Register}/>
                     <Route path="/login" component={Login}/>
                     <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/home" component={Home}/>
                     <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/clients" component={Clients}/>
+                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/control/:id" component={ClientControl}/>
                     <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/map" component={Map}/>
                     <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/docs" component={Docs}/>
                     <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/settings" component={Settings}/>

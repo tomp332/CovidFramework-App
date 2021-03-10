@@ -38,9 +38,9 @@ rect:nth-child(2){
 
 
 .kill-command-button button{
-    width:100%;
+    width:12vh;
 }
 
 .send-command-button button{
-    width:100%;
+    width:12vh;
 }

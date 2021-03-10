@@ -1,21 +1,13 @@
-import {Table,Button} from 'react-bootstrap';
+import {Button, Table} from 'react-bootstrap';
 import React from 'react';
-
+import {NavLink} from "react-router-dom";
 
 const ClientsTable = ({data})=>{
-    function SendCommandButton(){
-        return (
-            <Button size={"md"} variant={"primary"}>Send command</Button>
-        );
+
+    function KillClient(clientId){
+        console.log(`Killing client: ${clientId}`);
     }
 
-    function KillButton(){
-        return (
-            <Button size={"md"} variant={"danger"}>Kill client</Button>
-        );
-    }
-    const columns = data[0] && Object.keys(data[0]);
-    console.log(columns);
     return(
         <>
             <Table className={"clients-table"} striped hover>
@@ -32,7 +24,7 @@ const ClientsTable = ({data})=>{
                 </thead>
                 <tbody>
                     {data.map(data=>(
-                        <tr>
+                        <tr key={`${data.client_id}`}>
                             <td>{data.client_id}</td>
                             <td>{data.username}</td>
                             <td>{data.os}</td>
@@ -42,22 +34,26 @@ const ClientsTable = ({data})=>{
                                 }
                             </td>
                             <td>{
-                                (!data.status) ? (<div style={{color:"white",background:"red"}}>Disconnected</div>) :
-                                    (<div style={{color:"white",background:"#3CB371"}}>Connected</div>)
+                                <div className={"status-column"}>
+                                    {(!data.status) ? (<div style={{color:"white",background:"red"}}>Disconnected</div>) :
+                                    (<div style={{color:"white",background:"#3CB371"}}>Connected</div>)}
+                                </div>
                             }</td>
                             <td>{
                                 <div className={"row-buttons"}>
                                     <div className={"send-command-button"}>
-                                        <SendCommandButton/>
+                                        <NavLink to={`/control/${data.client_id}`}>
+                                            <Button size={"md"} variant={"primary"}>Command</Button>
+                                        </NavLink>
                                     </div>
                                     <div className={"kill-command-button"}>
-                                        <KillButton/>
+                                        <Button size={"md"} variant={"danger"} onClick={()=>{
+                                            KillClient(data.client_id)
+                                        }}>Kill</Button>
                                     </div>
 
                                 </div>
                             }</td>
-
-
                         </tr>
                         )
                     )}

@@ -11,10 +11,21 @@ rect:nth-child(2){
     justify-content: start;
     margin: 2em auto;
 }
-
+.card{
+    width: 19rem !important;
+    height:23rem !important;
+    color:black !important;
+    border-radius: .70rem !important;
+}
 .login-inputs p{
     color:red;
 }
+.login-form p{
+    position: relative;
+    left:30px;
+    color:red;
+}
+
 .login-inputs{
     margin: 3vh 5vh;
 }
@@ -43,10 +54,16 @@ rect:nth-child(2){
     background-color: #adadad;
 }
 
+.submit-button{
+    display: flex;
+    justify-content:center;
+    margin: 0 auto;
+}
+
+
 .login-form button{
     background:#97d049;
     padding: 6px 14px;
-    margin-left: 48px;
     border-radius: 10px;
     border:none;
     outline: none;
@@ -55,22 +72,23 @@ rect:nth-child(2){
     font-weight: 80;
     transition: background 0.3s;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 50px;
 }
+
 .login-form button:hover{
     cursor: pointer;
     color: black;
     background: rgba(153, 209, 75, 0.8);
 }
 
+.additional-buttons{
+    margin-top: 20px;
+}
 
 .additional-buttons button {
-
+    position: relative;
     background:#97d049;
     padding: 8px 18px;
-    margin-top: 10vh;
-    margin-left: 2vh;
     border-radius: 10px;
     border:none;
     outline: none;
@@ -85,11 +103,9 @@ rect:nth-child(2){
     color: black;
     background: rgba(153, 209, 75, 0.8);
 }
-.submit-button{
-    align-items: center;
-    display: block;
-    margin: 4vh 5vh;
-}
 .classic__Wrapper-sc-1ycp7u6-0{
-    margin: 0 auto;
+    position: relative!important;
+    left: 90px !important;
+    top:20px !important;
+    margin-bottom: 4px !important;
 }

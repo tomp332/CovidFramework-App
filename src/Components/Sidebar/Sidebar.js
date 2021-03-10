@@ -7,9 +7,10 @@ import {
     SidebarFooter,
     SidebarContent,
 } from "react-pro-sidebar";
-import { FaList, FaRegHeart } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
+import {BiWorld,BiBookAlt} from 'react-icons/bi';
+import {BsFillPeopleFill} from 'react-icons/bs';
 import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Sidebar.css";
 import {NavLink} from "react-router-dom";
@@ -26,7 +27,6 @@ const Sidebar = () => {
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
-
     const checkLogout = async () =>{
         const isLoggedOut = await logout();
         if(isLoggedOut){
@@ -72,17 +72,17 @@ const Sidebar = () => {
                                     Home
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem icon={<FaList />} id={"pro-menu-item"}>
+                            <MenuItem icon={<BsFillPeopleFill />} id={"pro-menu-item"}>
                                 <NavLink to="/clients">
                                     Clients
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem icon={<FaRegHeart />} id={"pro-menu-item"}>
+                            <MenuItem icon={<BiWorld />} id={"pro-menu-item"}>
                                 <NavLink to="/map">
                                     Map
                                 </NavLink>
                             </MenuItem>
-                            <MenuItem icon={<RiPencilLine />} id={"pro-menu-item"}>
+                            <MenuItem icon={<BiBookAlt />} id={"pro-menu-item"}>
                                 <NavLink to="/docs">
                                     Docs
                                 </NavLink>

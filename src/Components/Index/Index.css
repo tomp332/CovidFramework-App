@@ -8,11 +8,8 @@
 rect:nth-child(2){
     stroke:#98d14a;
 }
-
-.buttons{
-    align-items: center;
-    display: flex;
-    margin-top: 10vh;
+.index-buttons{
+    margin-top: 20px;
 }
 .index-buttons button{
     background:#97d049;

@@ -4,7 +4,7 @@ import Title from "react-titles/Title6";
 import {Link} from "react-router-dom";
 
 
-const Index = (props) =>{
+const Index = () =>{
     return(
         <div className="pageWrapper">
             <Title size="800" text1="THE COVID" text2="FRAMEWORK" open={true} />
@@ -12,11 +12,6 @@ const Index = (props) =>{
                 <Link to="/login">
                     <button type="button">
                         Login
-                    </button>
-                </Link>
-                <Link to="/register">
-                    <button type="button">
-                        Register
                     </button>
                 </Link>
             </div>
