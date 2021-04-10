@@ -23,6 +23,6 @@ Upload/Download files
 Interactive powershell
 
 
-## Learn More
+## C2 Diagram
 
-![diagram](./CovidDiagram.png)
+<img src="CovidDiagram.png" width="100" height="80" />
