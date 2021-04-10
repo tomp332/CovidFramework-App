@@ -6,6 +6,7 @@ import { Form, Card, Row, Col,Button} from 'react-bootstrap';
 import './ClientControl.css';
 
 const ClientControl = () =>{
+    //need to fix loading waiting for client response
     const {id } = useParams();
     const [client, setClient]= useState({});
     useEffect(() => {
