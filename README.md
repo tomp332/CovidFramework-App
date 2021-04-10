@@ -24,4 +24,4 @@ Interactive powershell
 
 
 ## Diagram
-
+<img src="./CovidDiagram.png" width="650" height="300" />
