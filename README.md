@@ -7,7 +7,9 @@ It provides built in scripts and meatures in order to execute after the a comput
 ## Available features
 
 Wifi passwords
+
 Chrome passwords
+
 Persistence
 Privilege escalation
 Change background image
