@@ -11,10 +11,15 @@ Wifi passwords
 Chrome passwords
 
 Persistence
+
 Privilege escalation
+
 Change background image
+
 Take screenshot 
+
 Upload/Download files
+
 Interactive powershell
 
 
