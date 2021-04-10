@@ -6,6 +6,7 @@ import { Form, Card, Row, Col,Button} from 'react-bootstrap';
 import './ClientControl.css';
 
 const ClientControl = () =>{
+    //need to fix loading waiting for client response
     const {id } = useParams();
     const [client, setClient]= useState({});
     useEffect(() => {
@@ -14,7 +15,7 @@ const ClientControl = () =>{
             .then(response=>response.json())
             .then(data=>setClient(data.user))
     }, [id]);
-
+    console.log(client);
     return (
 
         <div className="controlPageWrapper">
@@ -29,6 +30,13 @@ const ClientControl = () =>{
                         <Col className={"property-value"}>{id}</Col>
                     </Row>
                     <Row>
+                        <Col className={"property-name"}>Status:</Col>
+                        {(client.status)?(
+                            <Col className={"client-status-connected"}>Connected</Col>
+                        ):(
+                            <Col className={"client-status-disconnected"}>Disconnected</Col>)}
+                    </Row>
+                    <Row>
                         <Col className={"property-name"}>Username:</Col>
                         <Col className={"property-value"}>{client.username}</Col>
                     </Row>
@@ -41,16 +49,18 @@ const ClientControl = () =>{
                         <Col className={"property-value"}>{client.public_ip}</Col>
                     </Row>
                     <Row>
-                        <Col className={"property-name"}>Status:</Col>
-                        <Col className={"property-value"}>{client.status.toString()[0].toUpperCase() + client.status.toString().slice(1)}</Col>
-                    </Row>
-                    <Row>
                         <Col className={"property-name"}>Administrator:</Col>
-                        <Col className={"property-value"}>{client.isAdmin.toString()[0].toUpperCase() + client.isAdmin.toString().slice(1)}</Col>
+                        {(client.isAdmin)?(
+                            <Col className={"property-value"}>True</Col>
+                        ):(
+                        <Col className={"property-value"}>False</Col>)}
                     </Row>
                     <Row>
                         <Col className={"property-name"}>Wifi enabled:</Col>
-                        <Col className={"property-value"}>{client.wifiEnabled.toString()[0].toUpperCase() + client.wifiEnabled.toString().slice(1)}</Col>
+                        {(client.wifiEnabled)?(
+                            <Col className={"property-value"}>True</Col>
+                        ):(
+                            <Col className={"property-value"}>False</Col>)}
                     </Row>
                     <Row>
                     </Row>
