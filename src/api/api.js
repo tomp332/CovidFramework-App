@@ -3,7 +3,7 @@ import axios from "axios";
 export const logout = async() =>{
     const result = await axios({
         method:'get',
-        url:'http://10.0.0.7:443/api/logout',
+        url:'http://10.0.0.4:443/api/logout',
         withCredentials:true
     });
     return result.status === 200;
@@ -12,7 +12,7 @@ export const logout = async() =>{
 export const login = async(values)=> {
     const result = await axios({
         method: 'post',
-        url: 'http://10.0.0.7:443/login',
+        url: 'http://10.0.0.4:443/login',
         data: {
             username: values.username,
             password: values.password,
@@ -26,7 +26,7 @@ export const login = async(values)=> {
 export const register = (values)=> {
     const result = axios({
         method:'post',
-        url:'http://10.0.0.7:443/register',
+        url:'http://10.0.0.4:443/register',
         data: {
             username:values.username,
             password:values.password,

@@ -9,11 +9,11 @@ const Clients = () =>{
     const [data, setData] = useState([]);
     // Calling the function on component mount
     useEffect(() => {
-        fetch('http://10.0.0.7:443/api/clients',{credentials:"include"})
+        fetch('http://10.0.0.4:443/api/clients',{credentials:"include"})
             .then(response=>response.json())
             .then(data=>setData(data))
         setInterval(() => {
-            fetch('http://10.0.0.7:443/api/clients',{credentials:"include"})
+            fetch('http://10.0.0.4:443/api/clients',{credentials:"include"})
                 .then(response=>response.json())
                 .then(data=>setData(data))
         }, 2000);

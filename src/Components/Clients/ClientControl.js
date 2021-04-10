@@ -4,20 +4,19 @@ import Title from "react-titles/Title6";
 import React from "react";
 import { Form, Card, Row, Col,Button} from 'react-bootstrap';
 import './ClientControl.css';
-// import {getClient} from '../../api/api';
 
 const ClientControl = () =>{
     const {id } = useParams();
     const [client, setClient]= useState({});
     useEffect(() => {
-        fetch('http://10.0.0.7:443/api/client',{method:'POST', headers:{'Content-Type': 'application/json'},
+        fetch('http://10.0.0.4:443/api/client',{method:'POST', headers:{'Content-Type': 'application/json'},
             body:JSON.stringify({id:id}), credentials:"include"})
             .then(response=>response.json())
             .then(data=>setClient(data.user))
-    }
-    , []);
-        
+    }, [id]);
+
     return (
+
         <div className="controlPageWrapper">
             <div className="title">
                 <Title size="600" text1="COMMAND & CONTROL" open={true}/>

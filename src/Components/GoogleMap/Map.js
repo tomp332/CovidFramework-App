@@ -17,7 +17,7 @@ const Map = () =>{
             </div>
             <div className={"map"}>
                 <WrappedMap
-                    googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyCLcv9R6aNEiCBi7ifNYif5-Eb-eQKoayQ&callback=initMap"}
+                    googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyCdThihts7X0VeVH_GKHGbGp1Nv2LjsFFE&callback=initMap"}
                     loadingElement={<div style={{height:"100%"}}/>}
                     containerElement={<div style={{height:"100%"}}/>}
                     mapElement={<div style={{height:"100%"}}/>}
