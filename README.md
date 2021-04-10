@@ -25,3 +25,4 @@ Interactive powershell
 
 ## Learn More
 
+![diagram](./CovidDiagram.png)
