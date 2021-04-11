@@ -1,6 +1,16 @@
 .card{
     height: 100% !important;
 }
+.send-command-button{
+    margin: -3px 2px;
+}
+.kill-command-button{
+    margin: -3px 2px;
+}
+.status-column{
+    margin: 3px auto;
+    width: auto;
+}
 .client-status-connected{
     color: #98d14a;
     font-weight: bold;

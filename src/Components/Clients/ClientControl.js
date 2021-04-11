@@ -4,6 +4,7 @@ import Title from "react-titles/Title6";
 import React from "react";
 import { Form, Card, Row, Col,Button} from 'react-bootstrap';
 import './ClientControl.css';
+import Clients from "./Clients";
 
 const ClientControl = () =>{
     //need to fix loading waiting for client response
@@ -86,7 +87,7 @@ const ClientControl = () =>{
                     <Form.Label>Response</Form.Label>
                     <Form.Control as="textarea" rows={10} disabled={true} className={"response"}/>
                 </Form.Group>
-                <Button variant={"success"}>Back</Button>
+                <Button href="/clients" variant={"success"}>Back</Button>
             </Form>
         </div>
     );
