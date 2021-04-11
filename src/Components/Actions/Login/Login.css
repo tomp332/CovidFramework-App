@@ -4,6 +4,9 @@
     align-items: center;
     width: 100%;
 }
+.card{
+    height:50% !important;
+}
 rect:nth-child(2){
     stroke:#98d14a;
 }
@@ -11,12 +14,13 @@ rect:nth-child(2){
     justify-content: start;
     margin: 2em auto;
 }
-.card{
+.login-card {
     width: 19rem !important;
     height:23rem !important;
     color:black !important;
     border-radius: .70rem !important;
 }
+
 .login-inputs p{
     color:red;
 }
