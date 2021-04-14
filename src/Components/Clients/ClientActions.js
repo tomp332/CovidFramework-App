@@ -1,6 +1,6 @@
 import {Button, Form} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {sendCommand} from "../../api/api";
 
 function ClientActions(props) {
@@ -9,10 +9,19 @@ function ClientActions(props) {
 
     async function SendCommand()
     {
-        console.log(command);
-        if(!await sendCommand(props.client.client_id, command)){
-            //handle errors from server
+        //need a global state of the client is connected? and only then allow sending the command
+        //if(clientIsConnected)...
+        if(command === 'startPS') {
+            //disable all other buttons and command select
         }
+        else{
+            if(!await sendCommand(props.client.client_id, command)) {
+                //handle errors from server
+            }
+        }
+
+
+
     }
     return <>
         <Form.Group controlId="command">

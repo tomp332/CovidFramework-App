@@ -1,5 +1,5 @@
 import {Card, Col,Row} from "react-bootstrap";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 function ClientInformation(props) {
     return(

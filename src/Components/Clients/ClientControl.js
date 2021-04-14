@@ -12,13 +12,26 @@ import {Spinner} from "reactstrap";
 const ClientControl = () =>{
     const {id } = useParams();
     const [client, setClient]= useState(null);
+    const [clientStatus, setClientStatus] = useState(true);
 
-    useEffect(() => {
+    function getClient()
+    {
         fetch('http://10.0.0.4:443/api/client',{method:'POST', headers:{'Content-Type': 'application/json'},
             body:JSON.stringify({id:id}), credentials:"include"})
             .then(response=>response.json())
-            .then(data=>setClient(data.user))
-    }, [id]);
+            .then(data=>{
+                setClient(data.user);
+                setClientStatus(data.user.status);
+            });
+    }
+
+    useEffect(() => {
+        getClient();
+        setInterval(() => {
+            getClient();
+        }, 2000);
+    },[]);
+
     return (
         <div className="controlPageWrapper">
             <div className="title">
