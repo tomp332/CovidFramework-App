@@ -20,6 +20,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    min-height: 100vh;
 }
 rect:nth-child(2){
     stroke:#98d14a;
@@ -31,31 +32,60 @@ rect:nth-child(2){
 /*Entire command form*/
 .command-form{
     color:white !important;
+    width: 50%;
 }
 /*User info container*/
 .user-info-card{
     color:black !important;
     background: #97d049;
 }
+
 .user-info-card{
     text-align: center;
     color:black !important;
-    width:400px !important;
-    height: 70% !important;
+    width:100% !important;
+    height: 100% ;
     background: #e9f2ed !important;
+}
+
+.user-info-card .container{
+    text-align: center;
+    padding:8px;
+    height:100vh;
+}
+.user-info-card .row{
+    padding:3px;
 }
 .property-name{
     text-align: left !important;
     margin-left: 20px;
 }
 
-.user-info-card .container{
-    text-align: center;
-    padding:8px;
-}
-.user-info-card .row{
-    padding:3px;
-}
 .response{
     background: #e9f2ed !important;
 }
+.spinner-grow {
+    margin: 30vh auto !important;
+    display: flex !important;
+}
+.small-titles {
+    font-size: 3vh;
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+.small-titles label{
+    font-size: 2vh;
+}
+#upload-file {
+    font-size: 2vh;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+#title3{
+    padding-top: 0 !important;
+}
+#send-button{
+    margin: 0 auto;
+    display: inherit;
+}
+

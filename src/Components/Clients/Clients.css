@@ -4,6 +4,12 @@
     align-items: center;
     width: 100%;
 }
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
 rect:nth-child(2){
     stroke:#98d14a;
 }
@@ -44,3 +50,9 @@ rect:nth-child(2){
 .send-command-button button{
     width:12vh;
 }
+.property-name.col{
+    font-weight: bold;
+}
+/*.col{*/
+/*    border-bottom: 1px solid #a1a1a1;*/
+/*}*/

@@ -1,10 +1,10 @@
-import {Card, Col, Form, Row} from "react-bootstrap";
+import {Card, Col,Row} from "react-bootstrap";
 import React from "react";
 
 function ClientInformation(props) {
     return(
         <>
-            <label>Client information:</label>
+            <label className={"small-titles"} id={"title1"}>Client information</label>
             <Card className={"user-info-card"}>
                 <Row>
                     <Col className={"property-name"}>Client ID:</Col>
