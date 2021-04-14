@@ -28,7 +28,7 @@ const ClientControl = () =>{
                 {(client) ? (
                     <>
                         <ClientInformation client={client}/>
-                        <ClientActions/>
+                        <ClientActions client={client}/>
                     </>
                     ) : <Spinner actions={"border"} color={"success"} type="grow"/>}
             </Form>

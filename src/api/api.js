@@ -35,9 +35,15 @@ export const register = (values)=> {
     });
     return result.status === 200;
 }
-
-export const getClient = ()=> {
-    fetch('http://10.0.0.4:443/api/clients',{credentials:"include"})
-        .then(response=>response.json())
-        .then(data=>data)
+export const sendCommand = async(clientId,command)=>{
+    const result = await axios({
+        method:'post',
+        url:"http://10.0.0.4:443/api/commands/add",
+        data:{
+            client_id:clientId,
+            command:command
+        },
+        withCredentials:true
+    });
+    return result.status === 200;
 }
