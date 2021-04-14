@@ -1,7 +1,6 @@
-import {Button, Spinner, Table} from 'react-bootstrap';
-import React, {lazy, Suspense, useState} from 'react';
+import {Button, Table} from 'react-bootstrap';
+import React from 'react';
 import {NavLink} from "react-router-dom";
-import ClientControl from "./ClientControl";
 
 const ClientsTable = ({data})=>{
     function KillClient(clientId){
