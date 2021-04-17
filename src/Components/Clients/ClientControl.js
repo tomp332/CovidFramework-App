@@ -1,28 +1,32 @@
 import {useState, useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import Title from "react-titles/Title6";
 import React from "react";
-import { Form} from 'react-bootstrap';
+import {Button, Form} from 'react-bootstrap';
 import './ClientControl.css';
 import ClientInformation from "./ClientInformation";
 import ClientActions from './ClientActions';
 import {Spinner} from "reactstrap";
 
 
-const ClientControl = () =>{
-    const {id } = useParams();
-    const [client, setClient]= useState(null);
+const ClientControl = () => {
+    const {id} = useParams();
+    const [client, setClient] = useState(null);
     const [clientStatus, setClientStatus] = useState(true);
-    const [response, setResponse] = useState(null);
-    function getClient()
-    {
-        fetch('http://10.0.0.4:443/api/client',{method:'POST', headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify({id:id}), credentials:"include"})
-            .then(response=>response.json())
-            .then(data=>{
+    const [clientResponse, setClientResponse] = useState();
+    const [allResponses, setAllResponses] = useState([]);
+
+    function getClient() {
+        fetch('http://10.0.0.4:443/api/client', {
+            method: 'POST', headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id: id}), credentials: "include"
+        })
+            .then(response => response.json())
+            .then(data => {
                 setClient(data.user);
                 setClientStatus(data.user.status);
             });
+        getResponse();
     }
 
     function getResponse()
@@ -30,22 +34,21 @@ const ClientControl = () =>{
         fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
             body:JSON.stringify({id:id}), credentials:"include"})
             .then(response=>response.json())
-            .then(data=>setResponse(data.response));
+            .then(data=>{
+                if(Object.keys(data).length !== 0){
+                    setClientResponse(data.response);
+                    setAllResponses(oldArray =>[...oldArray,data.response]);
+                }
+            });
     }
 
-    function displayResponse()
-    {
-
-    }
-
-    useEffect(() => {
+    useEffect(()=>{
         getClient();
-        setInterval(() => {
-            getClient();
-            getResponse();
-
-        }, 6000);
-    },[]);
+        let handle=setInterval(getClient,5000);
+        return ()=>{
+            clearInterval(handle);
+        }
+    });
 
     return (
         <div className="controlPageWrapper">
@@ -57,6 +60,16 @@ const ClientControl = () =>{
                     <>
                         <ClientInformation client={client}/>
                         <ClientActions client={client}/>
+                        <Form.Group controlId="response">
+                            <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>
+                            <Form.Control as="textarea" rows={10} disabled={true} className={"response"}
+                                          value={`${allResponses.map(data =>`\n*********** New response: ***********\n${data}`.replace(",",""))}`}/>
+                        </Form.Group>
+                        <div className={"buttons"}>
+                            <NavLink to={"/clients"}>
+                                <Button href="/clients" variant={"success"}>Back</Button>
+                            </NavLink>
+                        </div>
                     </>
                     ) : <Spinner actions={"border"} color={"success"} type="grow"/>}
             </Form>

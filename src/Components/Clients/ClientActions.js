@@ -47,15 +47,15 @@ function ClientActions(props) {
         <Form.Group controlId="sendCommand">
             <Button class="buttons" id={"send-button"} variant={"success"} onClick={SendCommand}>Send</Button>
         </Form.Group>
-        <Form.Group controlId="response">
-            <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>
-            <Form.Control as="textarea" rows={10} disabled={true} className={"response"}/>
-        </Form.Group>
-        <div className={"buttons"}>
-            <NavLink to={"/clients"}>
-                <Button href="/clients" variant={"success"}>Back</Button>
-            </NavLink>
-        </div>
+        {/*<Form.Group controlId="response">*/}
+        {/*    <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>*/}
+        {/*    <Form.Control as="textarea" rows={10} disabled={true} className={"response"}/>*/}
+        {/*</Form.Group>*/}
+        {/*<div className={"buttons"}>*/}
+        {/*    <NavLink to={"/clients"}>*/}
+        {/*        <Button href="/clients" variant={"success"}>Back</Button>*/}
+        {/*    </NavLink>*/}
+        {/*</div>*/}
 
     </>;
 }
