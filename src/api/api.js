@@ -19,7 +19,6 @@ export const login = async(values)=> {
         },
         withCredentials: true
     }).catch(err => {console.log(err);return err});
-    console.log(result);
     return result.status === 200;
 }
 

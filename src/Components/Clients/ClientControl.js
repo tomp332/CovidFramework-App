@@ -13,7 +13,7 @@ const ClientControl = () =>{
     const {id } = useParams();
     const [client, setClient]= useState(null);
     const [clientStatus, setClientStatus] = useState(true);
-
+    const [response, setResponse] = useState(null);
     function getClient()
     {
         fetch('http://10.0.0.4:443/api/client',{method:'POST', headers:{'Content-Type': 'application/json'},
@@ -25,11 +25,26 @@ const ClientControl = () =>{
             });
     }
 
+    function getResponse()
+    {
+        fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify({id:id}), credentials:"include"})
+            .then(response=>response.json())
+            .then(data=>setResponse(data.response));
+    }
+
+    function displayResponse()
+    {
+
+    }
+
     useEffect(() => {
         getClient();
         setInterval(() => {
             getClient();
-        }, 2000);
+            getResponse();
+
+        }, 6000);
     },[]);
 
     return (
