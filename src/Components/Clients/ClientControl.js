@@ -7,6 +7,7 @@ import './ClientControl.css';
 import ClientInformation from "./ClientInformation";
 import ClientActions from './ClientActions';
 import {Spinner} from "reactstrap";
+import {forEach} from "react-bootstrap/ElementChildren";
 
 
 const ClientControl = () => {
@@ -15,40 +16,51 @@ const ClientControl = () => {
     const [clientStatus, setClientStatus] = useState(true);
     const [clientResponse, setClientResponse] = useState();
     const [allResponses, setAllResponses] = useState([]);
+    // const [responseString, setResponseString] = useState("");
+    let responseString = "";
 
-    function getClient() {
-        fetch('http://10.0.0.4:443/api/client', {
-            method: 'POST', headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id: id}), credentials: "include"
-        })
-            .then(response => response.json())
-            .then(data => {
-                setClient(data.user);
-                setClientStatus(data.user.status);
-            });
-        getResponse();
-    }
-
-    function getResponse()
-    {
-        fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify({id:id}), credentials:"include"})
-            .then(response=>response.json())
-            .then(data=>{
-                if(Object.keys(data).length !== 0){
-                    setClientResponse(data.response);
-                    setAllResponses(oldArray =>[...oldArray,data.response]);
-                }
-            });
-    }
 
     useEffect(()=>{
-        getClient();
-        let handle=setInterval(getClient,5000);
-        return ()=>{
-            clearInterval(handle);
+        const getClient = () =>{
+            fetch('http://10.0.0.4:443/api/client', {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id: id}), credentials: "include"
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setClient(data.user);
+                    setClientStatus(data.user.status);
+                });
+            const getResponse = () => {
+                fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
+                    body:JSON.stringify({id:id}), credentials:"include"})
+                    .then(response=>response.json())
+                    .then(data=>{
+                        if(Object.keys(data).length !== 0){
+                            setClientResponse(data.response);
+                            setAllResponses(oldArray =>[...oldArray,data.response]);
+                        }
+                    });
+            }
+            getResponse();
         }
-    });
+        getClient();
+        let handle = setInterval(getClient,5000);
+        return ()=> {clearInterval(handle);
+        };
+    },[]);
+
+    function displayResponse()
+    {
+        allResponses.forEach( resp =>{
+            responseString += `\n*************************** New response ***************************\n${resp}\n_______________________________________________________________________\n`;
+        });
+        return(
+            <Form.Control as="textarea" rows={10} disabled={true} className={"response"}
+                value={(clientResponse) && `${responseString}`}
+            />
+        )
+    }
 
     return (
         <div className="controlPageWrapper">
@@ -62,8 +74,7 @@ const ClientControl = () => {
                         <ClientActions client={client}/>
                         <Form.Group controlId="response">
                             <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>
-                            <Form.Control as="textarea" rows={10} disabled={true} className={"response"}
-                                          value={`${allResponses.map(data =>`\n*********** New response: ***********\n${data}`.replace(",",""))}`}/>
+                            {displayResponse()}
                         </Form.Group>
                         <div className={"buttons"}>
                             <NavLink to={"/clients"}>

@@ -36,7 +36,6 @@ const LoginActions =(validateInfo)=> {
             values.loginError = false;
             setErrors(validateInfo(values))
             setTimeout(function(){
-                console.log("");
             }, 1700);
             history.push("/home");
         }else{

@@ -7,16 +7,16 @@ import {Spinner} from "reactstrap";
 
 const Clients = () =>{
     const [data, setData] = useState(null);
-    function getClient()
+    function getClients()
     {
         fetch('http://10.0.0.4:443/api/clients',{credentials:"include"})
             .then(response=>response.json())
             .then(data=>setData(data))
     }
     useEffect(() => {
-        getClient();
+        getClients();
         setInterval(() => {
-            getClient();
+            getClients();
         }, 2000);
     },[]);
 
