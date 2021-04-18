@@ -12,11 +12,10 @@ import {forEach} from "react-bootstrap/ElementChildren";
 
 const ClientControl = () => {
     const {id} = useParams();
-    const [client, setClient] = useState(null);
+    const [client, setClient] = useState(undefined);
     const [clientStatus, setClientStatus] = useState(true);
     const [clientResponse, setClientResponse] = useState();
     const [allResponses, setAllResponses] = useState([]);
-    // const [responseString, setResponseString] = useState("");
     let responseString = "";
 
 
@@ -26,10 +25,21 @@ const ClientControl = () => {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: id}), credentials: "include"
             })
-                .then(response => response.json())
+                .then(response => {
+                    if(response.status === 200)
+                    {
+                        return response.json()
+                    }
+                    else
+                        return setClientStatus(false);
+                })
                 .then(data => {
-                    setClient(data.user);
-                    setClientStatus(data.user.status);
+                    if(Object.keys(data).length !== 0){
+                        setClient(data.user);
+                        setClientStatus(data.user.status);
+                    }
+                    else
+                        return setClientStatus(false);
                 });
             const getResponse = () => {
                 fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
@@ -68,7 +78,7 @@ const ClientControl = () => {
                 <Title size="600" text1="COMMAND & CONTROL" open={true}/>
             </div>
             <Form className={"command-form"}>
-                {(client) ? (
+                {(client !== undefined) ? (
                     <>
                         <ClientInformation client={client}/>
                         <ClientActions client={client}/>

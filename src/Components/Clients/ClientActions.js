@@ -19,10 +19,8 @@ function ClientActions(props) {
                 //handle errors from server
             }
         }
-
-
-
     }
+
     return <>
         <Form.Group controlId="command">
             <Form.Label className={"small-titles"} id={"title2"}>Command</Form.Label>
@@ -45,17 +43,10 @@ function ClientActions(props) {
             <Form.File className={"small-titles"} id="upload-file" label="Choose file" onChange={(e) => setFileName(e.target.files[0].name)}/>
         </Form.Group>
         <Form.Group controlId="sendCommand">
-            <Button class="buttons" id={"send-button"} variant={"success"} onClick={SendCommand}>Send</Button>
+            {(
+                <Button class="buttons" id={"send-button"} disabled={!props.client.status} variant={"success"} onClick={SendCommand}>Send</Button>
+            )}
         </Form.Group>
-        {/*<Form.Group controlId="response">*/}
-        {/*    <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>*/}
-        {/*    <Form.Control as="textarea" rows={10} disabled={true} className={"response"}/>*/}
-        {/*</Form.Group>*/}
-        {/*<div className={"buttons"}>*/}
-        {/*    <NavLink to={"/clients"}>*/}
-        {/*        <Button href="/clients" variant={"success"}>Back</Button>*/}
-        {/*    </NavLink>*/}
-        {/*</div>*/}
 
     </>;
 }

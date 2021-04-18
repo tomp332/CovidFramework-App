@@ -15,9 +15,9 @@ const Clients = () =>{
     }
     useEffect(() => {
         getClients();
-        setInterval(() => {
-            getClients();
-        }, 2000);
+        let handle = setInterval(getClients,2000);
+        return ()=> {clearInterval(handle);
+        };
     },[]);
 
     return(
