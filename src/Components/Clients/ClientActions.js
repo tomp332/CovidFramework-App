@@ -6,17 +6,22 @@ import {sendCommand} from "../../api/api";
 function ClientActions(props) {
     const [fileName, setFileName] = useState(null);
     const [command, setCommand] = useState(null);
+    const [errors, setErrors] = useState(null);
 
     async function SendCommand()
     {
+        setErrors(null);
         //need a global state of the client is connected? and only then allow sending the command
-        //if(clientIsConnected)...
-        if(command === 'startPS') {
-            //disable all other buttons and command select
-        }
-        else{
-            if(!await sendCommand(props.client.client_id, command)) {
-                //handle errors from server
+        if(props.client.status)
+        {
+            if(command === 'startPS') {
+                //disable all other buttons and command select
+            }
+            else{
+                let response = await sendCommand(props.client.client_id, command);
+                if(!response) {
+                    setErrors("Unable to send command to server, please try again");
+                }
             }
         }
     }
@@ -40,14 +45,22 @@ function ClientActions(props) {
                 <option value={"StartPS"}>Start powershell console</option>
 
             </Form.Control>
-            <Form.File className={"small-titles"} id="upload-file" label="Choose file" onChange={(e) => setFileName(e.target.files[0].name)}/>
-        </Form.Group>
-        <Form.Group controlId="sendCommand">
-            {(
-                <Button class="buttons" id={"send-button"} disabled={!props.client.status} variant={"success"} onClick={SendCommand}>Send</Button>
+            {(command === "upload" || command === "change-image") && (
+                <Form.File className={"small-titles"} id="upload-file" label="Choose file" onChange={(e) => setFileName(e.target.files[0].name)}/>
+            )}
+            {(command === "download") && (
+                <>
+                    <Form.Label>Remote path:</Form.Label>
+                    <Form.Control type="text" placeholder="Enter path" />
+                </>
             )}
         </Form.Group>
-
+        <Form.Group controlId="sendCommand">
+            {
+                <Button class="buttons" id={"send-button"} disabled={!props.client.status} variant={"success"} onClick={SendCommand}>Send</Button>
+            }
+        </Form.Group>
+        {errors && (<Form.Label id={"send-errors"} className={"buttons"}>{errors}</Form.Label>)}
     </>;
 }
 

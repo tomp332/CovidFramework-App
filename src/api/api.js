@@ -22,8 +22,8 @@ export const login = async(values)=> {
     return result.status === 200;
 }
 
-export const register = (values)=> {
-    const result = axios({
+export const register = async(values)=> {
+    const result = await axios({
         method:'post',
         url:'http://10.0.0.4:443/register',
         data: {
@@ -34,6 +34,7 @@ export const register = (values)=> {
     });
     return result.status === 200;
 }
+
 export const sendCommand = async(clientId,command)=>{
     const result = await axios({
         method:'post',
@@ -41,6 +42,18 @@ export const sendCommand = async(clientId,command)=>{
         data:{
             client_id:clientId,
             command:command
+        },
+        withCredentials:true
+    });
+    return result.status === 200;
+}
+
+export const killClient = async(clientId)=>{
+    const result = await axios({
+        method:'post',
+        url:"http://10.0.0.4:443/api/clients/kill",
+        data:{
+            client_id:clientId,
         },
         withCredentials:true
     });

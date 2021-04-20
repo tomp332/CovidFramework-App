@@ -1,14 +1,38 @@
-import {Button, Table} from 'react-bootstrap';
-import React from 'react';
+import {Button, Modal, Table} from 'react-bootstrap';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {killClient} from "../../api/api";
+import "./ClientsTable.css";
 
 const ClientsTable = ({data})=>{
+    const [killStatus, setKillStatus] = useState(false);
+    const [alertShow, setAlertShow] = useState(false);
     function KillClient(clientId){
-        console.log(`Killing client: ${clientId}`);
+        setKillStatus(false);
+        killClient(clientId).then(response=>{
+            if(response)
+            {
+                setKillStatus(true);
+                setAlertShow(true);
+            }
+        });
     }
 
     return(
         <>
+            <Modal
+                size="sm"
+                show={alertShow}
+                onHide={() => setAlertShow(false)}
+                aria-labelledby="kill-client-alert"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        Success
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Killing client..</Modal.Body>
+            </Modal>
             <Table className={"clients-table"} striped hover>
                 <thead>
                 <tr>
