@@ -19,8 +19,6 @@ Enjoy!
 
 ### Available features
 
-<div align="center">
-
 | Command      | Description| 
 | :--     |    :-:   |
 | Wifi passwords| Get all stored wifi passwords | 
@@ -31,7 +29,6 @@ Enjoy!
 |Upload/Download files|Retrieve or upload files|
 |Interactive powershell|Start interactive powershell command\response|
 |Location|Live location based on wifi routers around, or public IP address|
-</div>
 
 
 
