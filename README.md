@@ -1,7 +1,11 @@
 # The Covid Framework
 
 This project's main goal is to create an exploitation framework and all in one website to maintain an attack.
-It provides built in scripts and meatures in order to execute after the a computer has been infected.
+It provides built in functions in order to execute remote code on a target machine. 
+The best thing about it, is the visulization of things such as a live location and easy response reading from commands.
+
+Enjoy!
+
 
 
 ## Available features
@@ -22,6 +26,7 @@ Upload/Download files
 
 Interactive powershell
 
+Live persist location
 
 ## Diagram
 <img src="./CovidDiagram.png" width="650" height="300" />
