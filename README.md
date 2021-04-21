@@ -15,11 +15,12 @@ The best thing about it, is the visulization of things such as a live location a
 
 Enjoy!
 
+<div align="center">
 
-###Available features
+### Available features
 
 | Command      | Description| 
-| :---        |    :----:   |
+| :--     |    :-:   |
 | Wifi passwords| Get all stored wifi passwords | 
 | Persistence| Task scheduler based persistence|
 |Chrome passwords|Get all stored local chrome passwords|
@@ -28,6 +29,9 @@ Enjoy!
 |Upload/Download files|Retrieve or upload files|
 |Interactive powershell|Start interactive powershell command\response|
 |Location|Live location based on wifi routers around, or public IP address|
+</div>
+
+
 
 
 ### Diagram
