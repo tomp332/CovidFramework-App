@@ -15,9 +15,11 @@ The best thing about it, is the visulization of things such as a live location a
 
 Enjoy!
 
-<div align="center">
+
 
 ### Available features
+
+<div align="center">
 
 | Command      | Description| 
 | :--     |    :-:   |
