@@ -6,7 +6,7 @@
   width="70"
   height="70">
 </h1>
-
+&nbsp;&nbsp;
 This project's main goal is to create an exploitation framework and all in one website to maintain an attack.
 
 It provides built in functions in order to execute remote code on a target machine. 
@@ -15,8 +15,7 @@ The best thing about it, is the visulization of things such as a live location a
 
 Enjoy!
 
-
-
+&nbsp;&nbsp;
 ### Available features
 
 | Command      | Description| 
@@ -30,8 +29,6 @@ Enjoy!
 |Interactive powershell|Start interactive powershell command\response|
 |Location|Live location based on wifi routers around, or public IP address|
 
-
-
-
+&nbsp;&nbsp;&nbsp;
 ### Diagram
 <img src="./CovidDiagram.png" width="650" height="300" />
