@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {
     ProSidebar,
     Menu,
@@ -27,6 +27,7 @@ const Sidebar = () => {
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
+
     const checkLogout = async () =>{
         const isLoggedOut = await logout();
         if(isLoggedOut){
