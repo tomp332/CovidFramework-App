@@ -37,8 +37,8 @@ Enjoy!
 &nbsp;&nbsp;&nbsp;
 
 ## ScreenShots
-<img src="./ProjectPictures/Home.png" width="400" height="400" />
-<img src="./ProjectPictures/Clients.png" width="400" height="400" />
+<img src="./ProjectPictures/Home.png" />
+<img src="./ProjectPictures/Clients.png" />
 
 
 ### Credits
