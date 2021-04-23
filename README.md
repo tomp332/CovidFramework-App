@@ -33,4 +33,5 @@ Enjoy!
 <img src="./CovidDiagram.png" width="650" height="300" />
 
 &nbsp;&nbsp;&nbsp;
-###Credits
+
+### Credits
