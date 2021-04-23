@@ -9,9 +9,11 @@
 &NewLine;
 &NewLine;
 This project's main goal is to create an exploitation framework and all in one website to maintain an attack.
+
 It provides built in functions in order to execute remote code on a target machine. 
+
 The best thing about it, is the visulization of things such as a live location and easy response reading from commands.
-&nbsp;
+
 Enjoy!
 
 &nbsp;&nbsp;
