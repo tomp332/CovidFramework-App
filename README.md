@@ -1,8 +1,8 @@
-<h1> <img src="./virus.png"
+<h1> <img src="./ProjectPictures/virus.png"
   width="70"
   height="70">
   &nbsp;The Covid Framework&nbsp;
-<img src="./virus.png"
+<img src="./ProjectPictures/virus.png"
   width="70"
   height="70">
 </h1>
@@ -32,7 +32,7 @@ Enjoy!
 
 &nbsp;&nbsp;&nbsp;
 ### Diagram
-<img src="./CovidDiagram.png" width="650" height="300" />
+<img src="./ProjectPictures/CovidDiagram.png" width="650" height="300" />
 
 &nbsp;&nbsp;&nbsp;
 
