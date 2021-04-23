@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Route, Switch} from 'react-router';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import Home from '../Components/Home/Home';
@@ -12,6 +12,7 @@ import Index from "../Components/Index/Index";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import UserContext from '../Components/User';
 import ClientControl from "../Components/Clients/ClientControl";
+
 
 const ReactRouter = () => {
     const {userInfo} = useContext(UserContext);

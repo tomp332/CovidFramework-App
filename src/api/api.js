@@ -59,3 +59,11 @@ export const killClient = async(clientId)=>{
     });
     return result.status === 200;
 }
+export const checkToken = ()=>{
+    const result = axios({
+        method:'get',
+        url:"http://10.0.0.4:443/auth",
+        withCredentials:true
+    });
+    return result.status === 200;
+}
