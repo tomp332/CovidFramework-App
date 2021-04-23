@@ -7,7 +7,6 @@ import './ClientControl.css';
 import ClientInformation from "./ClientInformation";
 import ClientActions from './ClientActions';
 import {Spinner} from "reactstrap";
-import {forEach} from "react-bootstrap/ElementChildren";
 
 
 const ClientControl = () => {
@@ -58,7 +57,7 @@ const ClientControl = () => {
         let handle = setInterval(getClient,5000);
         return ()=> {clearInterval(handle);
         };
-    },[]);
+    },[id]);
 
     function displayResponse()
     {

@@ -18,7 +18,7 @@ export const login = async(values)=> {
             password: values.password,
         },
         withCredentials: true
-    }).catch(err => {console.log(err);return err});
+    }).catch(err => {return err});
     return result.status === 200;
 }
 

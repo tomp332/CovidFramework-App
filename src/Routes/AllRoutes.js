@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {Route, Switch} from 'react-router';
 import Sidebar from '../Components/Sidebar/Sidebar';
 import Home from '../Components/Home/Home';
