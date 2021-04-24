@@ -17,7 +17,7 @@ function App() {
         if(token !== undefined){
             axios({
                 method:'get',
-                url:"http://10.0.0.4:443/auth",
+                url:`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/auth`,
                 withCredentials:true
             }).then(() =>{
                 user = {

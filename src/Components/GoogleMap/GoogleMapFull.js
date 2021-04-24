@@ -10,7 +10,7 @@ function GlobalMap(){
 
     function getLocations()
     {
-        fetch('http://10.0.0.4:443/api/clients/locations',{credentials:"include"})
+        fetch(`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/locations`,{credentials:"include"})
             .then(response=>response.json())
             .then(clients=> {
                 setClients(clients)

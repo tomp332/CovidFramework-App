@@ -51,7 +51,7 @@ export const sendCommand = async(clientId,command)=>{
 export const killClient = async(clientId)=>{
     const result = await axios({
         method:'post',
-        url:"http://10.0.0.4:443/api/clients/kill",
+        url:"/api/clients/kill",
         data:{
             client_id:clientId,
         },
@@ -62,7 +62,7 @@ export const killClient = async(clientId)=>{
 export const checkToken = ()=>{
     const result = axios({
         method:'get',
-        url:"http://10.0.0.4:443/auth",
+        url:"/auth",
         withCredentials:true
     });
     return result.status === 200;

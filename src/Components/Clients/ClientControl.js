@@ -7,8 +7,6 @@ import './ClientControl.css';
 import ClientInformation from "./ClientInformation";
 import ClientActions from './ClientActions';
 import {Spinner} from "reactstrap";
-import {forEach} from "react-bootstrap/ElementChildren";
-import axios from '../../axios'
 
 const ClientControl = () => {
     const {id} = useParams();
@@ -21,7 +19,7 @@ const ClientControl = () => {
 
     useEffect(()=>{
         const getClient = () =>{
-            fetch(`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/client`, {
+            fetch(`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/client`, {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: id}), credentials: "include"
             })
