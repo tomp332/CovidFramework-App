@@ -1,14 +1,57 @@
-import {Button, Table} from 'react-bootstrap';
-import React from 'react';
+import {Button, Modal, Table} from 'react-bootstrap';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
+import {killClient} from "../../api/api";
+import "./ClientsTable.css";
 
 const ClientsTable = ({data})=>{
+    const [killStatus, setKillStatus] = useState(false);
+    const [alertShow, setAlertShow] = useState(false);
+    const [currentKilledClient, setCurrentKilledClient ] = useState(null);
+
     function KillClient(clientId){
-        console.log(`Killing client: ${clientId}`);
+        setKillStatus(false);
+        killClient(clientId).then(response=>{
+            if(response){
+                setKillStatus(true);
+                setCurrentKilledClient(clientId);
+            }
+            else {
+                setKillStatus(false);
+            }
+            setAlertShow(true);
+
+        });
     }
 
     return(
         <>
+            <Modal
+                size="sm"
+                show={alertShow}
+                onHide={() => setAlertShow(false)}
+                aria-labelledby="kill-client-alert"
+            >
+                    {(killStatus) ? (
+                        <>
+                            <Modal.Header closeButton>
+                                <Modal.Title>
+                                    Success
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Kill command for client {currentKilledClient} was successful</Modal.Body>
+                        </>
+                    ):(
+                        <>
+                            <Modal.Header closeButton>
+                                <Modal.Title>
+                                    Error
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Kill command for client {currentKilledClient} failed, please try again</Modal.Body>
+                        </>
+                    )}
+            </Modal>
             <Table className={"clients-table"} striped hover>
                 <thead>
                 <tr>

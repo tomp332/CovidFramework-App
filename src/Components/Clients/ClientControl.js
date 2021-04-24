@@ -10,7 +10,6 @@ import {Spinner} from "reactstrap";
 import {forEach} from "react-bootstrap/ElementChildren";
 import axios from '../../axios'
 
-
 const ClientControl = () => {
     const {id} = useParams();
     const [client, setClient] = useState(undefined);
@@ -61,7 +60,7 @@ const ClientControl = () => {
         let handle = setInterval(getClient,5000);
         return ()=> {clearInterval(handle);
         };
-    },[]);
+    },[id]);
 
     function displayResponse()
     {
