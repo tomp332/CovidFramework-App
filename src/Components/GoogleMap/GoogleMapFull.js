@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {GoogleMap, withGoogleMap, withScriptjs,Marker, InfoWindow} from "react-google-maps";
-
+import virus from '../../../src/media/virus.svg'
 
 function GlobalMap(){
 
@@ -72,6 +72,11 @@ function GlobalMap(){
                     onClick={() => {
                         setDisplayClient(true);
                         setCurrentClient(client);
+                    }}
+                    icon={{
+                        url: virus,
+                        anchor: new window.google.maps.Point(17, 46),
+                        scaledSize: new window.google.maps.Size(37, 37)
                     }}
 
                 />
