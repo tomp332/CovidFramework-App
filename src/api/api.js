@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "../axios";
 
 export const logout = async() =>{
     const result = await axios({
         method:'get',
-        url:'http://10.0.0.4:443/api/logout',
+        url:'/api/logout',
         withCredentials:true
     });
     return result.status === 200;
@@ -12,7 +12,7 @@ export const logout = async() =>{
 export const login = async(values)=> {
     const result = await axios({
         method: 'post',
-        url: 'http://10.0.0.4:443/login',
+        url: '/login',
         data: {
             username: values.username,
             password: values.password,
@@ -25,7 +25,7 @@ export const login = async(values)=> {
 export const register = async(values)=> {
     const result = await axios({
         method:'post',
-        url:'http://10.0.0.4:443/register',
+        url:'/register',
         data: {
             username:values.username,
             password:values.password,
@@ -38,7 +38,7 @@ export const register = async(values)=> {
 export const sendCommand = async(clientId,command)=>{
     const result = await axios({
         method:'post',
-        url:"http://10.0.0.4:443/api/commands/add",
+        url:"/api/commands/add",
         data:{
             client_id:clientId,
             command:command

@@ -7,7 +7,8 @@ import './ClientControl.css';
 import ClientInformation from "./ClientInformation";
 import ClientActions from './ClientActions';
 import {Spinner} from "reactstrap";
-
+import {forEach} from "react-bootstrap/ElementChildren";
+import axios from '../../axios'
 
 const ClientControl = () => {
     const {id} = useParams();
@@ -20,7 +21,7 @@ const ClientControl = () => {
 
     useEffect(()=>{
         const getClient = () =>{
-            fetch('http://10.0.0.4:443/api/client', {
+            fetch(`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/client`, {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: id}), credentials: "include"
             })
@@ -40,8 +41,9 @@ const ClientControl = () => {
                     else
                         return setClientStatus(false);
                 });
+
             const getResponse = () => {
-                fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
+                fetch(`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/response`,{method:'POST', headers:{'Content-Type': 'application/json'},
                     body:JSON.stringify({id:id}), credentials:"include"})
                     .then(response=>response.json())
                     .then(data=>{
@@ -53,6 +55,7 @@ const ClientControl = () => {
             }
             getResponse();
         }
+
         getClient();
         let handle = setInterval(getClient,5000);
         return ()=> {clearInterval(handle);
