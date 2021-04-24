@@ -4,7 +4,6 @@ import Title from "react-titles/Title6";
 import GoogleMapFull from './GoogleMapFull';
 
 const Map = () =>{
-
     return(
         <div className="mapPageWrapper">
             <div className="title">
