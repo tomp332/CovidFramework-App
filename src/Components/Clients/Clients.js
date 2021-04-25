@@ -9,7 +9,7 @@ const Clients = () =>{
     const [data, setData] = useState(null);
     function getClients()
     {
-        fetch(`${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients`,{credentials:"include"})
+        fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients`,{credentials:"include"})
             .then(response=>response.json())
             .then(data=>setData(data))
     }
