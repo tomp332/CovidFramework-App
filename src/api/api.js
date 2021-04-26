@@ -17,7 +17,8 @@ export const login = async(values)=> {
             username: values.username,
             password: values.password,
         },
-        withCredentials: true
+        withCredentials: true,
+        rejectUnauthorized: false
     }).catch(err => {return err});
     return result.status === 200;
 }
