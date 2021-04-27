@@ -9,7 +9,7 @@ const Clients = () =>{
     const [data, setData] = useState(null);
     function getClients()
     {
-        fetch('http://10.0.0.4:443/api/clients',{credentials:"include"})
+        fetch('http://localhost:5000/api/clients',{credentials:"include"})
             .then(response=>response.json())
             .then(data=>setData(data))
     }
