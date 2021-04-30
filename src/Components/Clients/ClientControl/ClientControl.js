@@ -7,27 +7,8 @@ import {Spinner} from "reactstrap";
 import ClientControlSection from './ClientControlSection'
 import ClientControlCommand from './ClientControlCommand'
 import ClientControlResponse from './ClientControlResponse';
+import ClientControlInformationTable from './ClientControlInformationTable';
 
-const renderClientInfoTableRows = (rows) => {
-    return rows.map(([label, data], i) => {
-
-        return (
-            <div className="client-control-info-table-row" key={i.toString()}>
-                <div className='client-control-info-table-col label'>{label}</div>
-                <div className='client-control-info-table-col data'>{data.toString()}</div>
-            </div>
-        )
-    })
-}
-
-const ClientControlInformationTable = ({ client }) => {
-    console.log(client)
-    return (
-            <div className="client-control-info-table">
-                {renderClientInfoTableRows(Object.entries(client))}
-            </div>
-    )
-}
 
 // TODO: get list of commands from DB
 const commands = [
