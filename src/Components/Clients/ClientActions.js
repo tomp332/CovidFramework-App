@@ -1,11 +1,10 @@
 import {Button, Form} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {sendCommand} from "../../api/api";
 
 function ClientActions(props) {
     const [fileName, setFileName] = useState(null);
-    const [command, setCommand] = useState(null);
+    const [command, setCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
 
     async function SendCommand()

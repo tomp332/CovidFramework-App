@@ -7,14 +7,20 @@ import "./ClientsTable.css";
 const ClientsTable = ({data})=>{
     const [killStatus, setKillStatus] = useState(false);
     const [alertShow, setAlertShow] = useState(false);
+    const [currentKilledClient, setCurrentKilledClient ] = useState(null);
+
     function KillClient(clientId){
         setKillStatus(false);
         killClient(clientId).then(response=>{
-            if(response)
-            {
+            if(response){
                 setKillStatus(true);
-                setAlertShow(true);
+                setCurrentKilledClient(clientId);
             }
+            else {
+                setKillStatus(false);
+            }
+            setAlertShow(true);
+
         });
     }
 
@@ -26,12 +32,25 @@ const ClientsTable = ({data})=>{
                 onHide={() => setAlertShow(false)}
                 aria-labelledby="kill-client-alert"
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        Success
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Killing client..</Modal.Body>
+                    {(killStatus) ? (
+                        <>
+                            <Modal.Header closeButton>
+                                <Modal.Title>
+                                    Success
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Kill command for client {currentKilledClient} was successful</Modal.Body>
+                        </>
+                    ):(
+                        <>
+                            <Modal.Header closeButton>
+                                <Modal.Title>
+                                    Error
+                                </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>Kill command for client {currentKilledClient} failed, please try again</Modal.Body>
+                        </>
+                    )}
             </Modal>
             <Table className={"clients-table"} striped hover>
                 <thead>

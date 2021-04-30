@@ -27,6 +27,7 @@ const Sidebar = () => {
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
+
     const checkLogout = async () =>{
         const isLoggedOut = await logout();
         if(isLoggedOut){

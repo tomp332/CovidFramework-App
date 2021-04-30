@@ -52,7 +52,7 @@ const ClientControl = () => {
 
     useEffect(()=>{
         const getClient = () =>{
-            fetch('http://localhost:5000/api/client', {
+            fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/client`, {
                 method: 'POST', headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id: id}), credentials: "include"
             })
@@ -74,8 +74,9 @@ const ClientControl = () => {
                     else
                         return setClientStatus(false);
                 });
+
             const getResponse = () => {
-                fetch('http://localhost:5000/api/response',{method:'POST', headers:{'Content-Type': 'application/json'},
+                fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/response`,{method:'POST', headers:{'Content-Type': 'application/json'},
                     body:JSON.stringify({id:id}), credentials:"include"})
                     .then(response=>response.json())
                     .then(data=>{
@@ -87,11 +88,12 @@ const ClientControl = () => {
             }
             getResponse();
         }
+
         getClient();
         let handle = setInterval(getClient,5000);
         return ()=> {clearInterval(handle);
         };
-    },[]);
+    },[id]);
 
     return (
         <div className="controlPageWrapper">
