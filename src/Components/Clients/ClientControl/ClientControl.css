@@ -121,7 +121,6 @@ rect:nth-child(2){
 }
 
 .client-control-info-table-row {
-    border: 1px solid white;
     display: flex;
     justify-content: space-between;
     font-size: 1em;
@@ -144,6 +143,7 @@ rect:nth-child(2){
 
 .client-control-info-table-col.label {
     border-right: 1px solid white;
+    text-transform: uppercase;
 }
 
 .client-control-section-title {
@@ -191,6 +191,8 @@ rect:nth-child(2){
     width: 100%;
     min-height: 15em;
     margin: 0.5em 0;
+    border: none;
+    background-color: none;
 }
 
 .cancel {
