@@ -49,6 +49,16 @@ export const sendCommand = async(clientId,command)=>{
     return result.status === 200;
 }
 
+export const uploadFile = async(formData)=>{
+    const result = await axios.post("/api/clients/upload",formData,{
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        withCredentials:true
+    }).then().catch(err=>err);
+    return result.status === 200;
+}
+
 export const killClient = async(clientId)=>{
     const result = await axios({
         method:'post',
@@ -60,6 +70,7 @@ export const killClient = async(clientId)=>{
     });
     return result.status === 200;
 }
+
 export const checkToken = ()=>{
     const result = axios({
         method:'get',
