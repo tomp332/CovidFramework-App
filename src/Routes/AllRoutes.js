@@ -11,7 +11,7 @@ import Login from "../Components/Actions/Login/Login";
 import Index from "../Components/Index/Index";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import UserContext from '../Components/User';
-import ClientControl from "../Components/Clients/ClientControl";
+import ClientControl from "../Components/Clients/ClientControl/ClientControl";
 
 
 const ReactRouter = () => {
