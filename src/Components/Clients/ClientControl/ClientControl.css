@@ -100,6 +100,7 @@ rect:nth-child(2){
     width: 50%;
     /* border: 1px solid pink; */
     color: #000;
+    margin-bottom: 1em;
 }
 
 .client-control-info-section {
@@ -144,6 +145,9 @@ rect:nth-child(2){
 .client-control-info-table-col.label {
     border-right: 1px solid white;
     text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20%;
 }
 
 .client-control-section-title {
@@ -175,6 +179,7 @@ rect:nth-child(2){
 .client-control-command-buttons {
     display: flex;
     justify-content: flex-end;
+    margin-top: 0.5em;
 }
 
 .command-button {
@@ -197,4 +202,24 @@ rect:nth-child(2){
 
 .cancel {
     background-color: #cf142b;
+}
+
+.upload-file-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+    align-items: center;
+}
+
+.upload-file-wrapper.client-control-command-buttons.command-button {
+    height: 1.85em;
+}
+
+.btsrp-form-wrapper {
+    width: 80%;
+    margin-bottom: 0.5em;
+}
+
+.download-file-wrapper {
+    margin-bottom: 0.75em;
 }

@@ -27,7 +27,8 @@ const ClientControlResponse = ({ clientResponse, allResponses}) => {
             <div className="client-control-info-table-row client-response">
                 <textarea 
                     value={clientResponse && displayResponse()}
-                    rows="10" 
+                    rows="10"
+                    disabled
                     className="client-control-response-textarea response"
                 />
                 <div className="client-control-command-buttons">
