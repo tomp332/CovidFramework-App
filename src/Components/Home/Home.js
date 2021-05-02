@@ -10,7 +10,7 @@ const Home = () =>{
     return(
         <div className="homePageWrapper">
             <div className="title">
-                <Title size="500" text1={`WELCOME ${newUserName}`}  open={true} />
+                <Title size={500} text1={`WELCOME ${newUserName}`}  open={true} />
             </div>
         </div>
     )

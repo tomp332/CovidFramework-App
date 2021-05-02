@@ -12,7 +12,7 @@ const Register=()=>{
     return(
         <div className="registerPageWrapper">
             <div className="title">
-                <Title size="300" text1="REGISTER"  open={true} />
+                <Title size={300} text1="REGISTER"  open={true} />
             </div>
             <Card className={"register-card"}>
                     <form className="register-form">

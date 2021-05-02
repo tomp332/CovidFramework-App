@@ -5,7 +5,7 @@ const Settings = () =>{
     return(
         <div className="settingsPageWrapper">
             <div className="title">
-                <Title size="300" text1="SETTINGS"  open={true} />
+                <Title size={300} text1="SETTINGS"  open={true} />
             </div>
         </div>
     )

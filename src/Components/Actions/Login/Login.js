@@ -12,7 +12,7 @@ const Login = () =>{
     return(
         <div className="loginPageWrapper">
             <div className="title">
-                <Title size="300" text1="LOGIN"  open={true} />
+                <Title size={300} text1="LOGIN"  open={true} />
             </div>
             <Card className={"login-card"}>
                     <form className="login-form">

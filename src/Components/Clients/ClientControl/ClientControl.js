@@ -79,7 +79,7 @@ const ClientControl = () => {
     return (
         <div className="controlPageWrapper">
             <div className="title">
-                <Title size="600" text1="COMMAND & CONTROL" open={true}/>
+                <Title size={600} text1="COMMAND & CONTROL" open={true}/>
             </div>
             <div className="client-control-form-wrapper">
                 {client !== undefined ? 
