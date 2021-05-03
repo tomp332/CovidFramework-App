@@ -7,26 +7,25 @@ const responseBanner = (text) => {
 }
 
 const ClientControlResponse = ({ clientResponse, allResponses}) => {
-
+    // console.log(clientResponse, allResponses)
     let responseString = '';
 
     const displayResponse = () => {
-
         allResponses.forEach( resp =>{
             responseString += responseBanner(resp)
         });
-        return(
-            <textarea rows={10} disabled={true} className={"response"}
-                value={(clientResponse) && `${responseString}`}
-            />
-        )
+        return(clientResponse && responseString)
+        //     <textarea rows={10} disabled={true} className={"response"}
+        //         value={"Test"}
+        //     />
+        // )
     }
 
     return (
         <div className="client-control-info-table">
             <div className="client-control-info-table-row client-response">
                 <textarea 
-                    value={clientResponse && displayResponse()}
+                    value={displayResponse()}
                     rows="10"
                     disabled
                     className="client-control-response-textarea response"

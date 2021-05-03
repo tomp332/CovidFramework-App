@@ -70,7 +70,6 @@ const ClientControl = () => {
             }
             getResponse();
         }
-
         getClient();
         let handle = setInterval(getClient,5000);
         return ()=> {clearInterval(handle);

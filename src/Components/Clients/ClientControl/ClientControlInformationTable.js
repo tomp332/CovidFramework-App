@@ -1,7 +1,6 @@
 
 const renderClientInfoTableRows = (rows) => {
     return rows.map(([label, data], i) => {
-        console.log(label)
         if(label.toLowerCase() === "wifienabled")
             label = "Wifi"
         if(label.toLowerCase() === "session_key")
