@@ -1,7 +1,7 @@
 
 import {Form} from 'react-bootstrap';
 import React, {useState} from "react";
-import {uploadFile} from "../../../api/api";
+import {sendCommand, uploadFile} from "../../../api/api";
 
 
 
@@ -10,6 +10,25 @@ const ClientControlCommand = ({ client, commands }) => {
     const [file, setFile] = useState(null)
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
+
+    async function SendCommand(e)
+    {
+        e.preventDefault()
+        setErrors(null);
+        //need a global state of the client is connected? and only then allow sending the command
+        if(client.status)
+        {
+            if(currentCommand === 'startPS') {
+                //disable all other buttons and command select
+            }
+            else{
+                let response = await sendCommand(client.client_id, currentCommand);
+                if(!response) {
+                    setErrors("Unable to send command to server, please try again");
+                }
+            }
+        }
+    }
 
     async function UploadFile(e)
     {
@@ -20,8 +39,8 @@ const ClientControlCommand = ({ client, commands }) => {
             {
                 const formData = new FormData();
                 formData.append("name",fileName);
-                formData.append("file", file)
-                let response = await uploadFile(formData);
+                formData.append("file", file);
+                let response = await uploadFile(formData, client.client_id);
                 if(!response) {
                     setErrors("Unable to upload file, please try again");
                 }
@@ -72,8 +91,7 @@ const ClientControlCommand = ({ client, commands }) => {
                         </div> : null
             }
             <div className="client-control-command-buttons">
-                <button className="command-button cancel">Cancel</button>
-                <button className="command-button">Send</button>
+                <button className="command-button" onClick={(e)=>SendCommand(e)}>Send</button>
             </div>
         </div>
     )

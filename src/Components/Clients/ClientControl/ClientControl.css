@@ -144,7 +144,7 @@ rect:nth-child(2){
 
 .client-control-info-table-col.label {
     border-right: 1px solid white;
-    text-transform: uppercase;
+    text-transform: capitalize;
     display: flex;
     justify-content: flex-start;
     padding-left: 20%;
