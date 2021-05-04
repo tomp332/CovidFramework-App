@@ -63,8 +63,8 @@ const ClientControl = () => {
                     .then(response=>response.json())
                     .then(data=>{
                         if(Object.keys(data).length !== 0){
-                            setClientResponse(data.response);
-                            setAllResponses(oldArray =>[...oldArray,data.response]);
+                            setClientResponse(data);
+                            setAllResponses(oldArray =>[...oldArray,data]);
                         }
                     });
             }

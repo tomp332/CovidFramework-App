@@ -1,24 +1,22 @@
 import { NavLink } from "react-router-dom";
 
-const responseBanner = (text) => {
-    return `\n*************************** New response ***************************\n
-            \r${text}
-            \r\n_______________________________________________________________________\n`
+
+const responseBanner = (responseObject) => {
+    return(
+        `\n[>>] New response: ${responseObject.date}  [<<]\n`+
+        `\r${responseObject.response}`+
+        "\r[>>] ___________________________________________________________ [<<]\n"
+    )
 }
 
 const ClientControlResponse = ({ clientResponse, allResponses}) => {
-    // console.log(clientResponse, allResponses)
-    let responseString = '';
 
+    let responseString = '';
     const displayResponse = () => {
         allResponses.forEach( resp =>{
             responseString += responseBanner(resp)
         });
         return(clientResponse && responseString)
-        //     <textarea rows={10} disabled={true} className={"response"}
-        //         value={"Test"}
-        //     />
-        // )
     }
 
     return (
