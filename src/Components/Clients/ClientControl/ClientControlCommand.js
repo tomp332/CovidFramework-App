@@ -91,6 +91,7 @@ const ClientControlCommand = ({ client, commands }) => {
                         </div> : null
             }
             <div className="client-control-command-buttons">
+                <h6 style={{"color":"red"}}>{errors}</h6>
                 <button className="command-button" onClick={(e)=>SendCommand(e)}>Send</button>
             </div>
         </div>
