@@ -3,12 +3,14 @@ const renderClientInfoTableRows = (rows) => {
     return rows.map(([label, data], i) => {
         if(label.toLowerCase() === "wifienabled")
             label = "Wifi"
-        if(label.toLowerCase() === "session_key")
+        else if(label.toLowerCase() === "session_key")
             label = "Session-token"
-        if(label.toLowerCase() === "public_ip")
+        else if(label.toLowerCase() === "public_ip")
             label = "Public IP"
-        if(label.toLowerCase() === "client_id")
+        else if(label.toLowerCase() === "client_id")
             label = "Client ID"
+        else if (label.toLowerCase() === "lastactive")
+            label = "Last-active"
         return (
             <div className="client-control-info-table-row" key={i.toString()}>
                 <div className='client-control-info-table-col label'>{label}</div>
