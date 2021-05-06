@@ -56,6 +56,7 @@ const ClientsTable = ({data}) => {
                 <tr>
                     <th>ID</th>
                     <th>Username</th>
+                    <th>Last active</th>
                     <th>OS</th>
                     <th>Public IP</th>
                     <th>Admin</th>
@@ -68,6 +69,7 @@ const ClientsTable = ({data}) => {
                         <tr key={`${data.client_id}`}>
                             <td>{data.client_id}</td>
                             <td>{data.username}</td>
+                            <td>{data.lastActive}</td>
                             <td>{data.os}</td>
                             <td>{data.public_ip}</td>
                             <td>{
