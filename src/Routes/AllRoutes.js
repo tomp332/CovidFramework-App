@@ -18,17 +18,18 @@ const ReactRouter = () => {
     const {userInfo} = useContext(UserContext);
     return (
         <div className="main">
-                <Sidebar/>
-                <Switch>
-                    <Route path="/" exact component={Index}/>
-                    <Route path="/login" component={Login}/>
-                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/home" component={Home}/>
-                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/clients" component={Clients}/>
-                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/control/:id" component={ClientControl}/>
-                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/map" component={Map}/>
-                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/docs" component={Docs}/>
-                    <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/settings" component={Settings}/>
-                </Switch>
+            <Sidebar/>
+            <Switch>
+                <Route path="/" exact component={Index}/>
+                <Route path="/login" component={Login}/>
+                <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/home" component={Home}/>
+                <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/clients" component={Clients}/>
+                <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/control/:id"
+                                component={ClientControl}/>
+                <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/map" component={Map}/>
+                <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/docs" component={Docs}/>
+                <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/settings" component={Settings}/>
+            </Switch>
         </div>
     );
 }

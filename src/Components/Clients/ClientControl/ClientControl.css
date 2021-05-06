@@ -1,96 +1,114 @@
-.send-command-button{
+.send-command-button {
     margin: -3px 2px;
 }
-.kill-command-button{
+
+.kill-command-button {
     margin: -3px 2px;
 }
-.status-column{
+
+.status-column {
     margin: 3px auto;
     width: auto;
 }
-.client-status-connected{
+
+.client-status-connected {
     color: #98d14a;
     font-weight: bold;
 }
-.client-status-disconnected{
+
+.client-status-disconnected {
     color: red;
 }
-.controlPageWrapper{
+
+.controlPageWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     min-height: 100vh;
 }
-rect:nth-child(2){
-    stroke:#98d14a;
+
+rect:nth-child(2) {
+    stroke: #98d14a;
 }
-.title{
+
+.title {
     justify-content: start;
     margin: 2em auto;
 }
+
 /*Entire command form*/
-.command-form{
-    color:white !important;
+.command-form {
+    color: white !important;
     width: 50%;
     border: 1px solid red;
 }
+
 /*User info container*/
-.user-info-card{
-    color:black !important;
+.user-info-card {
+    color: black !important;
     background: #97d049;
 }
 
-.user-info-card{
+.user-info-card {
     text-align: center;
-    color:black !important;
-    width:100% !important;
-    height: 100% ;
+    color: black !important;
+    width: 100% !important;
+    height: 100%;
     background: #e9f2ed !important;
 }
 
-.user-info-card .container{
+.user-info-card .container {
     text-align: center;
-    padding:8px;
-    height:100vh;
+    padding: 8px;
+    height: 100vh;
 }
-.user-info-card .row{
-    padding:3px;
+
+.user-info-card .row {
+    padding: 3px;
 }
-.property-name{
+
+.property-name {
     text-align: left !important;
     margin-left: 20px;
 }
 
-.response{
+.response {
     background: #e9f2ed !important;
 }
+
 .spinner-grow {
     margin: 30vh auto !important;
     display: flex !important;
 }
+
 .small-titles {
     font-size: 3vh;
-    padding-top:20px;
+    padding-top: 20px;
     padding-bottom: 20px;
 }
-.small-titles label{
+
+.small-titles label {
     font-size: 2vh;
 }
+
 #upload-file {
     font-size: 2vh;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
-#title3{
+
+#title3 {
     padding-top: 0 !important;
 }
-#send-button{
+
+#send-button {
     margin: 0 auto;
     display: inherit;
 }
-#send-errors{
-    color:red;
+
+#send-errors {
+    color: red;
 }
 
 /* ClientControl Form */
@@ -161,7 +179,7 @@ rect:nth-child(2){
 
 .client-control-info-table-col.label {
     font-weight: 600;
-} 
+}
 
 .client-control-command-select {
     flex-basis: 100%;

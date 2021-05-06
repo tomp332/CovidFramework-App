@@ -4,13 +4,13 @@ import {useContext} from "react";
 import UserContext from '../../Components/User'
 
 
-const Home = () =>{
+const Home = () => {
     const {userInfo} = useContext(UserContext);
     const newUserName = userInfo.username.toUpperCase();
-    return(
+    return (
         <div className="homePageWrapper">
             <div className="title">
-                <Title size={500} text1={`WELCOME ${newUserName}`}  open={true} />
+                <Title size={500} text1={`WELCOME ${newUserName}`} open={true}/>
             </div>
         </div>
     )

@@ -1,33 +1,33 @@
 import React, {useEffect, useState} from "react";
-import {GoogleMap, withGoogleMap, withScriptjs,Marker, InfoWindow} from "react-google-maps";
+import {GoogleMap, InfoWindow, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
 import virus from '../../../src/media/virus.svg'
 
-function GlobalMap(){
+function GlobalMap() {
 
     const [displayClient, setDisplayClient] = useState(false); // if to display popup for client
     const [currentClient, setCurrentClient] = useState({}); //current client that has been clicked
     const [clients, setClients] = useState(null); // new locations that come in from server
 
-    function getLocations()
-    {
-        fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/locations`,{credentials:"include"})
-            .then(response=>response.json())
-            .then(clients=> {
+    function getLocations() {
+        fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/locations`, {credentials: "include"})
+            .then(response => response.json())
+            .then(clients => {
                 setClients(clients)
             })
     }
+
     useEffect(() => {
         getLocations();
-        let handle = setInterval(getLocations,3000);
-        return ()=> {clearInterval(handle);
+        let handle = setInterval(getLocations, 3000);
+        return () => {
+            clearInterval(handle);
         };
-    },[]);
+    }, []);
 
-    function displayClientInfo()
-    {
+    function displayClientInfo() {
         let currentLat = currentClient.lat;
         let currentLng = currentClient.lng;
-        return(
+        return (
             <>
                 {(currentLng && currentLat) &&
                 <InfoWindow
@@ -46,7 +46,7 @@ function GlobalMap(){
                             {currentClient.status ?
                                 (
                                     <li>Status: Connected</li>
-                                ):(
+                                ) : (
                                     <li>Status: Disconnected</li>
                                 )
                             }
@@ -61,25 +61,25 @@ function GlobalMap(){
 
     return (
         <>
-            <GoogleMap defaultZoom={8} defaultCenter={{lat:31.066830,lng:34.897993}}>
+            <GoogleMap defaultZoom={8} defaultCenter={{lat: 31.066830, lng: 34.897993}}>
                 {clients && clients.map(client => (
-                <Marker
-                    key={client.clientId}
-                    position={{
-                        lat:client.lat,
-                        lng:client.lng
-                    }}
-                    onClick={() => {
-                        setDisplayClient(true);
-                        setCurrentClient(client);
-                    }}
-                    icon={{
-                        url: virus,
-                        anchor: new window.google.maps.Point(17, 46),
-                        scaledSize: new window.google.maps.Size(37, 37)
-                    }}
+                    <Marker
+                        key={client.clientId}
+                        position={{
+                            lat: client.lat,
+                            lng: client.lng
+                        }}
+                        onClick={() => {
+                            setDisplayClient(true);
+                            setCurrentClient(client);
+                        }}
+                        icon={{
+                            url: virus,
+                            anchor: new window.google.maps.Point(17, 46),
+                            scaledSize: new window.google.maps.Size(37, 37)
+                        }}
 
-                />
+                    />
                 ))}
                 {displayClient && (displayClientInfo())};
             </GoogleMap>
@@ -88,9 +88,10 @@ function GlobalMap(){
     )
 
 }
+
 const WrappedMap = withScriptjs(withGoogleMap(GlobalMap));
 
-function GoogleMapFull(){
+function GoogleMapFull() {
 
     return <div className={"map"}>
 
@@ -102,4 +103,5 @@ function GoogleMapFull(){
         />
     </div>;
 }
+
 export default GoogleMapFull;

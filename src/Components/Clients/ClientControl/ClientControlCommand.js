@@ -1,52 +1,44 @@
-
 import {Form} from 'react-bootstrap';
 import React, {useState} from "react";
 import {sendCommand, uploadFile} from "../../../api/api";
 
 
-
-const ClientControlCommand = ({ client, commands }) => {
+const ClientControlCommand = ({client, commands}) => {
     const [fileName, setFileName] = useState(null);
     const [file, setFile] = useState(null)
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
 
-    async function SendCommand(e)
-    {
+    async function SendCommand(e) {
         e.preventDefault()
         setErrors(null);
         //need a global state of the client is connected? and only then allow sending the command
-        if(client.status)
-        {
-            if(currentCommand === 'startPS') {
+        if (client.status) {
+            if (currentCommand === 'startPS') {
                 //disable all other buttons and command select
-            }
-            else{
+            } else {
                 let response = await sendCommand(client.client_id, currentCommand);
-                if(!response) {
+                if (!response) {
                     setErrors("Unable to send command to server, please try again");
                 }
             }
         }
     }
 
-    async function UploadFile(e)
-    {
+    async function UploadFile(e) {
         e.preventDefault()
-        if(fileName !== null){
+        if (fileName !== null) {
             setErrors(null);
-            if(client.status)
-            {
+            if (client.status) {
                 const formData = new FormData();
-                formData.append("name",fileName);
+                formData.append("name", fileName);
                 formData.append("file", file);
                 let response = await uploadFile(formData, client.client_id);
-                if(!response) {
+                if (!response) {
                     setErrors("Unable to upload file, please try again");
                 }
             }
-        }
-        else
+        } else
             setErrors("No file was chosen");
     }
 
@@ -54,12 +46,13 @@ const ClientControlCommand = ({ client, commands }) => {
         return Object.entries(commands).map(([command, displayCommand]) => {
             return (
                 <>
-                    <option onChange={() => {setCurrentCommand(command)}} value={command} key={command}>{displayCommand}</option>
+                    <option onChange={() => {
+                        setCurrentCommand(command)
+                    }} value={command} key={command}>{displayCommand}</option>
                 </>
             )
         })
     }
-
 
 
     return (
@@ -79,7 +72,7 @@ const ClientControlCommand = ({ client, commands }) => {
                                        }}/>
                         </div>
                         <div className="client-control-command-buttons">
-                            <button className="command-button" onClick={(e) => UploadFile(e) }>
+                            <button className="command-button" onClick={(e) => UploadFile(e)}>
                                 Upload
                             </button>
                         </div>
@@ -91,8 +84,8 @@ const ClientControlCommand = ({ client, commands }) => {
                         </div> : null
             }
             <div className="client-control-command-buttons">
-                <h6 style={{"color":"red"}}>{errors}</h6>
-                <button className="command-button" onClick={(e)=>SendCommand(e)}>Send</button>
+                <h6 style={{"color": "red"}}>{errors}</h6>
+                <button className="command-button" onClick={(e) => SendCommand(e)}>Send</button>
             </div>
         </div>
     )
