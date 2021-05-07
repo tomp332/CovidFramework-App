@@ -57,7 +57,7 @@ const ClientControlCommand = ({client, commands}) => {
 
     return (
         <div className="client-control-info-table-row client-command">
-            <select className="client-control-command-select" onChange={(e) => setCurrentCommand(e.target.value)}>
+            <select disabled={!client.status} className="client-control-command-select" onChange={(e) => setCurrentCommand(e.target.value)}>
                 <option disabled defaultValue={"stayhome"}>Select Command</option>
                 {commands && renderCommandOptions()}
             </select>
@@ -72,7 +72,7 @@ const ClientControlCommand = ({client, commands}) => {
                                        }}/>
                         </div>
                         <div className="client-control-command-buttons">
-                            <button className="command-button" onClick={(e) => UploadFile(e)}>
+                            <button className="command-button" disabled={!client.status} onClick={(e) => UploadFile(e)}>
                                 Upload
                             </button>
                         </div>
@@ -85,7 +85,7 @@ const ClientControlCommand = ({client, commands}) => {
             }
             <div className="client-control-command-buttons">
                 <h6 style={{"color": "red"}}>{errors}</h6>
-                <button className="command-button" onClick={(e) => SendCommand(e)}>Send</button>
+                <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send</button>
             </div>
         </div>
     )

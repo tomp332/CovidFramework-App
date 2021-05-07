@@ -12,7 +12,7 @@ export const logout = async () => {
 export const login = async (values) => {
     const result = await axios({
         method: 'post',
-        url: '/login',
+        url: '/web/login',
         data: {
             username: values.username,
             password: values.password,
@@ -28,7 +28,7 @@ export const login = async (values) => {
 export const register = async (values) => {
     const result = await axios({
         method: 'post',
-        url: '/register',
+        url: '/web/register',
         data: {
             username: values.username,
             password: values.password,
@@ -77,7 +77,7 @@ export const killClient = async (clientId) => {
 export const checkToken = () => {
     const result = axios({
         method: 'get',
-        url: "/auth",
+        url: "/web/auth",
         withCredentials: true
     });
     return result.status === 200;
