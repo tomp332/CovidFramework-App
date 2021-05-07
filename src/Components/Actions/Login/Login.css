@@ -7,11 +7,9 @@
   0%  { 
     background-position: -600px 0;
     background-color: red;
-    /* font-color: yellow; */
   }
   100% {
     background-position: 600px 0; 
     background-color: lightgrey;
-    /*font-color: green; */
   }
 }

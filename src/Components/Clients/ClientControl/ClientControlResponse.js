@@ -1,32 +1,29 @@
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
-const responseBanner = (text) => {
-    return `\n*************************** New response ***************************\n
-            \r${text}
-            \r\n_______________________________________________________________________\n`
+
+const responseBanner = (responseObject) => {
+    return (
+        `\n[>>] New response: ${responseObject.date}  [<<]\n` +
+        `\r${responseObject.response}` +
+        "\r[>>] ___________________________________________________________ [<<]\n"
+    )
 }
 
-const ClientControlResponse = ({ clientResponse, allResponses}) => {
+const ClientControlResponse = ({clientResponse, allResponses}) => {
 
     let responseString = '';
-
     const displayResponse = () => {
-
-        allResponses.forEach( resp =>{
+        allResponses.forEach(resp => {
             responseString += responseBanner(resp)
         });
-        return(
-            <textarea rows={10} disabled={true} className={"response"}
-                value={(clientResponse) && `${responseString}`}
-            />
-        )
+        return (clientResponse && responseString)
     }
 
     return (
         <div className="client-control-info-table">
             <div className="client-control-info-table-row client-response">
-                <textarea 
-                    value={clientResponse && displayResponse()}
+                <textarea
+                    value={displayResponse()}
                     rows="10"
                     disabled
                     className="client-control-response-textarea response"

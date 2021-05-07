@@ -1,82 +1,84 @@
 import axios from "../axios";
 
-export const logout = async() =>{
+export const logout = async () => {
     const result = await axios({
-        method:'get',
-        url:'/api/logout',
-        withCredentials:true
+        method: 'get',
+        url: '/api/logout',
+        withCredentials: true
     });
     return result.status === 200;
 }
 
-export const login = async(values)=> {
+export const login = async (values) => {
     const result = await axios({
         method: 'post',
-        url: '/login',
+        url: '/web/login',
         data: {
             username: values.username,
             password: values.password,
         },
         withCredentials: true,
         rejectUnauthorized: false
-    }).catch(err => {return err});
+    }).catch(err => {
+        return err
+    });
     return result.status === 200;
 }
 
-export const register = async(values)=> {
+export const register = async (values) => {
     const result = await axios({
-        method:'post',
-        url:'/register',
+        method: 'post',
+        url: '/web/register',
         data: {
-            username:values.username,
-            password:values.password,
+            username: values.username,
+            password: values.password,
         },
-        withCredentials:true
+        withCredentials: true
     });
     return result.status === 200;
 }
 
-export const sendCommand = async(clientId,command)=>{
+export const sendCommand = async (clientId, command) => {
     const result = await axios({
-        method:'post',
-        url:"/api/commands/add",
-        data:{
-            client_id:clientId,
-            command:command
+        method: 'post',
+        url: "/api/commands/add",
+        data: {
+            client_id: clientId,
+            command: command
         },
-        withCredentials:true
+        withCredentials: true
     });
     return result.status === 200;
 }
 
-export const uploadFile = async(formData, clientId)=>{
-    const result = await axios.post("/api/clients/upload",formData,{
+export const uploadFile = async (formData, clientId) => {
+    const result = await axios.post("/api/clients/upload", formData, {
         headers: {
-            "client_id":clientId,
+            "client_id": clientId,
             "Content-Type": "multipart/form-data",
         },
-        withCredentials:true
-    }).then().catch(err=>err);
+        withCredentials: true
+    }).then().catch(err => err);
     return result.status === 200;
 }
 
-export const killClient = async(clientId)=>{
+export const killClient = async (clientId) => {
     const result = await axios({
-        method:'post',
-        url:"/api/clients/kill",
-        data:{
-            client_id:clientId,
+        method: 'post',
+        url: "/api/clients/kill",
+        data: {
+            client_id: clientId,
         },
-        withCredentials:true
+        withCredentials: true
     });
     return result.status === 200;
 }
 
-export const checkToken = ()=>{
+export const checkToken = () => {
     const result = axios({
-        method:'get',
-        url:"/auth",
-        withCredentials:true
+        method: 'get',
+        url: "/web/auth",
+        withCredentials: true
     });
     return result.status === 200;
 }

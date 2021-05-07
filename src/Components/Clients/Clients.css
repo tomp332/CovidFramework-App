@@ -1,58 +1,67 @@
-.clientsPageWrapper{
+.clientsPageWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
-.buttons{
+
+.buttons {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     padding-bottom: 20px;
 }
-rect:nth-child(2){
-    stroke:#98d14a;
+
+rect:nth-child(2) {
+    stroke: #98d14a;
 }
-.title{
+
+.title {
     justify-content: start;
     margin: 2em auto;
 }
-.clients-table{
+
+.clients-table {
     border-radius: 20px;
     border-color: transparent !important;
     border-style: none !important;
-    background:#F5FFFA;;
-    color:white;
+    background: #F5FFFA;;
+    color: white;
     width: 90%;
     text-align: center;
 }
-.row-buttons{
+
+.row-buttons {
     display: table-cell;
     margin: 0 auto;
 }
-#action-column{
+
+#action-column {
     width: 20%;
 }
-.row-buttons{
+
+.row-buttons {
     display: flex;
     margin-left: 2px;
 }
 
-.kill-command-button{
+.kill-command-button {
     padding-left: 20px;
 }
 
 
-.kill-command-button button{
-    width:12vh;
+.kill-command-button button {
+    width: 12vh;
 }
 
-.send-command-button button{
-    width:12vh;
+.send-command-button button {
+    width: 12vh;
 }
-.property-name.col{
+
+.property-name.col {
     font-weight: bold;
 }
+
 /*.col{*/
 /*    border-bottom: 1px solid #a1a1a1;*/
 /*}*/

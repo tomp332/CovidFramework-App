@@ -1,8 +1,8 @@
-import {Card, Col,Row} from "react-bootstrap";
+import {Card, Col, Row} from "react-bootstrap";
 import React from "react";
 
 function ClientInformation(props) {
-    return(
+    return (
         <>
             <label className={"small-titles"} id={"title1"}>Client information</label>
             <Card className={"user-info-card"}>
@@ -51,4 +51,5 @@ function ClientInformation(props) {
 
 
 }
+
 export default ClientInformation;

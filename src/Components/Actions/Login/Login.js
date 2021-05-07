@@ -28,7 +28,7 @@ const Login = () => {
     return (
         <LoginPageWrapper>
             <div className="title">
-                <Title size={300} text1="LOGIN"  open={true} />
+                <Title size={300} text1="LOGIN" open={true}/>
             </div>
             <Formik
                 initialValues={{ username: '', password: ''}}

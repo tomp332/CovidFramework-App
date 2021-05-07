@@ -1,7 +1,8 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
+
 sidebar,
 main,
 footer,
@@ -9,14 +10,14 @@ nav,
 aside,
 section,
 div {
-  display: block;
+    display: block;
 }
 
-.wrapper{
-  background-image: url("./media/background.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  height: 100%;
-  overflow: hidden;
+.wrapper {
+    background-image: url("./media/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
 }
