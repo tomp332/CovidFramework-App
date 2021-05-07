@@ -96,7 +96,7 @@ function GoogleMapFull() {
     return <div className={"map"}>
 
         <WrappedMap
-            googleMapURL={"https://maps.googleapis.com/maps/api/js?&libraries=geometry,drawing,places&key=AIzaSyCdThihts7X0VeVH_GKHGbGp1Nv2LjsFFE"}
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?&libraries=geometry,drawing,places&key=${process.env.GOOGLE_API_KEY}`}
             loadingElement={<div style={{height: "100%"}}/>}
             containerElement={<div style={{height: "100%"}}/>}
             mapElement={<div style={{height: "100%"}}/>}
