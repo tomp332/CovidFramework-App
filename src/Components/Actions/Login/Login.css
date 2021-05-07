@@ -1,115 +1,17 @@
-.loginPageWrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.loading {
+    animation: loading 3s infinite;
+    background-image: linear-gradient(to right, #98d14a 0%, #b3e778 20%, #98d14a 40%, #98d14a 100%);
 }
-.card{
-    height:50% !important;
-}
-rect:nth-child(2){
-    stroke:#98d14a;
-}
-.title{
-    justify-content: start;
-    margin: 2em auto;
-}
-.login-card {
-    width: 19rem !important;
-    height:23rem !important;
-    color:black !important;
-    border-radius: .70rem !important;
-}
-
-.login-inputs p{
-    color:red;
-}
-.login-form p{
-    position: relative;
-    left:30px;
-    color:red;
-}
-
-.login-inputs{
-    margin: 3vh 5vh;
-}
-#username::placeholder{
-    opacity: 60%;
-}
-#password::placeholder{
-    opacity: 60%;
-}
-
-
-.login-inputs input{
-    padding: 12px 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    height:2.5vh;
-    color:black;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    margin: 8px auto;
-    width: 15em;
-    vertical-align: middle;
-    text-align: left;
-}
-.login-inputs input:hover{
-    background-color: #adadad;
-}
-
-.submit-button{
-    display: flex;
-    justify-content:center;
-    margin: 0 auto;
-}
-
-
-.login-form button{
-    background:#97d049;
-    padding: 6px 14px;
-    border-radius: 10px;
-    border:none;
-    outline: none;
-    font-size: 2em;
-    min-width: 160px;
-    font-weight: 80;
-    transition: background 0.3s;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    margin-top: 50px;
-}
-
-.login-form button:hover{
-    cursor: pointer;
-    color: black;
-    background: rgba(153, 209, 75, 0.8);
-}
-
-.additional-buttons{
-    margin-top: 20px;
-}
-
-.additional-buttons button {
-    position: relative;
-    background:#97d049;
-    padding: 8px 18px;
-    border-radius: 10px;
-    border:none;
-    outline: none;
-    font-size: 1em;
-    min-width: 160px;
-    font-weight: 80;
-    transition: background 0.3s;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-}
-.additional-buttons button:hover{
-    cursor: pointer;
-    color: black;
-    background: rgba(153, 209, 75, 0.8);
-}
-.classic__Wrapper-sc-1ycp7u6-0{
-    position: relative!important;
-    left: 90px !important;
-    top:20px !important;
-    margin-bottom: 4px !important;
+  
+@keyframes loading {
+  0%  { 
+    background-position: -600px 0;
+    background-color: red;
+    /* font-color: yellow; */
+  }
+  100% {
+    background-position: 600px 0; 
+    background-color: lightgrey;
+    /*font-color: green; */
+  }
 }
