@@ -8,7 +8,7 @@ const ClientsTable = ({data}) => {
     const [killStatus, setKillStatus] = useState(false);
     const [alertShow, setAlertShow] = useState(false);
     const [currentKilledClient, setCurrentKilledClient] = useState(null);
-
+    const [errors, setErrors] = useState(null)
     function KillClient(clientId) {
         setKillStatus(false);
         killClient(clientId).then(response => {
@@ -20,7 +20,7 @@ const ClientsTable = ({data}) => {
             }
             setAlertShow(true);
 
-        });
+        }).catch(()=>setKillStatus(false))
     }
 
     return (
