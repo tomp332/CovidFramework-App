@@ -11,5 +11,12 @@ rect:nth-child(2) {
 
 .title {
     justify-content: start;
-    margin: 2em auto;
+    margin: 0 auto;
+}
+
+.graphs {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

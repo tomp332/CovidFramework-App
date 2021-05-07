@@ -82,3 +82,12 @@ export const checkToken = () => {
     });
     return result.status === 200;
 }
+
+export const getStatistics = async () => {
+    const statistics = await axios({
+        method: 'get',
+        url: "/api/clients/statistics",
+        withCredentials: true
+    });
+    return statistics
+}
