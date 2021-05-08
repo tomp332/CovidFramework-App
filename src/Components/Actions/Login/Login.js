@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Title from "react-titles/Title6";
 import { Link, useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { jsx, css, keyframes } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 
 import UserContext from "../../User";
 import "./Login.css";  // keep this until we figure out how to get emotion to animate
@@ -80,7 +80,7 @@ export default Login;
 
 
 
-const placeholderColor = `#fff`;
+//const placeholderColor = `#fff`;
 
 const loading = keyframes`
     0%  { 

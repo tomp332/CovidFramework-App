@@ -19,6 +19,7 @@ const Clients = () => {
         getClients();
         let handle = setInterval(getClients, 2000);
         return () => {
+            setData(null)
             clearInterval(handle);
         };
     }, []);

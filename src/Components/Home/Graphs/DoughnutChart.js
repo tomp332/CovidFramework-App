@@ -3,7 +3,6 @@ const React = require('react');
 import ('./DoughnutChart.css')
 
 const DoughnutChart = (stats)=> {
-    console.log(stats.stats)
     return (
         <div className={"bar-graph"}>
             <Doughnut height={600} width={600} data={{

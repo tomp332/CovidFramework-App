@@ -12,12 +12,20 @@ const ClientControlCommand = ({client, commands}) => {
     async function SendCommand(e) {
         e.preventDefault()
         setErrors(null);
-        //need a global state of the client is connected? and only then allow sending the command
         if (client.status) {
             if (currentCommand === 'startPS') {
                 //disable all other buttons and command select
             } else {
-                let response = await sendCommand(client.client_id, currentCommand);
+                let tempCommand = ""
+                let response = ""
+                if (currentCommand.includes('upload') || currentCommand.includes('change-image')) {
+                    if (await UploadFile(e)) {
+                        tempCommand = currentCommand + " " + fileName
+                        response = await sendCommand(client.client_id, tempCommand);
+                    } else
+                        setErrors("Unable to upload file, please try again")
+                } else
+                    response = await sendCommand(client.client_id, currentCommand)
                 if (!response) {
                     setErrors("Unable to send command to server, please try again");
                 }
@@ -36,10 +44,15 @@ const ClientControlCommand = ({client, commands}) => {
                 let response = await uploadFile(formData, client.client_id);
                 if (!response) {
                     setErrors("Unable to upload file, please try again");
+                    return false
                 }
+                return true
             }
-        } else
+        } else {
             setErrors("No file was chosen");
+            return false
+        }
+
     }
 
     const renderCommandOptions = () => {
@@ -57,7 +70,9 @@ const ClientControlCommand = ({client, commands}) => {
 
     return (
         <div className="client-control-info-table-row client-command">
-            <select disabled={!client.status} className="client-control-command-select" onChange={(e) => setCurrentCommand(e.target.value)}>
+            <select disabled={!client.status} className="client-control-command-select" onChange={(e) => {
+                setCurrentCommand(e.target.value)
+            }}>
                 <option disabled defaultValue={"stayhome"}>Select Command</option>
                 {commands && renderCommandOptions()}
             </select>
@@ -67,14 +82,9 @@ const ClientControlCommand = ({client, commands}) => {
                         <div className="btsrp-form-wrapper">
                             <Form.File className={"small-titles"} id="upload-file" label="Choose file"
                                        onChange={(e) => {
-                                           setFileName(e.target.files[0].name)
+                                           setFileName(e.target.files[0].name.trim())
                                            setFile(e.target.files[0])
                                        }}/>
-                        </div>
-                        <div className="client-control-command-buttons">
-                            <button className="command-button" disabled={!client.status} onClick={(e) => UploadFile(e)}>
-                                Upload
-                            </button>
                         </div>
                     </div> :
                     currentCommand === 'download' ?
@@ -85,7 +95,8 @@ const ClientControlCommand = ({client, commands}) => {
             }
             <div className="client-control-command-buttons">
                 <h6 style={{"color": "red"}}>{errors}</h6>
-                <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send</button>
+                <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send
+                </button>
             </div>
         </div>
     )
