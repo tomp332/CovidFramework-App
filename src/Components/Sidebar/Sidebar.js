@@ -11,8 +11,7 @@ import logoSmall from '../../media/logoSmall.png';
 import logoLarge from '../../media/logoLarge.png';
 import {Link} from "@material-ui/core";
 import UserContext from '../User';
-import {logout} from '../../api/api';
-import cookies from 'react-cookies';
+import {logout} from "../../api/api";
 
 const Sidebar = () => {
     const [menuCollapse, setMenuCollapse] = useState(false);
@@ -21,16 +20,15 @@ const Sidebar = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
 
-    const checkLogout = async () => {
-        const isLoggedOut = await logout();
-        if (isLoggedOut) {
+    const logoutUser = async () => {
+        await logout().catch((err) => console.log(err))
+        if (localStorage.getItem('token') !== null) {
+            localStorage.setItem('token', null)
             setUserInfo({
                 username: null,
-                isAuthenticated: false
+                isAuthenticated: false,
             })
         }
-        cookies.remove('session_id');
-        cookies.remove('session');
     }
 
     const Icon = () => {
@@ -98,7 +96,7 @@ const Sidebar = () => {
                         ) : (
                             <Menu iconShape="square">
                                 <MenuItem icon={<FiLogOut/>}>
-                                    <Link to="/" onClick={checkLogout}>Logout</Link>
+                                    <Link to="/" onClick={logoutUser}>Logout</Link>
                                 </MenuItem>
                             </Menu>
                         )}

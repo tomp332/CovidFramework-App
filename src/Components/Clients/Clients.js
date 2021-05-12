@@ -3,15 +3,19 @@ import React, {useEffect, useState} from 'react';
 import Title from "react-titles/Title6";
 import ClientsTable from "./ClientsTable";
 import {Spinner} from "reactstrap";
+import axios from "../../axios";
 
 
 const Clients = () => {
     const [data, setData] = useState(null);
 
     function getClients() {
-        fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients`, {credentials: "include"})
-            .then(response => response.json())
-            .then(data => setData(data))
+        axios({
+            url: `/api/clients`,
+        })
+            .then(data => {
+                setData(data.data)
+            })
             .catch(e => console.log(e))
     }
 

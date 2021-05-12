@@ -5,36 +5,65 @@ import UserContext from '../../Components/User'
 import DoughnutChart from "./Graphs/DoughnutChart";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
+import styled from '@emotion/styled';
 
 
 const Home = () => {
     const {userInfo} = useContext(UserContext);
-    const newUserName = userInfo.username.toUpperCase();
-    const [allStatistics, setAllStatistics] = useState(null)
+    const [allStatistics, setAllStatistics] = useState({})
 
     useEffect(() => {
-        clientsStatistics().then().catch()
         let handle = setInterval(clientsStatistics, 2000);
         return () => {
+            setAllStatistics(false)
             clearInterval(handle);
         };
     }, []);
 
+    const renderCharts = () => {
+        if (allStatistics !== {}) {
+            if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
+                return (
+                    <div className={"graphs"}>
+                        <DoughnutChart stats={allStatistics}/>
+                    </div>
+                )
+            } else {  // no data to display, show text box
+                return (
+                    <>
+                        <NoDataMessage>No client data to display</NoDataMessage>
+                        <Spinner actions={"border"} color={"success"} type="grow"/>
+                    </>
+                )
+            }
+        } else {
+            return (<Spinner actions={"border"} color={"success"} type="grow"/>)
+        }
+    }
 
-    async function clientsStatistics() {
-        let allStats = await getStatistics().then((data) => data.data).catch(() => null)
-        setAllStatistics(allStats)
+    function clientsStatistics() {
+        getStatistics().then((data) => {
+            // console.log(data)
+            setAllStatistics(data.data)
+        }).catch(() => setAllStatistics(null))
     }
 
     return (
         <div className="homePageWrapper">
             <div className="title">
-                <Title size={500} text1={`WELCOME ${newUserName}`} open={true}/>
+                <Title size={500} text1={`WELCOME ${userInfo.username.toUpperCase()}`} open={true}/>
             </div>
-            <div className={"graphs"}>
-                {allStatistics ? <DoughnutChart stats={allStatistics}/> : <Spinner actions={"border"} color={"success"} type="grow"/>}}
-            </div>
+            {renderCharts()}
         </div>
     )
 }
 export default Home;
+
+
+const NoDataMessage = styled.h3`
+  color: black;
+  margin: auto;
+  background: #98d14a;
+  padding: 0.3em;
+  border-radius: 5px;
+`

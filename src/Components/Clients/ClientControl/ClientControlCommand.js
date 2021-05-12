@@ -5,6 +5,7 @@ import {sendCommand, uploadFile} from "../../../api/api";
 
 const ClientControlCommand = ({client, commands}) => {
     const [fileName, setFileName] = useState(null);
+    const [additionalInput, setAdditionalInput] = useState(null)
     const [file, setFile] = useState(null)
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
@@ -24,6 +25,9 @@ const ClientControlCommand = ({client, commands}) => {
                         response = await sendCommand(client.client_id, tempCommand);
                     } else
                         setErrors("Unable to upload file, please try again")
+                } else if (currentCommand.includes('download')) {
+                    tempCommand = currentCommand + " " + additionalInput
+                    response = await sendCommand(client.client_id, tempCommand);
                 } else
                     response = await sendCommand(client.client_id, currentCommand)
                 if (!response) {
@@ -90,7 +94,9 @@ const ClientControlCommand = ({client, commands}) => {
                     currentCommand === 'download' ?
                         <div className="download-file-wrapper">
                             <Form.Label>Remote path:</Form.Label>
-                            <Form.Control type="text" placeholder="Enter path"/>
+                            <Form.Control onChange={(e) => {
+                                setAdditionalInput(e.target.value)
+                            }} type="text" placeholder="Enter path"/>
                         </div> : null
             }
             <div className="client-control-command-buttons">

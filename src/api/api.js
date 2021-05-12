@@ -1,28 +1,26 @@
 import axios from "../axios";
+// const defaultAxios = require('axios')
 
 export const logout = async () => {
     const result = await axios({
         method: 'get',
         url: '/api/logout',
-        withCredentials: true
+        timeout: 10
     });
     return result.status === 200;
 }
 
 export const login = async (values) => {
-    const result = await axios({
+    return await axios({
         method: 'post',
         url: '/web/login',
         data: {
             username: values.username,
             password: values.password,
-        },
-        withCredentials: true,
-        rejectUnauthorized: false
-    }).catch(err => {
-        return err
-    });
-    return result.status === 200;
+        }
+    }).then((token) => {
+        return token.data
+    }).catch(() => null);
 }
 
 export const register = async (values) => {
@@ -32,8 +30,7 @@ export const register = async (values) => {
         data: {
             username: values.username,
             password: values.password,
-        },
-        withCredentials: true
+        }
     });
     return result.status === 200;
 }
@@ -45,8 +42,7 @@ export const sendCommand = async (clientId, command) => {
         data: {
             client_id: clientId,
             command: command
-        },
-        withCredentials: true
+        }
     });
     return result.status === 200;
 }
@@ -57,7 +53,6 @@ export const uploadFile = async (formData, clientId) => {
             "client_id": clientId,
             "Content-Type": "multipart/form-data",
         },
-        withCredentials: true
     }).then().catch(err => err);
     return result.status === 200;
 }
@@ -68,17 +63,15 @@ export const killClient = async (clientId) => {
         url: "/api/clients/kill",
         data: {
             client_id: clientId,
-        },
-        withCredentials: true
+        }
     });
     return result.status === 200;
 }
 
-export const checkToken = () => {
-    const result = axios({
+export const checkToken = async () => {
+    const result = await axios({
         method: 'get',
-        url: "/web/auth",
-        withCredentials: true
+        url: "/web/auth"
     });
     return result.status === 200;
 }
@@ -86,8 +79,7 @@ export const checkToken = () => {
 export const getStatistics = async () => {
     const statistics = await axios({
         method: 'get',
-        url: "/api/clients/statistics",
-        withCredentials: true
-    });
+        url: "/api/clients/statistics"
+    })
     return statistics
 }

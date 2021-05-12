@@ -7,7 +7,7 @@ import ClientControlSection from './ClientControlSection'
 import ClientControlCommand from './ClientControlCommand'
 import ClientControlResponse from './ClientControlResponse';
 import ClientControlInformationTable from './ClientControlInformationTable';
-
+import axios from "../../../axios";
 
 // TODO: get list of commands from DB
 const commands = {
@@ -33,38 +33,40 @@ const ClientControl = () => {
 
     useEffect(() => {
         const getClient = () => {
-            fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/client`, {
-                method: 'POST', headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({id: id}), credentials: "include"
-            })
-                .then(response => {
-                    if (response.status === 200) {
-                        return response.json()
-                    } else
-                        return setClientStatus(false);
-                })
-                .then(data => {
-                    if (Object.keys(data).length !== 0) {
-                        delete data.user.__v
-                        delete data.user._id
-                        setClient(data.user);
-                        setClientStatus(data.user.status);
-                    } else
-                        return setClientStatus(false);
-                });
+
+            axios({
+                method: 'POST',
+                url: '/api/clients/client',
+                data:{
+                    id:id
+                }
+            }).then((data)=>{
+                if (Object.keys(data.data).length !== 0) {
+                    delete data.data.user.__v
+                    delete data.data.user._id
+                    setClient(data.data.user);
+                    setClientStatus(data.data.user.status);
+                } else
+                    return setClientStatus(false);
+            }).catch((err)=> {
+                console.log(err)
+                setClientStatus(false)
+            });
 
             const getResponse = () => {
-                fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/response`, {
-                    method: 'POST', headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({id: id}), credentials: "include"
-                })
-                    .then(response => response.json())
+                axios({
+                    headers: {'Content-Type': 'application/json'},
+                    url: `/api/response`,
+                    method:'post',
+                    data: JSON.stringify({id: id})
+                    })
                     .then(data => {
-                        if (Object.keys(data).length !== 0) {
-                            setClientResponse(data);
-                            setAllResponses(oldArray => [...oldArray, data]);
+                        if (Object.keys(data.data).length !== 0) {
+                            setClientResponse(data.data);
+                            setAllResponses(oldArray => [...oldArray, data.data]);
                         }
-                    });
+                    })
+                    .catch(e => console.log(e))
             }
             getResponse();
         }

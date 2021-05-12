@@ -2,49 +2,39 @@ import React, {useEffect, useState} from 'react';
 import ReactRouter from "./Routes/AllRoutes";
 import './App.css';
 import UserContext from "./Components/User";
-import cookies from 'react-cookies';
-import axios from "axios";
+import axios from "./axios";
 
-let user = {
-    username: null,
-    isAuthenticated: false
-};
 
 function App() {
-    const [userInfo, setUserInfo] = useState(user);
+    const [userInfo, setUserInfo] = useState({
+        username: null,
+        isAuthenticated: validateToken()
+    });
 
-    function validateToken() {
-        const token = cookies.load('session_id');
-        if (token !== undefined) {
-            axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/web/auth`,
-                withCredentials: true
-            }).then(() => {
-                user = {
-                    username: cookies.load('session'),
-                    isAuthenticated: true
-                };
-                setUserInfo(user);
-            }).catch(function (error) {
-                if (error.response) {
-                    user = {
-                        username: null,
-                        isAuthenticated: false
-                    };
-                    setUserInfo(user);
-                }
-            })
-        }
+    function validateToken(){
+        return axios.get('/web/auth',{
+        }).then((res)=>{
+            console.log(res)
+            return true
+        }).catch(()=>false)
     }
 
     useEffect(() => {
-        validateToken();
-        let handle = setInterval(validateToken, 4000);
-        return () => {
-            clearInterval(handle);
-        };
-    }, []);
+        let user = {}
+        if (validateToken) {
+            user = {
+                username: localStorage.getItem('username'),
+                isAuthenticated: true
+            }
+        }
+        else{
+            user = {
+                username: null,
+                isAuthenticated: false
+            }
+        }
+        setUserInfo(user)
+    }, [])
 
     return (
         <div className="wrapper">

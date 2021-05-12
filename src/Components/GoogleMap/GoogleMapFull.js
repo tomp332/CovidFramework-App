@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {GoogleMap, InfoWindow, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
 import virus from '../../../src/media/virus.svg'
+import axios from "../../axios";
 
 function GlobalMap() {
 
@@ -9,17 +10,20 @@ function GlobalMap() {
     const [clients, setClients] = useState(null); // new locations that come in from server
 
     function getLocations() {
-        fetch(`${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_REMOTE_URL}:${process.env.REACT_APP_REMOTE_PORT}/api/clients/locations`, {credentials: "include"})
-            .then(response => response.json())
+        axios({url: `/api/clients/locations`})
             .then(clients => {
-                setClients(clients)
+                setClients(clients.clients)
             })
+            .catch(e => console.log(e))
     }
 
     useEffect(() => {
         getLocations();
         let handle = setInterval(getLocations, 3000);
         return () => {
+            setDisplayClient(false)
+            setCurrentClient(null)
+            setClients(null)
             clearInterval(handle);
         };
     }, []);
@@ -78,12 +82,10 @@ function GlobalMap() {
                             anchor: new window.google.maps.Point(17, 46),
                             scaledSize: new window.google.maps.Size(37, 37)
                         }}
-
                     />
                 ))}
-                {displayClient && (displayClientInfo())};
+                {displayClient && (displayClientInfo())}
             </GoogleMap>
-            )}
         </>
     )
 
@@ -92,11 +94,11 @@ function GlobalMap() {
 const WrappedMap = withScriptjs(withGoogleMap(GlobalMap));
 
 function GoogleMapFull() {
-
+    let fullUrl = `https://maps.googleapis.com/maps/api/js?&libraries=geometry,drawing,places&key=AIzaSyCdThihts7X0VeVH_GKHGbGp1Nv2LjsFFE`
     return <div className={"map"}>
 
         <WrappedMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?&libraries=geometry,drawing,places&key=${process.env.GOOGLE_API_KEY}`}
+            googleMapURL={fullUrl}
             loadingElement={<div style={{height: "100%"}}/>}
             containerElement={<div style={{height: "100%"}}/>}
             mapElement={<div style={{height: "100%"}}/>}
