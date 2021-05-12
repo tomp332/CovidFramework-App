@@ -9,9 +9,10 @@ const ClientControlCommand = ({client, commands}) => {
     const [file, setFile] = useState(null)
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
-
+    const [sendingCommand, setSendingCommand] = useState(false)
     async function SendCommand(e) {
         e.preventDefault()
+        setSendingCommand(true)
         setErrors(null);
         if (client.status) {
             if (currentCommand === 'startPS') {
@@ -34,6 +35,7 @@ const ClientControlCommand = ({client, commands}) => {
                     setErrors("Unable to send command to server, please try again");
                 }
             }
+            setSendingCommand(false)
         }
     }
 
@@ -101,8 +103,12 @@ const ClientControlCommand = ({client, commands}) => {
             }
             <div className="client-control-command-buttons">
                 <h6 style={{"color": "red"}}>{errors}</h6>
-                <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send
-                </button>
+                {sendingCommand ? (
+                    <button className="command-button" disabled={true} onClick={(e) => SendCommand(e)}>Sending..</button>
+
+                ):(
+                    <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send</button>
+                )}
             </div>
         </div>
     )

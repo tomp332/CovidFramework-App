@@ -31,7 +31,7 @@ const Home = () => {
             } else {  // no data to display, show text box
                 return (
                     <>
-                        <NoDataMessage>No client data to display</NoDataMessage>
+                        <NoDataMessage>Loading data..</NoDataMessage>
                         <Spinner actions={"border"} color={"success"} type="grow"/>
                     </>
                 )

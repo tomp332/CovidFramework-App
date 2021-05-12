@@ -13,15 +13,12 @@ function App() {
 
     function validateToken(){
         return axios.get('/web/auth',{
-        }).then((res)=>{
-            console.log(res)
-            return true
-        }).catch(()=>false)
+        }).then(()=>true).catch(()=>false)
     }
 
     useEffect(() => {
         let user = {}
-        if (validateToken) {
+        if (localStorage.token) {
             user = {
                 username: localStorage.getItem('username'),
                 isAuthenticated: true

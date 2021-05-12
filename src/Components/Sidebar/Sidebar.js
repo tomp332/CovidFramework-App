@@ -21,14 +21,13 @@ const Sidebar = () => {
     };
 
     const logoutUser = async () => {
-        await logout().catch((err) => console.log(err))
-        if (localStorage.getItem('token') !== null) {
-            localStorage.setItem('token', null)
-            setUserInfo({
-                username: null,
-                isAuthenticated: false,
-            })
-        }
+        //await logout()
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        setUserInfo({
+            username: null,
+            isAuthenticated: false,
+        })
     }
 
     const Icon = () => {

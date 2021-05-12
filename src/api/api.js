@@ -5,7 +5,7 @@ export const logout = async () => {
     const result = await axios({
         method: 'get',
         url: '/api/logout',
-        timeout: 10
+        timeout: 100
     });
     return result.status === 200;
 }
