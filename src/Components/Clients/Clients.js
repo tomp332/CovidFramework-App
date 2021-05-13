@@ -12,6 +12,7 @@ const Clients = () => {
     function getClients() {
         axios({
             url: `/api/clients`,
+            method:'get'
         })
             .then(data => {
                 setData(data.data)
