@@ -36,6 +36,9 @@ const ClientControl = () => {
 
             axios({
                 method: 'POST',
+                headers: {
+                    'x-access-token':localStorage.getItem('token')
+                },
                 url: '/api/clients/client',
                 data:{
                     id:id
@@ -55,7 +58,10 @@ const ClientControl = () => {
 
             const getResponse = () => {
                 axios({
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "x-access-token":localStorage.getItem('token')
+                    },
                     url: `/api/response`,
                     method:'post',
                     data: JSON.stringify({id: id})

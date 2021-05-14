@@ -12,6 +12,9 @@ const Clients = () => {
     function getClients() {
         axios({
             url: `/api/clients`,
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            },
             method:'get'
         })
             .then(data => {

