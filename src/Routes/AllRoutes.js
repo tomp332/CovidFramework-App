@@ -8,7 +8,7 @@ import Settings from "../Components/Actions/Settings/Settings";
 import Map from '../Components/GoogleMap/Map';
 import './AllRoutes.css';
 import Login from "../Components/Actions/Login/Login";
-import Index from "../Components/Index/Index";
+import Index from "../Components/Views/Index/Index";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import UserContext from '../Components/User';
 import ClientControl from "../Components/Clients/ClientControl/ClientControl";
