@@ -1,12 +1,12 @@
-import {Doughnut} from 'react-chartjs-2'
+import {Bar} from 'react-chartjs-2'
 
 const React = require('react');
 import ('./DoughnutChart.css')
 
-const DoughnutChart = (stats) => {
+const BarGraph = (stats) => {
     return (
-        <div className={"doughnut-graph"}>
-            <Doughnut height={600} width={600} data={{
+        <div className={"bar-graph"}>
+            <Bar height={600} width={600} data={{
                 labels: ['Low privileges', 'High privileges', 'Disconnected', 'Connected'],
                 datasets: [{
                     data: [stats.stats.lowPrivs, stats.stats.highPrivs, stats.stats.offlineClients, stats.stats.onlineClients],
@@ -49,4 +49,4 @@ const DoughnutChart = (stats) => {
         </div>
     )
 }
-export default DoughnutChart;
+export default BarGraph;

@@ -31,19 +31,19 @@ const ClientControl = () => {
     const [clientResponse, setClientResponse] = useState();
     const [allResponses, setAllResponses] = useState([]);
 
+
     useEffect(() => {
         const getClient = () => {
-
             axios({
                 method: 'POST',
                 headers: {
-                    'x-access-token':localStorage.getItem('token')
+                    'x-access-token': localStorage.getItem('token')
                 },
                 url: '/api/clients/client',
-                data:{
-                    id:id
+                data: {
+                    id: id
                 }
-            }).then((data)=>{
+            }).then((data) => {
                 if (Object.keys(data.data).length !== 0) {
                     delete data.data.user.__v
                     delete data.data.user._id
@@ -51,7 +51,7 @@ const ClientControl = () => {
                     setClientStatus(data.data.user.status);
                 } else
                     return setClientStatus(false);
-            }).catch((err)=> {
+            }).catch((err) => {
                 console.log(err)
                 setClientStatus(false)
             });
@@ -60,12 +60,12 @@ const ClientControl = () => {
                 axios({
                     headers: {
                         'Content-Type': 'application/json',
-                        "x-access-token":localStorage.getItem('token')
+                        "x-access-token": localStorage.getItem('token')
                     },
                     url: `/api/response`,
-                    method:'post',
+                    method: 'post',
                     data: JSON.stringify({id: id})
-                    })
+                })
                     .then(data => {
                         if (Object.keys(data.data).length !== 0) {
                             setClientResponse(data.data);

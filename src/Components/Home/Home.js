@@ -2,10 +2,12 @@ import "./Home.css";
 import Title from "react-titles/Title6";
 import React, {useContext, useEffect, useState} from "react";
 import UserContext from '../../Components/User'
-import DoughnutChart from "./Graphs/DoughnutChart";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
+import BarGraph from "./Graphs/BarChart";
+import DoughnutChart from "./Graphs/DoughnutChart";
+
 
 
 const Home = () => {
@@ -26,6 +28,7 @@ const Home = () => {
                 return (
                     <div className={"graphs"}>
                         <DoughnutChart stats={allStatistics}/>
+                        <BarGraph stats={allStatistics}/>
                     </div>
                 )
             } else {  // no data to display, show text box
@@ -43,7 +46,6 @@ const Home = () => {
 
     function clientsStatistics() {
         getStatistics().then((data) => {
-            // console.log(data)
             setAllStatistics(data.data)
         }).catch(() => setAllStatistics(null))
     }
