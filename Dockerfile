@@ -5,4 +5,5 @@ RUN npm config set strict-ssl false
 RUN npm install --legacy-peer-deps --force --silent
 COPY . .
 EXPOSE 443
+USER app
 ENTRYPOINT ["npm","start"]
