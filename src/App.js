@@ -13,6 +13,9 @@ function App() {
 
     function validateToken(){
         return axios.get('/web/auth',{
+            headers: {
+                'x-access-token':localStorage.getItem('token')
+            },
         }).then(()=>true).catch(()=>false)
     }
 
