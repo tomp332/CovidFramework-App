@@ -1,4 +1,4 @@
-FROM node:lastest-alpine
+FROM node:16.0.2-alpine
 WORKDIR /covidframework-app
 COPY package.json .
 RUN npm config set strict-ssl false
