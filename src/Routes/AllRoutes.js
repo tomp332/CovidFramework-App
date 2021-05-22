@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {Route, Switch} from 'react-router';
-import Sidebar from '../Components/Sidebar/Sidebar';
 import Home from '../Components/Home/Home';
 import Clients from '../Components/Clients/Clients';
 import Docs from "../Components/Docs/Docs";
@@ -12,13 +11,12 @@ import Index from "../Components/Views/Index/Index";
 import ProtectedRoute from "../Components/ProtectedRoute/ProtectedRoute";
 import UserContext from '../Components/User';
 import ClientControl from "../Components/Clients/ClientControl/ClientControl";
-
+import Page from '../Components/Layouts/Page'
 
 const ReactRouter = () => {
     const {userInfo} = useContext(UserContext);
     return (
-        <div className="main">
-            <Sidebar/>
+        <Page>
             <Switch>
                 <Route path="/" exact component={Index}/>
                 <Route path="/login" component={Login}/>
@@ -30,7 +28,7 @@ const ReactRouter = () => {
                 <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/docs" component={Docs}/>
                 <ProtectedRoute isAuthenticated={userInfo.isAuthenticated} path="/settings" component={Settings}/>
             </Switch>
-        </div>
+        </Page>
     );
 }
 export default ReactRouter;

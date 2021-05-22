@@ -1,17 +1,50 @@
 import React, {useContext, useState} from "react";
-import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader,} from "react-pro-sidebar";
-import {FaList} from "react-icons/fa";
-import {BiBookAlt, BiWorld} from 'react-icons/bi';
-import {BsFillPeopleFill} from 'react-icons/bs';
-import {FiArrowLeftCircle, FiArrowRightCircle, FiHome, FiLogOut} from "react-icons/fi";
 import "react-pro-sidebar/dist/css/styles.css";
-import "./Sidebar.css";
 import {NavLink} from "react-router-dom";
-import logoSmall from '../../media/logoSmall.png';
 import logoLarge from '../../media/logoLarge.png';
-import {Link} from "@material-ui/core";
 import UserContext from '../User';
-import {logout} from "../../api/api";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome,
+         faUsers,
+         faMapMarkerAlt, 
+         faBook, 
+         faCog, 
+         faSignInAlt, 
+         faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
+import styled from '@emotion/styled'
+
+
+const menuItemList = [
+    {
+        icon: faHome,
+        label: 'home',
+        link: '/home'
+    },
+    {
+        icon: faUsers,
+        label: 'clients',
+        link: '/clients'
+    },
+    {
+        icon: faMapMarkerAlt,
+        label: 'map',
+        link: '/map'
+    },
+    {
+        icon: faBook,
+        label: 'docs',
+        link: '/docs'
+    },
+    {
+        icon: faCog,
+        label: 'settings',
+        link: '/settings'
+    }
+]
+
+
 
 const Sidebar = () => {
     const [menuCollapse, setMenuCollapse] = useState(false);
@@ -21,7 +54,6 @@ const Sidebar = () => {
     };
 
     const logoutUser = async () => {
-        //await logout()
         localStorage.removeItem('token')
         localStorage.removeItem('username')
         setUserInfo({
@@ -30,80 +62,188 @@ const Sidebar = () => {
         })
     }
 
-    const Icon = () => {
-        return (
-            <img className="covidLogo" alt={""} src={logoSmall}/>
-        );
-    };
+    function renderMenuItem() {
+        return menuItemList.map(({icon, label, link}) => {
+            return (
+                <MenuItem key={label} collapsed={menuCollapse}>
+                    <StyledNavLink to={link}>
+                        <MenuIconWrapper>
+                            <FontAwesomeIcon icon={icon}/>
+                        </MenuIconWrapper>
+                        <p>{label}</p>
+                    </StyledNavLink>
+                </MenuItem>
+            )
+        })
+    }
 
-    const IconLarge = () => {
-        return (
-            <img className="covidLogoBig" alt={""} src={logoLarge}/>
-        );
-    };
     return (
-        <>
-            <div id="header">
-                <ProSidebar collapsed={menuCollapse} id="sidebar-custom">
-                    <SidebarHeader>
-                        <div className="logotext" onClick={menuIconClick}>
-                            {menuCollapse ? (
-                                <FiArrowRightCircle/>
-                            ) : (
-                                <FiArrowLeftCircle/>
-                            )}
-                            {menuCollapse ? <Icon/> : <IconLarge/>}
-                        </div>
-                    </SidebarHeader>
-
-                    <SidebarContent>
-                        <Menu iconShape="square">
-                            <MenuItem active={true} icon={<FiHome/>} id={"pro-menu-item"}>
-                                <NavLink to="/home">
-                                    Home
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<BsFillPeopleFill/>} id={"pro-menu-item"}>
-                                <NavLink to="/clients">
-                                    Clients
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<BiWorld/>} id={"pro-menu-item"}>
-                                <NavLink to="/map">
-                                    Map
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<BiBookAlt/>} id={"pro-menu-item"}>
-                                <NavLink to="/docs">
-                                    Docs
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<FaList/>} id={"pro-menu-item"}>
-                                <NavLink to="/settings">
-                                    Settings
-                                </NavLink>
-                            </MenuItem>
+        <SidebarWrapper>
+            <Nav collapsed={menuCollapse}>
+                    <IconWrapper>
+                        <Icon collapsed={menuCollapse} onClick={() => setMenuCollapse(!menuCollapse)} alt={""} src={logoLarge}/>
+                    </IconWrapper>
+                    <MenuWrapper collapsed={menuCollapse}>
+                        <Menu collapsed={menuCollapse}>
+                            {renderMenuItem()}
+                            {!userInfo.isAuthenticated ?
+                                <MenuItem className="foot" collapsed={menuCollapse}>
+                                    <StyledNavLink to="/login">
+                                        <MenuIconWrapper>
+                                            <FontAwesomeIcon icon={faSignInAlt}/>
+                                        </MenuIconWrapper>               
+                                        <p>Login</p>
+                                    </StyledNavLink>
+                                </MenuItem> :
+                                <MenuItem onClick={logoutUser} className="foot" collapsed={menuCollapse}>
+                                    <StyledNavLink to="/">
+                                        <MenuIconWrapper>
+                                            <FontAwesomeIcon icon={faSignOutAlt}/>
+                                        </MenuIconWrapper>
+                                        <p>Logout</p>
+                                    </StyledNavLink>
+                                </MenuItem>
+                            }
                         </Menu>
-                    </SidebarContent>
-                    <SidebarFooter>
-                        {(!userInfo.isAuthenticated) ? (
-                            <Menu iconShape="square">
-                                <MenuItem icon={<FiLogOut/>}>
-                                    <NavLink to="/login">Login</NavLink>
-                                </MenuItem>
-                            </Menu>
-                        ) : (
-                            <Menu iconShape="square">
-                                <MenuItem icon={<FiLogOut/>}>
-                                    <Link to="/" onClick={logoutUser}>Logout</Link>
-                                </MenuItem>
-                            </Menu>
-                        )}
-                    </SidebarFooter>
-                </ProSidebar>
-            </div>
-        </>
+                    </MenuWrapper>
+
+            </Nav>
+        </SidebarWrapper>
     );
 };
 
 export default Sidebar;
+
+const SidebarWrapper = styled.div`
+`
+const Nav = styled.nav`
+    background: ${props => props.theme.colors.bgMain};
+    max-width: 500px;
+    height: 100vh;
+    transition: width 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: auto;
+        & img {
+            display: none
+        }
+    }
+`
+
+const IconWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+    cursor: pointer;
+
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        display: none
+    }
+`
+
+const Icon = styled.img`
+    height: ${props => props.collapsed ? '50%' : '96px'};
+    width: auto;
+    transition: height 0.1s;
+`
+
+const MenuWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        margin-top: 1em;
+    }
+`
+
+const Menu = styled.ul`
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    transition: all 0.1s ease;
+    height: 100%;
+    
+    // mobile
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        flex-direction: row; 
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0 0;
+        box-shadow: 0 3px 5px 0 ${props => props.theme.colors.bgMain}60;
+     }
+`
+
+const MenuItem = styled.li`
+    list-style-type: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+
+    & p {
+        display: ${props => props.collapsed ? 'none' : 'flex'};
+        margin-left: 0.75em;
+        transition: all 0.1s ease;
+    }
+
+    &.foot {
+        margin-top: auto;
+    }
+
+    // mobile
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        padding: 0.5em;
+        margin: 0; 
+        & p {
+            display: none;
+        }
+    }
+`
+
+const StyledNavLink = styled(NavLink)`
+    width: 100%;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1.5em;
+
+    & * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    &.active {
+        color: ${props => props.theme.colors.primary};
+    }
+
+    &:hover {
+        color: ${props => props.theme.colors.primary};
+        text-decoration: none;
+    }
+    // mobile
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        font-size: 1.3em;
+    }
+
+`
+
+const MenuIconWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 0.25em;
+    min-width: 2em;
+    `
+

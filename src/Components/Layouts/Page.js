@@ -1,18 +1,27 @@
 import React, {useContext} from 'react'
+import Sidebar from '../Sidebar/Sidebar';
 import styled from '@emotion/styled'
 import {css, keyframes} from '@emotion/react'
 
 const Page = ({ title, children }) => {
     return (
         <PageWrapper>
-            { children }
+            <Sidebar/>
+            <div>
+                { children }
+            </div>
         </PageWrapper>    
     )
 }
 
-const PageWrapper = style.div`
+const PageWrapper = styled.div` 
+
     width: 100%;
-    height: 100vh;
+    display: flex;
+
+    @media only screen and (min-width: 0px) and (max-width:375px) {
+        flex-direction: column;
+    }
 `
 
 export default Page

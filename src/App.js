@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import ReactRouter from "./Routes/AllRoutes";
-import './App.css';
 import UserContext from "./Components/User";
 import axios from "./axios";
 
+import styled from '@emotion/styled'
+import {css, keyframes} from '@emotion/react'
 
-function App() {
+const App = () => {
     const [userInfo, setUserInfo] = useState({
         username: null,
         isAuthenticated: validateToken()
@@ -37,12 +38,14 @@ function App() {
     }, [])
 
     return (
-        <div className="wrapper">
+        <Wrapper className="wrapper">
             <UserContext.Provider value={{userInfo, setUserInfo}}>
                 <ReactRouter/>
             </UserContext.Provider>
-        </div>
+        </Wrapper>
     );
 }
 
 export default App;
+
+const Wrapper = styled.div``
