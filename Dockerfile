@@ -4,6 +4,8 @@ COPY package.json .
 RUN npm config set strict-ssl false
 RUN npm install --legacy-peer-deps --force --silent
 COPY . .
-RUN npm run build
+RUN npm run-script build
+RUN cd build
+RUN npm install -g serve
 EXPOSE 443
-ENTRYPOINT ["npm","start"]
+ENTRYPOINT ["serve","-s","build"]
