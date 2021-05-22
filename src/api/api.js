@@ -13,6 +13,7 @@ export const logout = async () => {
 }
 
 export const login = async (values) => {
+    console.log("submitting login data")
     return await axios({
         method: 'post',
         url: '/web/login',
