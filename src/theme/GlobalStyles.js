@@ -27,6 +27,7 @@ const styles = css`
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        height: 100vh;
     }
 `
 

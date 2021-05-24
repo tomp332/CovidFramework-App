@@ -3,18 +3,35 @@ import Title from "react-titles/Title6";
 import {Link} from "react-router-dom";
 import styled from '@emotion/styled'
 import {css, keyframes} from '@emotion/react'
+import { useMediaQuery } from 'react-responsive'
 
 
 const Index = () => {
+    const handleMediaQueryChange = (matches) => {
+        console.log('MATCH', matches)
+    }
+    const isMobile = useMediaQuery({
+        query: '(min-width: 0px) and (max-width:375px)',
+    }, undefined, handleMediaQueryChange)
+    const isTabletorLarger = useMediaQuery({
+        query: '(min-width: 376px) and (max-width:1024px)'
+    }, undefined, )
     return (
         <PageWrapper>
-            <Title size={800} text1="THE COVID" text2="FRAMEWORK" open={true}/>
+            {
+                isMobile ? <StyledTitle size={300} text1="THE COVID" text2="FRAMEWORK" open={true}/> :
+                isTabletorLarger ? <StyledTitle size={500} text1="THE COVID" text2="FRAMEWORK" open={true}/> :
+                    <StyledTitle size={800} text1="THE COVID" text2="FRAMEWORK" open={true}/>
+            }
             <LoginButton to="/login">Login</LoginButton>
         </PageWrapper>
     );
 };
 
 export default Index;
+
+const StyledTitle = styled(Title)`
+`
 
 const PageWrapper = styled.div`
     display: flex;
