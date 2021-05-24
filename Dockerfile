@@ -9,7 +9,7 @@ RUN npm run-script build
 
 # production environment
 FROM nginx:stable-alpine
-COPY .cert /usr/share/ca-certificates
+COPY .cert/covidframework.com /usr/share/ca-certificates
 COPY --from=build /covidframework-app/build /usr/share/nginx/html
 # new
 COPY nginx.conf /etc/nginx/conf.d/default.conf
