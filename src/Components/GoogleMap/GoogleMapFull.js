@@ -19,7 +19,7 @@ function GlobalMap() {
             .then(clients => {
                 setAllClients(clients.data)
             })
-            .catch(e => console.log(e))
+            .catch(e => e)
     }
 
     useEffect(() => {

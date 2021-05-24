@@ -52,7 +52,6 @@ const ClientControl = () => {
                 } else
                     return setClientStatus(false);
             }).catch((err) => {
-                console.log(err)
                 setClientStatus(false)
             });
 
@@ -72,7 +71,7 @@ const ClientControl = () => {
                             setAllResponses(oldArray => [...oldArray, data.data]);
                         }
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => e)
             }
             getResponse();
         }
