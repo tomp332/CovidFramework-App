@@ -8,8 +8,7 @@ import axios from "./axios";
 function App() {
     const [userInfo, setUserInfo] = useState({
         username: null,
-        //isAuthenticated: validateToken()
-        isAuthenticated: false
+        isAuthenticated: validateToken()
     });
 
     function validateToken(){
