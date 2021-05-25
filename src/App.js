@@ -8,10 +8,11 @@ import axios from "./axios";
 function App() {
     const [userInfo, setUserInfo] = useState({
         username: null,
-        isAuthenticated: validateToken()
+        isAuthenticated: false
     });
 
     function validateToken(){
+        console.log("validating client")
         return axios.get('/web/auth',{
             headers: {
                 'x-access-token':localStorage.getItem('token')
