@@ -21,8 +21,9 @@ export const login = async (values) => {
             password: values.password,
         }
     }).then((token) => {
+        console.log(token)
         return token.data
-    }).catch(() => null);
+    }).catch(() => console.log("Login error!"));
 }
 
 export const register = async (values) => {
