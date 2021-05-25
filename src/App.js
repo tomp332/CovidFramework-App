@@ -8,16 +8,24 @@ import axios from "./axios";
 function App() {
     const [userInfo, setUserInfo] = useState({
         username: null,
-        isAuthenticated: false
+        isAuthenticated: validateToken()
     });
 
     function validateToken(){
-        console.log("validating client")
-        return axios.get('/web/auth',{
-            headers: {
-                'x-access-token':localStorage.getItem('token')
-            },
-        }).then(()=>true).catch(()=>false)
+        try{
+            if (localStorage.getItem('token')){
+                return axios.get('/web/auth',{
+                    headers: {
+                        'x-access-token':localStorage.getItem('token')
+                    },
+                }).then(()=>true).catch(()=>false)
+            }else
+                return false;
+        }
+        catch (e){
+            console.log(e)
+            return false
+        }
     }
 
     useEffect(() => {
