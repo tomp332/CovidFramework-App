@@ -9,7 +9,7 @@ const Map = () => {
             <div className="title">
                 <Title size={200} text1="MAP" open={true}/>
             </div>
-            <GoogleMapFull/>
+            {/*<GoogleMapFull/>*/}
         </div>
     )
 }
