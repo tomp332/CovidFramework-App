@@ -22,13 +22,11 @@ export const login = async (values) => {
                 password: values.password,
             }
         }).then((token) => {
-            console.log(token)
             return token.data
-        }).catch(() => console.log("Login error!"));
+        }).catch(()=> null);
     }
     catch (e)
     {
-        console.log(e)
         return null
     }
 }
