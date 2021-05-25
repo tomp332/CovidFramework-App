@@ -6,23 +6,25 @@ import {css, keyframes} from '@emotion/react'
 import { useMediaQuery } from 'react-responsive'
 
 
-const Index = () => {
-    const handleMediaQueryChange = (matches) => {
-        console.log('MATCH', matches)
-    }
+const MobileTitle = ({ children }) => {
     const isMobile = useMediaQuery({
         query: '(min-width: 0px) and (max-width:375px)',
-    }, undefined, handleMediaQueryChange)
-    const isTabletorLarger = useMediaQuery({
-        query: '(min-width: 376px) and (max-width:1024px)'
-    }, undefined, )
+    })
+    return isMobile ? <Title size={300} text1="THE COVID" text2="FRAMEWORK" open={true}/> : null
+}
+
+const TabletTitle = ({ children }) => {
+    const isTablet = useMediaQuery({
+        query: '(min-width: 376px) and (max-width:1024px)',
+    })
+    return isTablet ? <Title size={500} text1="THE COVID" text2="FRAMEWORK" open={true}/> : null
+}
+
+const Index = () => {
     return (
         <PageWrapper>
-            {
-                isMobile ? <StyledTitle size={300} text1="THE COVID" text2="FRAMEWORK" open={true}/> :
-                isTabletorLarger ? <StyledTitle size={500} text1="THE COVID" text2="FRAMEWORK" open={true}/> :
-                    <StyledTitle size={800} text1="THE COVID" text2="FRAMEWORK" open={true}/>
-            }
+            <MobileTitle/>
+            <TabletTitle/>
             <LoginButton to="/login">Login</LoginButton>
         </PageWrapper>
     );
