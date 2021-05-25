@@ -61,7 +61,7 @@ const Login = () => {
                         <StyledErrorMessage name="password" component="div"/>
                         <LoginButton
                             className={isSubmitting ? "loading" : null}
-                            disabled={isSubmitting}
+                            // disabled={isSubmitting}
                             value="Login"
                             type="submit">
                             {isSubmitting ? 'Submitting...' : 'Login'}
