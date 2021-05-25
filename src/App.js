@@ -20,17 +20,14 @@ function App() {
     }
 
     useEffect(() => {
-        let user = {}
+        let  user = {
+            username: null,
+            isAuthenticated: false
+        }
         if (localStorage.token) {
             user = {
                 username: localStorage.getItem('username'),
                 isAuthenticated: true
-            }
-        }
-        else{
-            user = {
-                username: null,
-                isAuthenticated: false
             }
         }
         setUserInfo(user)
