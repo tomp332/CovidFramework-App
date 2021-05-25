@@ -24,12 +24,12 @@ function App() {
             username: null,
             isAuthenticated: false
         }
-        if (localStorage.token) {
-            user = {
-                username: localStorage.getItem('username'),
-                isAuthenticated: true
-            }
-        }
+        // if (localStorage.token) {
+        //     user = {
+        //         username: localStorage.getItem('username'),
+        //         isAuthenticated: true
+        //     }
+        // }
         setUserInfo(user)
     }, [])
 
