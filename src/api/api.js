@@ -13,17 +13,24 @@ export const logout = async () => {
 }
 
 export const login = async (values) => {
-    return await axios({
-        method: 'post',
-        url: '/web/login',
-        data: {
-            username: values.username,
-            password: values.password,
-        }
-    }).then((token) => {
-        console.log(token)
-        return token.data
-    }).catch(() => console.log("Login error!"));
+    try{
+        return await axios({
+            method: 'post',
+            url: '/web/login',
+            data: {
+                username: values.username,
+                password: values.password,
+            }
+        }).then((token) => {
+            console.log(token)
+            return token.data
+        }).catch(() => console.log("Login error!"));
+    }
+    catch (e)
+    {
+        console.log(e)
+        return null
+    }
 }
 
 export const register = async (values) => {
