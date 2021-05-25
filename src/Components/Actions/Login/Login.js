@@ -41,13 +41,14 @@ const Login = () => {
                             username: values.username,
                             isAuthenticated: true,
                         })
+                        setSubmitting(false)
+                        history.push("/home");
                     } else {
                         setErrors({
                             userAuthenticated: false,
                         })
+                        setSubmitting(false)
                     }
-                    setSubmitting(false)
-                    history.push("/home");
                 }}
             >
                 {({errors, isSubmitting}) => (
