@@ -6,8 +6,7 @@ import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
 import BarGraph from "./Graphs/BarChart";
-import DoughnutChart from "./Graphs/DoughnutChart";
-
+import PolarChart from "./Graphs/PolarChart";
 
 
 const Home = () => {
@@ -27,8 +26,8 @@ const Home = () => {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
                     <div className={"graphs"}>
-                        <DoughnutChart stats={allStatistics}/>
-                        <BarGraph stats={allStatistics}/>
+                        <PolarChart stats={allStatistics}/>
+                        {<BarGraph stats={null}/>}
                     </div>
                 )
             } else {  // no data to display, show text box
@@ -52,11 +51,20 @@ const Home = () => {
 
     return (
         <div className="homePageWrapper">
-            <div className="title">
-                <Title size={500} text1={`WELCOME ${userInfo.username.toUpperCase()}`} open={true}/>
-            </div>
-            {renderCharts()}
+            {(userInfo.username !== null) ? (
+                <>
+                    <div className="title">
+                        <Title size={500} text1={`WELCOME ${userInfo.username.toUpperCase()}`} open={true}/>
+                    </div>
+                    <>
+                        {renderCharts()}
+                    </>
+                </>
+            ) : (
+                <Spinner actions={"border"} color={"success"} type="grow"/>
+            )}
         </div>
+
     )
 }
 export default Home;
