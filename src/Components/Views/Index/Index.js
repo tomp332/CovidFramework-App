@@ -1,39 +1,20 @@
 import React from 'react';
-import Title from "react-titles/Title6";
+import {MobileTitle, TabletTitle, SmallTitle, LargeTitle, ExtraLargeTitle} from "../../Title/Title";
 import {Link} from "react-router-dom";
 import styled from '@emotion/styled'
-import {css, keyframes} from '@emotion/react'
-import { useMediaQuery } from 'react-responsive'
+import Title from '../../Title/Title'
 
-
-const MobileTitle = ({ children }) => {
-    const isMobile = useMediaQuery({
-        query: '(min-width: 0px) and (max-width:375px)',
-    })
-    return isMobile ? <Title size={300} text1="THE COVID" text2="FRAMEWORK" open={true}/> : null
-}
-
-const TabletTitle = ({ children }) => {
-    const isTablet = useMediaQuery({
-        query: '(min-width: 376px) and (max-width:1024px)',
-    })
-    return isTablet ? <Title size={500} text1="THE COVID" text2="FRAMEWORK" open={true}/> : null
-}
 
 const Index = () => {
     return (
         <PageWrapper>
-            <MobileTitle/>
-            <TabletTitle/>
-            <LoginButton to="/login">Login</LoginButton>
+            <Title text1="THE COVID" text2="FRAMEWORK" open={true}></Title>
+            <LoginButton to="/login">Login</LoginButton> 
         </PageWrapper>
     );
 };
 
 export default Index;
-
-const StyledTitle = styled(Title)`
-`
 
 const PageWrapper = styled.div`
     display: flex;
@@ -41,6 +22,8 @@ const PageWrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
+    margin: auto;
 `
 
 const LoginButton = styled(Link)`
@@ -65,5 +48,10 @@ const LoginButton = styled(Link)`
 
     &:visited: {
         color: inherit;
+    }
+
+    @media only screen and (max-width:768px) {
+        padding: 0.125em 1.5em;
+        font-size: 1.5em;
     }
 `

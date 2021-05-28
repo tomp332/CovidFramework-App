@@ -1,5 +1,5 @@
 import "./Home.css";
-import Title from "react-titles/Title6";
+import Title from '../Title/Title'
 import React, {useContext, useEffect, useState} from "react";
 import UserContext from '../../Components/User'
 import {getStatistics} from "../../api/api";
@@ -52,10 +52,10 @@ const Home = () => {
 
     return (
         <div className="homePageWrapper">
-            <div className="title">
-                <Title size={500} text1={`WELCOME ${userInfo.username.toUpperCase()}`} open={true}/>
+            <Title text1="WELCOME" text2={userInfo.username.toUpperCase()} open={true}/>
+            <div>
+                {renderCharts()}
             </div>
-            {renderCharts()}
         </div>
     )
 }

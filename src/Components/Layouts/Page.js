@@ -7,9 +7,9 @@ const Page = ({ title, children }) => {
     return (
         <PageWrapper>
             <Sidebar/>
-            <div>
+            <MainContent>
                 { children }
-            </div>
+            </MainContent>
         </PageWrapper>    
     )
 }
@@ -19,8 +19,16 @@ const PageWrapper = styled.div`
     width: 100%;
     display: flex;
 
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+    @media only screen and (max-width:768px) {
         flex-direction: column;
+    }
+`
+
+const MainContent = styled.div`
+    border: 1px solid red;
+
+    @media only screen and (max-width:768px) {
+        padding: 1em 0;
     }
 `
 

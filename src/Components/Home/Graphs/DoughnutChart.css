@@ -1,4 +1,5 @@
 .bar-graph {
-    background: transparent;
+    background: white;
     width: 39%;
+    border: 1px solid yellow;
 }

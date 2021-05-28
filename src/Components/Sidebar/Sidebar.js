@@ -115,22 +115,26 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SidebarWrapper = styled.div`
+
+    @media only screen and (max-width:768px) {
+        width: 100vw;
+    }
 `
 const Nav = styled.nav`
     background: ${props => props.theme.colors.bgMain};
-    max-width: 500px;
     height: 100vh;
     transition: width 0.3s;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+
+    @media only screen and (max-width:768px) {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 100vw;
         height: auto;
+        width: 100%;
         & img {
             display: none
         }
@@ -144,7 +148,7 @@ const IconWrapper = styled.div`
     height: 12vh;
     cursor: pointer;
 
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+    @media only screen and (max-width:768px) {
         display: none
     }
 `
@@ -160,7 +164,7 @@ const MenuWrapper = styled.div`
     flex-direction: column;
     height: 100%;
 
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+    @media only screen and (max-width:768px) {
         margin-top: 1em;
     }
 `
@@ -175,7 +179,7 @@ const Menu = styled.ul`
     height: 100%;
     
     // mobile
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+    @media only screen and (max-width:768px) {
         flex-direction: row; 
         justify-content: space-evenly;
         align-items: center;
@@ -201,7 +205,7 @@ const MenuItem = styled.li`
     }
 
     // mobile
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+    @media only screen and (max-width:768px) {
         padding: 0.5em;
         margin: 0; 
         & p {
@@ -234,7 +238,7 @@ const StyledNavLink = styled(NavLink)`
         text-decoration: none;
     }
     // mobile
-    @media only screen and (min-width: 0px) and (max-width:375px) {
+    @media only screen and (max-width:768px) {
         font-size: 1.3em;
     }
 
