@@ -1,16 +1,21 @@
 import "./Home.css";
 import Title from "react-titles/Title6";
-import React, {useContext, useEffect, useState} from "react";
-import UserContext from '../../Components/User'
+import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
 import BarGraph from "./Graphs/BarChart";
 import PolarChart from "./Graphs/PolarChart";
+import {makeSelectUser} from "../../redux/selectors/userSelector";
+import {createSelector} from "reselect";
+import {useSelector} from "react-redux";
 
+const stateSelector = createSelector(makeSelectUser, (user) => ({
+    user
+}))
 
 const Home = () => {
-    const {userInfo} = useContext(UserContext);
+    const {user} = useSelector(stateSelector)
     const [allStatistics, setAllStatistics] = useState({})
 
     useEffect(() => {
@@ -51,10 +56,10 @@ const Home = () => {
 
     return (
         <div className="homePageWrapper">
-            {(userInfo.username !== null) ? (
+            {(user.username !== null) ? (
                 <>
                     <div className="title">
-                        <Title size={500} text1={`WELCOME ${userInfo.username.toUpperCase()}`} open={true}/>
+                        <Title size={500} text1={`WELCOME ${user.username.toUpperCase()}`} open={true}/>
                     </div>
                     <>
                         {renderCharts()}

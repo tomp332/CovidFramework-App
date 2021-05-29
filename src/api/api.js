@@ -13,7 +13,7 @@ export const logout = async () => {
 }
 
 export const login = async (values) => {
-    try{
+    try {
         return await axios({
             method: 'post',
             url: '/web/login',
@@ -23,10 +23,8 @@ export const login = async (values) => {
             }
         }).then((token) => {
             return token.data
-        }).catch(()=> null);
-    }
-    catch (e)
-    {
+        }).catch(() => null);
+    } catch (e) {
         return null
     }
 }
@@ -115,15 +113,15 @@ export const getClients = async () => {
         .then(data => data.data).catch(() => null)
 }
 
-export const getSingleClient = async (clientId) =>{
+export const getSingleClient = async (clientId) => {
     return axios({
         url: `/api/clients/client`,
-        method:'post',
+        method: 'post',
         headers: {
             'x-access-token': localStorage.getItem('token')
         },
-        data:{
-            'id':clientId
+        data: {
+            'id': clientId
         }
     })
         .then(data => data.data).catch(() => null)

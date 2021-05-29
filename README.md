@@ -20,16 +20,11 @@ Enjoy!
 
 ### Available features
 
-| Command | Description|
-| :-- |    :-:   | 
-| Wifi passwords| Get all stored wifi passwords | 
-| Persistence| Taskscheduler based persistence| 
-|Chrome passwords|Get all stored local chrome passwords| 
-|Privilege escalation|P.E based onfodehelper| 
-|Change background image|Change background of the remote desktop| 
-|Upload/Download files|Retrieve or upload files| 
-|Interactive powershell|Start interactive powershell command\response| 
-|Location|Live location based on wifi routers around, or public IP address|
+| Command | Description| | :-- |    :-:   | | Wifi passwords| Get all stored wifi passwords | | Persistence|
+Taskscheduler based persistence| |Chrome passwords|Get all stored local chrome passwords| |Privilege escalation|P.E
+based onfodehelper| |Change background image|Change background of the remote desktop| |Upload/Download files|Retrieve or
+upload files| |Interactive powershell|Start interactive powershell command\response| |Location|Live location based on
+wifi routers around, or public IP address|
 
 &nbsp;&nbsp;&nbsp;
 
