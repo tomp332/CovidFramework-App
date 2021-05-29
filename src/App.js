@@ -1,51 +1,38 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import ReactRouter from "./Routes/AllRoutes";
 import './App.css';
-import UserContext from "./Components/User";
 import axios from "./axios";
+import {autoSignIn} from "./redux/actions/userActions";
+import {createSelector} from "reselect";
+import {makeSelectUser} from "./redux/selectors/userSelector";
+import {useDispatch, useSelector} from "react-redux";
 
+const stateSelector = createSelector(makeSelectUser, (user) => ({
+    user
+}))
+const autoSignInDispatcher = (dispatch) => ({autoSignIn: (user) => dispatch(autoSignIn(user))})
 
 function App() {
-    const [userInfo, setUserInfo] = useState({
-        username: null,
-        isAuthenticated: validateToken()
-    });
+    const {autoSignIn} = autoSignInDispatcher(useDispatch())
+    const {user} = useSelector(stateSelector)
 
-    function validateToken(){
-        try{
-            if (localStorage.getItem('token')){
-                return axios.get('/web/auth',{
-                    headers: {
-                        'x-access-token':localStorage.getItem('token')
-                    },
-                }).then(()=>true).catch(()=>false)
-            }else
-                return false;
-        }
-        catch (e){
-            return false
-        }
+    function validateToken() {
+        return axios.get('/web/auth', {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            },
+        }).then(() => true).catch(() => false)
     }
 
     useEffect(() => {
-        let  user = {
-            username: null,
-            isAuthenticated: false
-        }
+        validateToken()
         if (localStorage.token) {
-            user = {
-                username: localStorage.getItem('username'),
-                isAuthenticated: true
-            }
+            autoSignIn(user)
         }
-        setUserInfo(user)
     }, [])
-
     return (
         <div className="wrapper">
-            <UserContext.Provider value={{userInfo, setUserInfo}}>
-                <ReactRouter/>
-            </UserContext.Provider>
+            <ReactRouter/>
         </div>
     );
 }

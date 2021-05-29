@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader,} from "react-pro-sidebar";
 import {FaList} from "react-icons/fa";
 import {BiBookAlt, BiWorld} from 'react-icons/bi';
@@ -10,24 +10,26 @@ import {NavLink} from "react-router-dom";
 import logoSmall from '../../media/logoSmall.png';
 import logoLarge from '../../media/logoLarge.png';
 import {Link} from "@material-ui/core";
-import UserContext from '../User';
-import {logout} from "../../api/api";
+import {createSelector} from "reselect";
+import {makeSelectAuthenticated} from "../../redux/selectors/userSelector";
+import {useDispatch, useSelector} from "react-redux";
+import {logUserOut} from '../../redux/actions/userActions'
+
+const logOutDispatcher = (dispatch) => ({logUserOut: () => dispatch(logUserOut())})
+
+const stateSelector = createSelector(makeSelectAuthenticated, (isAuthenticated) => ({
+    isAuthenticated
+}))
 
 const Sidebar = () => {
+    const {logUserOut} = logOutDispatcher(useDispatch())
+    const {isAuthenticated} = useSelector(stateSelector)
     const [menuCollapse, setMenuCollapse] = useState(false);
-    const {userInfo, setUserInfo} = useContext(UserContext);
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
-
     const logoutUser = async () => {
-        //await logout()
-        localStorage.removeItem('token')
-        localStorage.removeItem('username')
-        setUserInfo({
-            username: null,
-            isAuthenticated: false,
-        })
+        logUserOut()
     }
 
     const Icon = () => {
@@ -86,7 +88,7 @@ const Sidebar = () => {
                         </Menu>
                     </SidebarContent>
                     <SidebarFooter>
-                        {(!userInfo.isAuthenticated) ? (
+                        {(!isAuthenticated) ? (
                             <Menu iconShape="square">
                                 <MenuItem icon={<FiLogOut/>}>
                                     <NavLink to="/login">Login</NavLink>

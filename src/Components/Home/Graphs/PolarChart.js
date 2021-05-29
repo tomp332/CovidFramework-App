@@ -10,7 +10,7 @@ const PolarChart = (stats) => {
                 <PolarArea height={600} width={600} data={{
                     labels: ['Low privileges', 'High privileges', 'Disconnected', 'Connected'],
                     datasets: [{
-                        data: [ stats.stats.lowPrivs, stats.stats.highPrivs, stats.stats.offlineClients, stats.stats.onlineClients],
+                        data: [stats.stats.lowPrivs, stats.stats.highPrivs, stats.stats.offlineClients, stats.stats.onlineClients],
                         backgroundColor: [
                             '#36a2eb',
                             '#ffcd56',

@@ -9,7 +9,7 @@ import {getClients} from "../../api/api";
 const Clients = () => {
     const [data, setData] = useState(null);
 
-    function getAllClients(){
+    function getAllClients() {
         getClients().then((data) => setData(data));
     }
 

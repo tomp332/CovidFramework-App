@@ -10,6 +10,7 @@ const ClientControlCommand = ({client, commands}) => {
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
     const [sendingCommand, setSendingCommand] = useState(false)
+
     async function SendCommand(e) {
         e.preventDefault()
         setSendingCommand(true)
@@ -104,10 +105,12 @@ const ClientControlCommand = ({client, commands}) => {
             <div className="client-control-command-buttons">
                 <h6 style={{"color": "red"}}>{errors}</h6>
                 {sendingCommand ? (
-                    <button className="command-button" disabled={true} onClick={(e) => SendCommand(e)}>Sending..</button>
+                    <button className="command-button" disabled={true}
+                            onClick={(e) => SendCommand(e)}>Sending..</button>
 
-                ):(
-                    <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send</button>
+                ) : (
+                    <button className="command-button" disabled={!client.status}
+                            onClick={(e) => SendCommand(e)}>Send</button>
                 )}
             </div>
         </div>
