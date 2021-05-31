@@ -14,10 +14,40 @@ rect:nth-child(2) {
     margin: 0 auto;
 }
 
-/* .graphs {
+.graphs {
+    width: 50%;
+    margin-right: 55%;
     padding-top: 100px;
     display: flex;
     justify-content: center;
-    width: 100%;
-    padding-bottom: 10px;
-} */
+}
+.bar-graph{
+    padding-top: 1000px;
+}
+/*div[id^='canvasjs-react-chart-container']{*/
+/*    width: auto !important;*/
+/*}*/
+/*.canvasjs-chart-canvas:nth-child(1){*/
+/*    position: fixed;*/
+/*    width: auto !important;*/
+/*}*/
+/*.canvasjs-chart-canvas:nth-child(2){*/
+/*    width: auto !important;*/
+/*}*/
+/*.canvasjs-chart-canvas{*/
+/*    padding-bottom: 10px;*/
+/*}*/
+/*.canvasjs-chart-toolbar{*/
+/*    display: none;*/
+/*}*/
+/*canvas{*/
+/* margin: 0 auto;*/
+/*}*/
+
+/*.doughnut-graph{*/
+/*    padding-bottom: 50px;*/
+/*}*/
+/*.line-graph{*/
+/*    padding-top: 20px;*/
+/*    padding-bottom: 10px;*/
+/*}*/

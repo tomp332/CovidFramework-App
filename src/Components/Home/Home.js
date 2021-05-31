@@ -2,16 +2,22 @@ import "./Home.css";
 import Title from '../Title/Title'
 import React, {useContext, useEffect, useState} from "react";
 import UserContext from '../../Components/User'
+import Title from "react-titles/Title6";
+import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
-import BarGraph from "./Graphs/BarChart";
-import DoughnutChart from "./Graphs/DoughnutChart";
+import CanvasDoughnut from "./Graphs/CanvasDoughut";
+import {makeSelectUser} from "../../redux/selectors/userSelector";
+import {createSelector} from "reselect";
+import {useSelector} from "react-redux";
 
-
+const stateSelector = createSelector(makeSelectUser, (user) => ({
+    user
+}))
 
 const Home = () => {
-    const {userInfo} = useContext(UserContext);
+    const {user} = useSelector(stateSelector)
     const [allStatistics, setAllStatistics] = useState({})
 
     useEffect(() => {
@@ -31,7 +37,7 @@ const Home = () => {
                         <DoughnutChart stats={allStatistics}/>
                     </div>
                 )
-            } else {  // no data to display, show text box
+            } else { // no data to display, show text box
                 return (
                     <>
                         <NoDataMessage>Loading data..</NoDataMessage>
@@ -55,6 +61,7 @@ const Home = () => {
             <Title text1="WELCOME" text2={userInfo.username.toUpperCase()} open={true}/>
             {renderCharts()}
         </div>
+
     )
 }
 export default Home;

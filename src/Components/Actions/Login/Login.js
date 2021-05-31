@@ -1,19 +1,19 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import * as yup from 'yup';
 import styled from '@emotion/styled';
 import Title from "react-titles/Title6";
 import {Link, useHistory} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from 'formik';
-import UserContext from "../../User";
 import "./Login.css"; // keep this until we figure out how to get emotion to animate
 import {login} from '../../../api/api';
+import {setUser} from '../../../redux/actions/userActions'
+import {useDispatch} from "react-redux";
 
+const loginDispatcher = (dispatch) => ({setUser: (user) => dispatch(setUser(user))})
 
 const Login = () => {
-
-    const {setUserInfo} = useContext(UserContext)
+    const {setUser} = loginDispatcher(useDispatch())
     const history = useHistory()
-
     const LoginSchema = yup.object().shape({
         username: yup.string()
             .min(5, 'Username Too Short')
@@ -22,6 +22,7 @@ const Login = () => {
         password: yup.string()
             .required('Username is Required')
     })
+
 
     return (
         <LoginPageWrapper>
@@ -34,19 +35,18 @@ const Login = () => {
                 onSubmit={async (values, {setSubmitting, setErrors}) => {
                     const data = await login(values);
                     if (data !== null) {
-                        localStorage.setItem('token', data.token)
-                        localStorage.setItem('username', values.username)
-                        setUserInfo({
+                        setUser({
                             username: values.username,
-                            isAuthenticated: true,
+                            token: data.token
                         })
+                        setSubmitting(false)
+                        history.push("/home");
                     } else {
                         setErrors({
                             userAuthenticated: false,
                         })
+                        setSubmitting(false)
                     }
-                    setSubmitting(false)
-                    history.push("/home");
                 }}
             >
                 {({errors, isSubmitting}) => (

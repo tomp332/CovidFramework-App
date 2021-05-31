@@ -10,11 +10,12 @@ const ClientControlCommand = ({client, commands}) => {
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
     const [sendingCommand, setSendingCommand] = useState(false)
+
     async function SendCommand(e) {
         e.preventDefault()
         setSendingCommand(true)
         setErrors(null);
-        if (client.status) {
+        if (client.isConnected) {
             if (currentCommand === 'startPS') {
                 //disable all other buttons and command select
             } else {
@@ -43,7 +44,7 @@ const ClientControlCommand = ({client, commands}) => {
         e.preventDefault()
         if (fileName !== null) {
             setErrors(null);
-            if (client.status) {
+            if (client.isConnected) {
                 const formData = new FormData();
                 formData.append("name", fileName);
                 formData.append("file", file);
@@ -76,7 +77,7 @@ const ClientControlCommand = ({client, commands}) => {
 
     return (
         <div className="client-control-info-table-row client-command">
-            <select disabled={!client.status} className="client-control-command-select" onChange={(e) => {
+            <select disabled={!client.isConnected} className="client-control-command-select" onChange={(e) => {
                 setCurrentCommand(e.target.value)
             }}>
                 <option disabled defaultValue={"stayhome"}>Select Command</option>
@@ -104,10 +105,12 @@ const ClientControlCommand = ({client, commands}) => {
             <div className="client-control-command-buttons">
                 <h6 style={{"color": "red"}}>{errors}</h6>
                 {sendingCommand ? (
-                    <button className="command-button" disabled={true} onClick={(e) => SendCommand(e)}>Sending..</button>
+                    <button className="command-button" disabled={true}
+                            onClick={(e) => SendCommand(e)}>Sending..</button>
 
-                ):(
-                    <button className="command-button" disabled={!client.status} onClick={(e) => SendCommand(e)}>Send</button>
+                ) : (
+                    <button className="command-button" disabled={!client.isConnected}
+                            onClick={(e) => SendCommand(e)}>Send</button>
                 )}
             </div>
         </div>

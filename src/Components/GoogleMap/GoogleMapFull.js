@@ -19,7 +19,7 @@ function GlobalMap() {
             .then(clients => {
                 setAllClients(clients.data)
             })
-            .catch(e => console.log(e))
+            .catch(e => e)
     }
 
     useEffect(() => {
@@ -52,7 +52,7 @@ function GlobalMap() {
                         <h5>Infected client:</h5>
                         <ul>
                             <li>ID:{currentClient.client_id}</li>
-                            {currentClient.status ?
+                            {currentClient.isConnected ?
                                 (<li><p style={{"color": "green"}}>Status: Connected</p></li>) :
                                 (<li><p style={{"color": "red"}}>Status: Disconnected</p></li>)
                             }

@@ -48,11 +48,10 @@ const ClientControl = () => {
                     delete data.data.user.__v
                     delete data.data.user._id
                     setClient(data.data.user);
-                    setClientStatus(data.data.user.status);
+                    setClientStatus(data.data.user.isConnected);
                 } else
                     return setClientStatus(false);
             }).catch((err) => {
-                console.log(err)
                 setClientStatus(false)
             });
 
@@ -72,7 +71,7 @@ const ClientControl = () => {
                             setAllResponses(oldArray => [...oldArray, data.data]);
                         }
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => e)
             }
             getResponse();
         }

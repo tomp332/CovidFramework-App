@@ -1,47 +1,40 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import ReactRouter from "./Routes/AllRoutes";
 import UserContext from "./Components/User";
+import './App.css';
 import axios from "./axios";
+import {autoSignIn} from "./redux/actions/userActions";
+import {createSelector} from "reselect";
+import {makeSelectUser} from "./redux/selectors/userSelector";
+import {useDispatch, useSelector} from "react-redux";
 
-import styled from '@emotion/styled'
+const stateSelector = createSelector(makeSelectUser, (user) => ({
+    user
+}))
+const autoSignInDispatcher = (dispatch) => ({autoSignIn: (user) => dispatch(autoSignIn(user))})
 
-const App = () => {
-    const [userInfo, setUserInfo] = useState({
-        username: null,
-        isAuthenticated: validateToken()
-    });
+function App() {
+    const {autoSignIn} = autoSignInDispatcher(useDispatch())
+    const {user} = useSelector(stateSelector)
 
-    function validateToken(){
-        return axios.get('/web/auth',{
+    function validateToken() {
+        return axios.get('/web/auth', {
             headers: {
-                'x-access-token':localStorage.getItem('token')
+                'x-access-token': localStorage.getItem('token')
             },
-        }).then(()=>true).catch(()=>false)
+        }).then(() => true).catch(() => false)
     }
 
     useEffect(() => {
-        let user = {}
+        validateToken()
         if (localStorage.token) {
-            user = {
-                username: localStorage.getItem('username'),
-                isAuthenticated: true
-            }
+            autoSignIn(user)
         }
-        else{
-            user = {
-                username: null,
-                isAuthenticated: false
-            }
-        }
-        setUserInfo(user)
     }, [])
-
     return (
-        <Wrapper className="wrapper">
-            <UserContext.Provider value={{userInfo, setUserInfo}}>
-                <ReactRouter/>
-            </UserContext.Provider>
-        </Wrapper>
+        <div className="wrapper">
+            <ReactRouter/>
+        </div>
     );
 }
 

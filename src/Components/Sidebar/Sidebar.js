@@ -1,8 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
+import React, {useState} from "react";
+import {Menu, MenuItem} from "react-pro-sidebar";
+
 import "react-pro-sidebar/dist/css/styles.css";
 import {NavLink} from "react-router-dom";
 import logoLarge from '../../media/logoLarge.png';
-import UserContext from '../User';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome,
@@ -14,6 +16,10 @@ import { faHome,
          faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 import styled from '@emotion/styled'
+import {createSelector} from "reselect";
+import {makeSelectAuthenticated} from "../../redux/selectors/userSelector";
+import {useDispatch, useSelector} from "react-redux";
+import {logUserOut} from '../../redux/actions/userActions'
 
 
 const menuItemList = [
@@ -46,35 +52,51 @@ const menuItemList = [
 
 
 
+
+const logOutDispatcher = (dispatch) => ({logUserOut: () => dispatch(logUserOut())})
+
+const stateSelector = createSelector(makeSelectAuthenticated, (isAuthenticated) => ({
+    isAuthenticated
+}))
+
 const Sidebar = () => {
+    const {logUserOut} = logOutDispatcher(useDispatch())
+    const {isAuthenticated} = useSelector(stateSelector)
     const [menuCollapse, setMenuCollapse] = useState(false);
-    const {userInfo, setUserInfo} = useContext(UserContext);
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
-
     const logoutUser = async () => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('username')
-        setUserInfo({
-            username: null,
-            isAuthenticated: false,
-        })
+        logUserOut()
     }
 
     function renderMenuItem() {
-        return menuItemList.map(({icon, label, link}) => {
+
+        if (!isAuthenticated) {
             return (
                 <MenuItem key={label} collapsed={menuCollapse}>
-                    <StyledNavLink to={link}>
+                    <StyledNavLink to={'/home'}>
                         <MenuIconWrapper>
-                            <FontAwesomeIcon icon={icon}/>
+                            <FontAwesomeIcon icon={faHome}/>
                         </MenuIconWrapper>
-                        <p>{label}</p>
+                        <p>{'home'}</p>
                     </StyledNavLink>
                 </MenuItem>
             )
-        })
+        } else {
+            return menuItemList.map(({icon, label, link}) => {
+                return (
+                    <MenuItem key={label} collapsed={menuCollapse}>
+                        <StyledNavLink to={link}>
+                            <MenuIconWrapper>
+                                <FontAwesomeIcon icon={icon}/>
+                            </MenuIconWrapper>
+                            <p>{label}</p>
+                        </StyledNavLink>
+                    </MenuItem>
+                )
+            })
+        }
     }
 
     return (
@@ -86,7 +108,7 @@ const Sidebar = () => {
                     <MenuWrapper collapsed={menuCollapse}>
                         <Menu collapsed={menuCollapse}>
                             {renderMenuItem()}
-                            {!userInfo.isAuthenticated ?
+                            {!isAuthenticated ?
                                 <MenuItem className="foot" collapsed={menuCollapse}>
                                     <StyledNavLink to="/login">
                                         <MenuIconWrapper>

@@ -13,16 +13,20 @@ export const logout = async () => {
 }
 
 export const login = async (values) => {
-    return await axios({
-        method: 'post',
-        url: '/web/login',
-        data: {
-            username: values.username,
-            password: values.password,
-        }
-    }).then((token) => {
-        return token.data
-    }).catch(() => null);
+    try {
+        return await axios({
+            method: 'post',
+            url: '/web/login',
+            data: {
+                username: values.username,
+                password: values.password,
+            }
+        }).then((token) => {
+            return token.data
+        }).catch(() => null);
+    } catch (e) {
+        return null
+    }
 }
 
 export const register = async (values) => {
@@ -109,15 +113,15 @@ export const getClients = async () => {
         .then(data => data.data).catch(() => null)
 }
 
-export const getSingleClient = async (clientId) =>{
+export const getSingleClient = async (clientId) => {
     return axios({
         url: `/api/clients/client`,
-        method:'post',
+        method: 'post',
         headers: {
             'x-access-token': localStorage.getItem('token')
         },
-        data:{
-            'id':clientId
+        data: {
+            'id': clientId
         }
     })
         .then(data => data.data).catch(() => null)
