@@ -4,8 +4,7 @@ import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
-import BarGraph from "./Graphs/BarChart";
-import PolarChart from "./Graphs/PolarChart";
+import CanvasDoughnut from "./Graphs/CanvasDoughut";
 import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
@@ -31,11 +30,10 @@ const Home = () => {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
                     <div className={"graphs"}>
-                        <PolarChart stats={allStatistics}/>
-                        {<BarGraph stats={null}/>}
+                        <CanvasDoughnut stats={allStatistics}/>
                     </div>
                 )
-            } else {  // no data to display, show text box
+            } else { // no data to display, show text box
                 return (
                     <>
                         <NoDataMessage>Loading data..</NoDataMessage>

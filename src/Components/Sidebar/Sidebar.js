@@ -57,34 +57,43 @@ const Sidebar = () => {
                             {menuCollapse ? <Icon/> : <IconLarge/>}
                         </div>
                     </SidebarHeader>
-
                     <SidebarContent>
                         <Menu iconShape="square">
-                            <MenuItem active={true} icon={<FiHome/>} id={"pro-menu-item"}>
-                                <NavLink to="/home">
-                                    Home
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<BsFillPeopleFill/>} id={"pro-menu-item"}>
-                                <NavLink to="/clients">
-                                    Clients
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<BiWorld/>} id={"pro-menu-item"}>
-                                <NavLink to="/map">
-                                    Map
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<BiBookAlt/>} id={"pro-menu-item"}>
-                                <NavLink to="/docs">
-                                    Docs
-                                </NavLink>
-                            </MenuItem>
-                            <MenuItem icon={<FaList/>} id={"pro-menu-item"}>
-                                <NavLink to="/settings">
-                                    Settings
-                                </NavLink>
-                            </MenuItem>
+                            {(isAuthenticated) ? (
+                                <>
+                                    <MenuItem active={true} icon={<FiHome/>} id={"pro-menu-item"}>
+                                        <NavLink to="/home">
+                                            Home
+                                        </NavLink>
+                                    </MenuItem>
+                                    <MenuItem icon={<BsFillPeopleFill/>} id={"pro-menu-item"}>
+                                        <NavLink to="/clients">
+                                            Clients
+                                        </NavLink>
+                                    </MenuItem>
+                                    <MenuItem icon={<BiWorld/>} id={"pro-menu-item"}>
+                                        <NavLink to="/map">
+                                            Map
+                                        </NavLink>
+                                    </MenuItem>
+                                    <MenuItem icon={<BiBookAlt/>} id={"pro-menu-item"}>
+                                        <NavLink to="/docs">
+                                            Docs
+                                        </NavLink>
+                                    </MenuItem>
+                                    <MenuItem icon={<FaList/>} id={"pro-menu-item"}>
+                                        <NavLink to="/settings">
+                                            Settings
+                                        </NavLink>
+                                    </MenuItem>
+                                </>
+                            ):(
+                                <MenuItem active={true} icon={<FiHome/>} id={"pro-menu-item"}>
+                                    <NavLink to="/home">
+                                        Home
+                                    </NavLink>
+                                </MenuItem>
+                                )}
                         </Menu>
                     </SidebarContent>
                     <SidebarFooter>
