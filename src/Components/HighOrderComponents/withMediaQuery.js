@@ -38,7 +38,6 @@ const ExtraLargeWrapper = ({ children, props } ) => {
 
 const withMediaQuery = (WrappedComponent, selectSize) => {
 
-    console.log(WrappedComponent, selectSize('small'))
     return (
         <>
             <MobileWrapper><WrappedComponent {...selectSize('mobile')}/></MobileWrapper>

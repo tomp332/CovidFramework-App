@@ -26,9 +26,9 @@ const Home = () => {
         if (allStatistics !== {}) {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
-                    <div className={"graphs"}>
+                    <div>
                         <DoughnutChart stats={allStatistics}/>
-                        <BarGraph stats={allStatistics}/>
+                        <DoughnutChart stats={allStatistics}/>
                     </div>
                 )
             } else {  // no data to display, show text box
@@ -53,9 +53,7 @@ const Home = () => {
     return (
         <div className="homePageWrapper">
             <Title text1="WELCOME" text2={userInfo.username.toUpperCase()} open={true}/>
-            <div>
-                {renderCharts()}
-            </div>
+            {renderCharts()}
         </div>
     )
 }

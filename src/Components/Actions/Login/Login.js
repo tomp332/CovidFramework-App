@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import Title from "react-titles/Title6";
 import {Link, useHistory} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from 'formik';
-import {css, keyframes} from '@emotion/react'
 import UserContext from "../../User";
 import "./Login.css"; // keep this until we figure out how to get emotion to animate
 import {login} from '../../../api/api';
@@ -80,27 +79,6 @@ const Login = () => {
 
 export default Login;
 
-
-const loading = keyframes`
-  0% {
-    background-position: -1000px 0;
-    background-color: red;
-  }
-  50% {
-    background-position: 1000px 0;
-    background-color: lightgrey;
-  }
-  100% {
-    background-position: -1000px 0;
-    background-color: red;
-  }
-}
-`
-
-const loadingStyles = css`
-  animation: ${loading} 3s infinite;
-  background-image: linear-gradient(to right, #f6f7f9 0%, #e9ebee 20%, #f6f7f9 40%, #f6f7f9 100%);
-`
 
 const Exit = styled(Link)`
   position: absolute;

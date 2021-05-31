@@ -4,7 +4,6 @@ import UserContext from "./Components/User";
 import axios from "./axios";
 
 import styled from '@emotion/styled'
-import {css, keyframes} from '@emotion/react'
 
 const App = () => {
     const [userInfo, setUserInfo] = useState({

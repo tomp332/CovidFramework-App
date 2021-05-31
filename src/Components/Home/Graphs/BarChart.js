@@ -1,15 +1,34 @@
+import React from 'react'
 import {Bar} from 'react-chartjs-2'
+import withMediaQuery from '../../HighOrderComponents/withMediaQuery'
 
-const React = require('react');
-import ('./DoughnutChart.css')
 
-const BarGraph = (stats) => {
+
+const ResponsiveBarChart = (props) => {
+    return withMediaQuery(BarGraph, (size, chartProps=props) => {
+        const sizes = {
+            mobile: { width: 100, height: 100},
+            tablet: { width: 200, height: 200},
+            small: { width: 300, height: 300},
+            large: { width: 400, height: 400},
+            extraLarge: { width: 500, height: 500}
+        }
+        return {
+            ...sizes[size],
+            ...chartProps
+        }
+    })
+}
+
+const BarGraph = ({ stats, height, width }) => {
+    const { lowPrivs, highPrivs, offlineClients, onlineClients } = stats
+    console.log('curer', )
     return (
         <div className={"bar-graph"}>
-            <Bar height={600} width={600} data={{
+            <Bar height={height} width={width} data={{
                 labels: ['Low privileges', 'High privileges', 'Disconnected', 'Connected'],
                 datasets: [{
-                    data: [stats.stats.lowPrivs, stats.stats.highPrivs, stats.stats.offlineClients, stats.stats.onlineClients],
+                    data: [lowPrivs, highPrivs, offlineClients, onlineClients],
                     backgroundColor: [
                         '#FFA07A',
                         'rgba(54, 162, 235, 1)',
@@ -49,4 +68,4 @@ const BarGraph = (stats) => {
         </div>
     )
 }
-export default BarGraph;
+export default ResponsiveBarChart;
