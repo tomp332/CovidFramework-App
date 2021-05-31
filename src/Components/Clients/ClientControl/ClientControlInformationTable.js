@@ -10,6 +10,8 @@ const renderClientInfoTableRows = (rows) => {
             label = "Client ID"
         else if (label.toLowerCase() === "lastactive")
             label = "Last-active"
+        else if (label === "isConnected")
+            label = "Status"
         else if (label.toLowerCase() === "location") {
             if (data.country || data.city)
                 data = `${data.country}, ${data.city}`
@@ -19,7 +21,7 @@ const renderClientInfoTableRows = (rows) => {
         return (
             <div className="client-control-info-table-row" key={i.toString()}>
                 <div className='client-control-info-table-col label'>{label}</div>
-                {label.toLowerCase() === 'status' ? (
+                {label === 'Status' ? (
                     data ? (<div style={{'color': '#28a745', 'fontWeight': 'bold'}}
                                  className='client-control-info-table-col data'>
                         {data === true || data === false ? data.toString().toUpperCase() : data.toString()}</div>) : (

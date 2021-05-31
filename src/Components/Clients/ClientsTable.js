@@ -78,7 +78,7 @@ const ClientsTable = ({data}) => {
                             </td>
                             <td>{
                                 <div className={"status-column"}>
-                                    {(!data.status) ? (
+                                    {(!data.isConnected) ? (
                                             <div style={{color: "white", background: "red"}}>Disconnected</div>) :
                                         (<div style={{color: "white", background: "#3CB371"}}>Connected</div>)}
                                 </div>
