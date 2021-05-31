@@ -1,16 +1,13 @@
 import "./Home.css";
 import Title from '../Title/Title'
-import React, {useContext, useEffect, useState} from "react";
-import UserContext from '../../Components/User'
-import Title from "react-titles/Title6";
 import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
-import CanvasDoughnut from "./Graphs/CanvasDoughut";
 import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
+import DoughnutChart from './Graphs/DoughnutChart'
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -58,7 +55,7 @@ const Home = () => {
 
     return (
         <div className="homePageWrapper">
-            <Title text1="WELCOME" text2={userInfo.username.toUpperCase()} open={true}/>
+            <Title text1="WELCOME" text2={user.username.toUpperCase()} open={true}/>
             {renderCharts()}
         </div>
 

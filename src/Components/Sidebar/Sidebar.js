@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import React, {useState} from "react";
-import {Menu, MenuItem} from "react-pro-sidebar";
 
 import "react-pro-sidebar/dist/css/styles.css";
 import {NavLink} from "react-router-dom";
@@ -63,9 +61,6 @@ const Sidebar = () => {
     const {logUserOut} = logOutDispatcher(useDispatch())
     const {isAuthenticated} = useSelector(stateSelector)
     const [menuCollapse, setMenuCollapse] = useState(false);
-    const menuIconClick = () => {
-        menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-    };
     const logoutUser = async () => {
         logUserOut()
     }
@@ -74,7 +69,7 @@ const Sidebar = () => {
 
         if (!isAuthenticated) {
             return (
-                <MenuItem key={label} collapsed={menuCollapse}>
+                <MenuItem key={'home'} collapsed={menuCollapse}>
                     <StyledNavLink to={'/home'}>
                         <MenuIconWrapper>
                             <FontAwesomeIcon icon={faHome}/>

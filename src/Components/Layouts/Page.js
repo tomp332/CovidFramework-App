@@ -1,9 +1,8 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import Sidebar from '../Sidebar/Sidebar';
 import styled from '@emotion/styled'
-import {css, keyframes} from '@emotion/react'
 
-const Page = ({ title, children }) => {
+const Page = ({ children }) => {
     return (
         <PageWrapper>
             <Sidebar/>

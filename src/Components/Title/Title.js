@@ -1,4 +1,3 @@
-import React from 'react';
 import Title from 'react-titles/Title6'
 import withMediaQuery from '../HighOrderComponents/withMediaQuery'
 

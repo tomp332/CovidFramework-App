@@ -4,8 +4,8 @@ import Chart from "react-apexcharts"
 
 const ApexChart = ({ stats }) => {
 
-    const series = stats && Object.values(stats) || []
-    const labels = stats && Object.keys(stats) || []
+    const series = (stats && Object.values(stats)) || []
+    const labels = (stats && Object.keys(stats)) || []
 
     const options = {
       chart: {

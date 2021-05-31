@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import ReactRouter from "./Routes/AllRoutes";
-import UserContext from "./Components/User";
-import './App.css';
 import axios from "./axios";
 import {autoSignIn} from "./redux/actions/userActions";
 import {createSelector} from "reselect";
 import {makeSelectUser} from "./redux/selectors/userSelector";
 import {useDispatch, useSelector} from "react-redux";
+
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -39,5 +38,3 @@ function App() {
 }
 
 export default App;
-
-const Wrapper = styled.div``

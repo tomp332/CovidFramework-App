@@ -1,5 +1,4 @@
 import React from 'react';
-import {MobileTitle, TabletTitle, SmallTitle, LargeTitle, ExtraLargeTitle} from "../../Title/Title";
 import {Link} from "react-router-dom";
 import styled from '@emotion/styled'
 import Title from '../../Title/Title'
