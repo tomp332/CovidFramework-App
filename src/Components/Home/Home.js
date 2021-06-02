@@ -1,13 +1,14 @@
 import "./Home.css";
-import Title from "react-titles/Title6";
+import Title from '../Title/Title'
 import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
 import {Spinner} from "reactstrap";
 import styled from '@emotion/styled';
-import CanvasDoughnut from "./Graphs/CanvasDoughut";
 import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
+import ApexChart from "./Graphs/ApexDoughnutChart";
+import ResponsiveBarChart from "./Graphs/ApexBarChart";
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -29,8 +30,9 @@ const Home = () => {
         if (allStatistics !== {}) {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
-                    <div className={"graphs"}>
-                        <CanvasDoughnut stats={allStatistics}/>
+                    <div>
+                        <ApexChart stats={allStatistics}/>
+                        <ResponsiveBarChart stats={allStatistics}/>
                     </div>
                 )
             } else { // no data to display, show text box
@@ -54,18 +56,8 @@ const Home = () => {
 
     return (
         <div className="homePageWrapper">
-            {(user.username !== null) ? (
-                <>
-                    <div className="title">
-                        <Title size={500} text1={`WELCOME ${user.username.toUpperCase()}`} open={true}/>
-                    </div>
-                    <>
-                        {renderCharts()}
-                    </>
-                </>
-            ) : (
-                <Spinner actions={"border"} color={"success"} type="grow"/>
-            )}
+            <Title text1="WELCOME" text2={user.username.toUpperCase()} open={true}/>
+            {renderCharts()}
         </div>
 
     )
