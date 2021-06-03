@@ -101,7 +101,7 @@ const Sidebar = () => {
                         <Icon collapsed={menuCollapse} onClick={() => setMenuCollapse(!menuCollapse)} alt={""} src={logoLarge}/>
                     </IconWrapper>
                     <MenuWrapper collapsed={menuCollapse}>
-                        <Menu collapsed={menuCollapse}>
+                        <Menu collapsed={menuCollapse} isAuthenticated={isAuthenticated}>
                             {renderMenuItem()}
                             {!isAuthenticated ?
                                 <MenuItem className="foot" collapsed={menuCollapse}>
@@ -135,6 +135,7 @@ const SidebarWrapper = styled.div`
 
     @media only screen and (max-width:768px) {
         width: 100vw;
+        flex: 0 1 auto;
     }
 `
 const Nav = styled.nav`
@@ -183,6 +184,7 @@ const MenuWrapper = styled.div`
 
     @media only screen and (max-width:768px) {
         margin-top: 1em;
+        width: 100%;
     }
 `
 
@@ -198,7 +200,8 @@ const Menu = styled.ul`
     // mobile
     @media only screen and (max-width:768px) {
         flex-direction: row; 
-        justify-content: space-evenly;
+        justify-content: ${props => props.isAuthenticated ? 'space-evenly' : 'space-between'};
+        width: 100%;
         align-items: center;
         padding: 0 0;
         box-shadow: 0 3px 5px 0 ${props => props.theme.colors.bgMain}60;
@@ -207,7 +210,7 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li`
     list-style-type: none;
-    width: 100%;
+    // width: 100%;
     margin-bottom: 1rem;
     text-transform: capitalize;
 

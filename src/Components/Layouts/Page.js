@@ -20,11 +20,13 @@ const PageWrapper = styled.div`
 
     @media only screen and (max-width:768px) {
         flex-direction: column;
+        flex-direction: column;
+        height: 100%;
     }
 `
 
 const MainContent = styled.div`
-    border: 1px solid red;
+    flex: 1 1 auto;
 
     @media only screen and (max-width:768px) {
         padding: 1em 0;
