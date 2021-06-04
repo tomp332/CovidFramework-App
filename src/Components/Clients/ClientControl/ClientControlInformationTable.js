@@ -12,6 +12,8 @@ const renderClientInfoTableRows = (rows) => {
             label = "Last-active"
         else if (label === "isConnected")
             label = "Status"
+        else if (label.toLowerCase() === "listavs")
+            label = "Antivirus"
         else if (label.toLowerCase() === "location") {
             if (data.country || data.city)
                 data = `${data.country}, ${data.city}`

@@ -11,6 +11,7 @@ const ResponsiveTitle = (props) => {
             extraLarge: 700
         }
     
+
         return {
             size: sizes[size],
             ...titleProps
