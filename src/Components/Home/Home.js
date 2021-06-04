@@ -7,12 +7,8 @@ import styled from '@emotion/styled';
 import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
-<<<<<<< HEAD
 import DoughnutChart from './Graphs/DoughnutChart'
-=======
 import ApexChart from "./Graphs/ApexDoughnutChart";
-import ResponsiveBarChart from "./Graphs/ApexBarChart";
->>>>>>> dbbdb3964ea5bb4238edc514eba3038670545f2d
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -35,13 +31,8 @@ const Home = () => {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
                     <div>
-<<<<<<< HEAD
                         <DoughnutChart stats={allStatistics}/>
                         <DoughnutChart stats={allStatistics}/>
-=======
-                        <ApexChart stats={allStatistics}/>
-                        <ResponsiveBarChart stats={allStatistics}/>
->>>>>>> dbbdb3964ea5bb4238edc514eba3038670545f2d
                     </div>
                 )
             } else { // no data to display, show text box

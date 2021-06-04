@@ -1,4 +1,4 @@
-import {Button, Modal, Table} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {killClient} from "../../api/api";
@@ -23,8 +23,36 @@ const ClientsTable = ({data}) => {
         }).catch(() => setKillStatus(false))
     }
 
+    const renderClientRows = () => {
+        return data.map(({ client_id, username, lastActive, isConnected, isAdmin }, i) => {
+            return (
+                <li className="item item-container  table-content">
+                    <div className="attribute" data-name="#">{i + 1}</div>
+                    <div className="attribute user-id" data-name="client id">{client_id}</div>
+                    {/* Enclose semantically similar attributes as a div hierarchy */}
+                    <div className="attribute-container user-information">
+                        <div className="attribute" data-name="username">{username}</div>
+                        <div className="attribute" data-name="admin">{isAdmin ? 'Yes': 'No'}</div>
+                    </div>
+                    <div className="attribute-container activity">
+                        <div className="attribute" data-name="last active">{lastActive}</div>
+                        <div className="attribute" data-name="is connected">{isConnected ? 'Yes': 'No'}</div>
+                    </div>
+                    <div className="attribute action-buttons">
+                        <button className="command-button">
+                            <NavLink to={`/control/${data.client_id}`}>
+                                Command
+                            </NavLink>
+                        </button>
+                        <button className="kill-button" onClick={() => KillClient(data.client_id)}>Kill</button>
+                    </div>
+             </li>
+            )
+        })
+    }
+
     return (
-        <>
+        <div>
             <Modal
                 size="sm"
                 show={alertShow}
@@ -51,7 +79,11 @@ const ClientsTable = ({data}) => {
                     </>
                 )}
             </Modal>
-            <Table className={"clients-table"} striped hover>
+            <ol className="collection collection-container">
+                <TableHeader/>
+                {data !== null && renderClientRows()}
+            </ol>
+            {/* <Table className={"clients-table"} striped hover>
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -102,10 +134,29 @@ const ClientsTable = ({data}) => {
                     )
                 )}
                 </tbody>
-            </Table>
-        </>
+            </Table> */}
+        </div>
     )
 
+}
+
+function TableHeader() {
+    return (
+        <li className="item item-container">
+            <div className="attribute" data-name="#">#</div>
+            <div className="attribute user-id" data-name="client id">client id</div>
+            {/* Enclose semantically similar attributes as a div hierarchy */}
+            <div className="attribute-container user-information">
+                <div className="attribute" data-name="username">Username</div>
+                <div className="attribute" data-name="admin">Is Admin</div>
+            </div>
+            <div className="attribute-container activity">
+                <div className="attribute" data-name="last active">Last Active</div>
+                <div className="attribute" data-name="is connected">Is Connected</div>
+            </div>
+            <div className="attribute">Actions</div>
+        </li>
+    )
 }
 
 export default ClientsTable;
