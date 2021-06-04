@@ -17,11 +17,12 @@ const PageWrapper = styled.div`
 
     width: 100%;
     display: flex;
+    border: 1px solid red;
 
     @media only screen and (max-width:768px) {
         flex-direction: column;
         flex-direction: column;
-        height: 100%;
+        min-height: 100%;
     }
 `
 

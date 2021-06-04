@@ -2,7 +2,7 @@ import React from 'react'
 import Chart from "react-apexcharts"
 
 
-const ApexChart = ({ stats }) => {
+const DoughnutChart = ({ stats }) => {
 
     const series = (stats && Object.values(stats)) || []
     const labels = (stats && Object.keys(stats)) || []
@@ -22,6 +22,26 @@ const ApexChart = ({ stats }) => {
             position: 'bottom'
           }
         }
+      }, {
+        breakpoint: 768,
+        options: {
+          chart: {
+            width: 600
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }, {
+        breakpoint: 1024,
+        options: {
+          chart: {
+            width: 700
+          },
+          legend: {
+            position: 'right'
+          }
+        }
       }]
     }
 
@@ -34,4 +54,4 @@ const ApexChart = ({ stats }) => {
     )
 }
 
-export default ApexChart
+export default DoughnutChart

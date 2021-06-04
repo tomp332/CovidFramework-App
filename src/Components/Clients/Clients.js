@@ -1,9 +1,10 @@
 import "./Clients.css";
 import React, {useEffect, useState} from 'react';
-import Title from "react-titles/Title6";
+import Title from "../Title/Title";
 import ClientsTable from "./ClientsTable";
 import {Spinner} from "reactstrap";
 import {getClients} from "../../api/api";
+import ClientCard from './ClientCard'
 
 
 const Clients = () => {
@@ -24,16 +25,15 @@ const Clients = () => {
 
     return (
         <div className="clientsPageWrapper">
-            <div className="title">
-                <Title size={300} text1="CLIENTS" open={true}/>
-            </div>
-            {(data !== null) ? (
+            <Title text1="CLIENTS" open={true}/>
+            {/* {(data !== null) ? (
                 <div className={"clients-table"}>
                     <ClientsTable data={data}/>
                 </div>
             ) : (
                 <Spinner actions={"border"} color={"success"} type="grow"/>
-            )}
+            )} */}
+            {(data !== null && <ClientCard data={data[0]}/>) || <Spinner actions={"border"} color={"success"} type="grow"/>}
         </div>
     );
 };

@@ -9,7 +9,7 @@ const styles = css`
     }
     
     html,
-    body {
+    body {  
         height: 100%;
     }
 
@@ -20,6 +20,11 @@ const styles = css`
         sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+
+        background-image: url("${Background}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
     
     code {
@@ -27,13 +32,9 @@ const styles = css`
         monospace;
     }
     
-    .wrapper {
-        background-image: url("${Background}");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        height: 100vh;
-    }
+    // .wrapper {
+        
+    // }
 `
 
 const GlobalStyles = props => <Global {...props} styles={styles} />
