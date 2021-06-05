@@ -17,18 +17,31 @@ ol.collection {
     background: #fafafa;
 }
 
-.command-button {
+.is-connected.true {
+    background-color: #28a745;
+    color: #fafafa;
+}
+
+.action-buttons .command-button {
     min-width: 5em;
+    max-width: 10em;
     padding: 0.125em 0.125em;
     margin-left: 1em;
     background-color: #28a745;
-    color: #fff;
     border-radius: 5px;
     border: none;
+    text-decoration: none;
 }
 
-.kill-button {
-    background-color: red;
+.action-buttons .kill-button {
+    min-width: 5em;
+    padding: 0.125em 0.125em;
+    margin-left: 1em;
+    background-color: #D11A2A;
+    border-radius: 5px;
+    border: none;
+    color: #fafafa;
+    text-decoration: none;
 }
 /* 2 Column Card Layout */
 @media screen and (max-width: 879px) {

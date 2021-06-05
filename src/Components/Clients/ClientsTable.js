@@ -36,11 +36,11 @@ const ClientsTable = ({data}) => {
                     </div>
                     <div className="attribute-container activity">
                         <div className="attribute" data-name="last active">{lastActive}</div>
-                        <div className="attribute" data-name="is connected">{isConnected ? 'Yes': 'No'}</div>
+                        <div className={`attribute is-connected ${isConnected ? 'true' : ''}`} data-name="is connected">{isConnected ? 'Yes': 'No'}</div>
                     </div>
                     <div className="attribute action-buttons">
                         <button className="command-button">
-                            <NavLink to={`/control/${data.client_id}`}>
+                            <NavLink to={`/control/${data.client_id}`} style={{ textDecoration: 'none' }}>
                                 Command
                             </NavLink>
                         </button>
