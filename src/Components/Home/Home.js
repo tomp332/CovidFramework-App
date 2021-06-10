@@ -8,7 +8,6 @@ import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
 import DoughnutChart from './Graphs/DoughnutChart'
-import ApexChart from "./Graphs/ApexDoughnutChart";
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -32,13 +31,12 @@ const Home = () => {
                 return (
                     <div>
                         <DoughnutChart stats={allStatistics}/>
-                        <DoughnutChart stats={allStatistics}/>
                     </div>
                 )
             } else { // no data to display, show text box
                 return (
                     <div>
-                        <NoDataMessage>Loading data..</NoDataMessage>
+                        <NoDataMessage>Start infecting to view data..</NoDataMessage>
                         <Spinner actions={"border"} color={"success"} type="grow"/>
                     </div>
                 )
