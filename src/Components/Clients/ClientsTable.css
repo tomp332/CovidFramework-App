@@ -15,11 +15,22 @@ ol.collection {
 
 .table-content {
     background: #fafafa;
+    text-align: center;
+}
+
+.is-connected {
+    background-color: #D11A2A;
+    color: #fafafa;
 }
 
 .is-connected.true {
-    background-color: #28a745;
+    background-color: #3cb371;
     color: #fafafa;
+}
+
+.action-buttons {
+    display: grid;
+    align-items: center;
 }
 
 .action-buttons .command-button {
@@ -27,7 +38,7 @@ ol.collection {
     max-width: 10em;
     padding: 0.125em 0.125em;
     margin-left: 1em;
-    background-color: #28a745;
+    background-color: #007bff;
     border-radius: 5px;
     border: none;
     text-decoration: none;
@@ -64,6 +75,7 @@ ol.collection {
 
     .attribute::before {
         content: attr(data-name);
+        color: #000000;
     }
 
     /* Attribute name for first column, and attribute value for second column. */
@@ -86,7 +98,7 @@ ol.collection {
     /* The maximum column width, that can wrap */
     .item-container {
         display: grid;
-        grid-template-columns: 2em 8em 8fr 2fr 15em;
+        grid-template-columns: 2em 8em 4fr 4fr 2fr 15em;
     }
 
     .attribute-container {
@@ -118,6 +130,10 @@ ol.collection {
     .action-buttons button {
         flex: 1 1;
     }
+
+    .user-ip {
+        --column-width-min: 4em;
+    }
     /* In order to maximize row lines, only display one line for a cell */
     .attribute {
         border-right: 1px solid gray;
@@ -146,4 +162,8 @@ ol.collection {
         overflow: auto;
         white-space: normal;
     }
+}
+
+.table-header * {
+    text-transform: capitalize;
 }

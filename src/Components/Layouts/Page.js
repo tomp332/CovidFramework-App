@@ -17,17 +17,20 @@ const PageWrapper = styled.div`
 
     width: 100%;
     display: flex;
-    border: 1px solid red;
 
     @media only screen and (max-width:768px) {
         flex-direction: column;
-        flex-direction: column;
-        min-height: 100%;
+        flex: 1 1;
+        align-items: center;
     }
 `
 
 const MainContent = styled.div`
     flex: 1 1 auto;
+    padding-top: 2em;
+    margin: 0 auto;
+    justify-self: center;
+
 
     @media only screen and (max-width:768px) {
         padding: 1em 0;

@@ -1,11 +1,11 @@
-.homePageWrapper {
+/* .homePageWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-}
+} */
 
-rect:nth-child(2) {
+/* rect:nth-child(2) {
     stroke: #98d14a;
 }
 
@@ -20,10 +20,10 @@ rect:nth-child(2) {
     padding-top: 100px;
     display: flex;
     justify-content: center;
-}
-.bar-graph{
+} */
+/* .bar-graph{
     padding-top: 1000px;
-}
+} */
 /*div[id^='canvasjs-react-chart-container']{*/
 /*    width: auto !important;*/
 /*}*/

@@ -24,27 +24,29 @@ const ClientsTable = ({data}) => {
     }
 
     const renderClientRows = () => {
-        return data.map(({ client_id, username, lastActive, isConnected, isAdmin }, i) => {
+        return data.map(({ client_id, username, lastActive, isConnected, isAdmin, public_ip }, i) => {
             return (
                 <li className="item item-container  table-content">
                     <div className="attribute" data-name="#">{i + 1}</div>
-                    <div className="attribute user-id" data-name="client id">{client_id}</div>
+                    <div className="attribute user-id" data-name="CLIENT ID">{client_id}</div>
                     {/* Enclose semantically similar attributes as a div hierarchy */}
                     <div className="attribute-container user-information">
-                        <div className="attribute" data-name="username">{username}</div>
-                        <div className="attribute" data-name="admin">{isAdmin ? 'Yes': 'No'}</div>
+                        <div className="attribute" data-name="USERNAME">{username}</div>
+                        <div className="attribute" data-name="ADMIN">{isAdmin ? 'Yes': 'No'}</div>
                     </div>
+                    <div className="attribute user-ip" data-name="PUBLIC IP">{public_ip}</div>
                     <div className="attribute-container activity">
-                        <div className="attribute" data-name="last active">{lastActive}</div>
-                        <div className={`attribute is-connected ${isConnected ? 'true' : ''}`} data-name="is connected">{isConnected ? 'Yes': 'No'}</div>
+                        <div className="attribute" data-name="LAST ACTIVE">{lastActive}</div>
+                        <div className={`attribute is-connected ${isConnected ? 'true' : ''}`} data-name="CONNECTION STATUS">{isConnected ? 'Connected': 'Disconnected'}</div>
                     </div>
                     <div className="attribute action-buttons">
                         <button className="command-button">
-                            <NavLink to={`/control/${data.client_id}`} style={{ textDecoration: 'none' }}>
+                            <NavLink to={`/control/${client_id}`} style={{ textDecoration: 'none', color: 'white' }}>
+                                
                                 Command
                             </NavLink>
                         </button>
-                        <button className="kill-button" onClick={() => KillClient(data.client_id)}>Kill</button>
+                        <button className="kill-button" onClick={() => KillClient(client_id)}>Kill</button>
                     </div>
              </li>
             )
@@ -52,7 +54,7 @@ const ClientsTable = ({data}) => {
     }
 
     return (
-        <div>
+        <>
             <Modal
                 size="sm"
                 show={alertShow}
@@ -83,78 +85,27 @@ const ClientsTable = ({data}) => {
                 <TableHeader/>
                 {data !== null && renderClientRows()}
             </ol>
-            {/* <Table className={"clients-table"} striped hover>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Last active</th>
-                    <th>OS</th>
-                    <th>Public IP</th>
-                    <th>Admin</th>
-                    <th>Status</th>
-                    <th id={"action-column"}>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                {data.map(data => (
-                        <tr key={`${data.client_id}`}>
-                            <td>{data.client_id}</td>
-                            <td>{data.username}</td>
-                            <td>{data.lastActive}</td>
-                            <td>{data.os}</td>
-                            <td>{data.public_ip}</td>
-                            <td>{
-                                !data.isAdmin ? "False" : "True"
-                            }
-                            </td>
-                            <td>{
-                                <div className={"status-column"}>
-                                    {(!data.isConnected) ? (
-                                            <div style={{color: "white", background: "red"}}>Disconnected</div>) :
-                                        (<div style={{color: "white", background: "#3CB371"}}>Connected</div>)}
-                                </div>
-                            }</td>
-                            <td>{
-                                <div className={"row-buttons"}>
-                                    <div className={"send-command-button"}>
-                                        <NavLink to={`/control/${data.client_id}`}>
-                                            <Button size={"md"} variant={"primary"}>Command</Button>
-                                        </NavLink>
-                                    </div>
-                                    <div className={"kill-command-button"}>
-                                        <Button size={"md"} variant={"danger"} onClick={() => {
-                                            KillClient(data.client_id)
-                                        }}>Kill</Button>
-                                    </div>
-
-                                </div>
-                            }</td>
-                        </tr>
-                    )
-                )}
-                </tbody>
-            </Table> */}
-        </div>
+        </>
     )
 
 }
 
 function TableHeader() {
     return (
-        <li className="item item-container">
+        <li className="item item-container table-header">
             <div className="attribute" data-name="#">#</div>
-            <div className="attribute user-id" data-name="client id">client id</div>
+            <div className="attribute user-id" data-name="client id">CLIENT ID</div>
             {/* Enclose semantically similar attributes as a div hierarchy */}
             <div className="attribute-container user-information">
-                <div className="attribute" data-name="username">Username</div>
-                <div className="attribute" data-name="admin">Is Admin</div>
+                <div className="attribute" data-name="username">USERNAME</div>
+                <div className="attribute" data-name="admin">ADMIN</div>
             </div>
+            <div className="attribute user-ip" data-name="ip">PUBLIC IP</div>
             <div className="attribute-container activity">
-                <div className="attribute" data-name="last active">Last Active</div>
-                <div className="attribute" data-name="is connected">Is Connected</div>
+                <div className="attribute" data-name="last active">LAST ACTIVE</div>
+                <div className="attribute" data-name="is connected">CONNECTION STATUS</div>
             </div>
-            <div className="attribute">Actions</div>
+            <div className="attribute">ACTIONS</div>
         </li>
     )
 }

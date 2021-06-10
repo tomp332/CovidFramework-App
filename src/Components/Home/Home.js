@@ -1,4 +1,4 @@
-import "./Home.css";
+// import "./Home.css";
 import Title from '../Title/Title'
 import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
@@ -37,10 +37,10 @@ const Home = () => {
                 )
             } else { // no data to display, show text box
                 return (
-                    <>
+                    <div>
                         <NoDataMessage>Loading data..</NoDataMessage>
                         <Spinner actions={"border"} color={"success"} type="grow"/>
-                    </>
+                    </div>
                 )
             }
         } else {
@@ -57,7 +57,9 @@ const Home = () => {
     return (
         <div className="homePageWrapper">
             <Title text1="WELCOME" text2={user.username.toUpperCase()} open={true}/>
-            {renderCharts()}
+            <div>
+                {renderCharts()}
+            </div>
         </div>
 
     )

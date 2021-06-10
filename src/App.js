@@ -5,6 +5,7 @@ import {autoSignIn} from "./redux/actions/userActions";
 import {createSelector} from "reselect";
 import {makeSelectUser} from "./redux/selectors/userSelector";
 import {useDispatch, useSelector} from "react-redux";
+import styled from '@emotion/styled'
 
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
@@ -31,10 +32,14 @@ function App() {
         }
     }, [])
     return (
-        <div className="wrapper">
+        <AppWrapper>
             <ReactRouter/>
-        </div>
+        </AppWrapper>
     );
 }
 
 export default App;
+
+const AppWrapper = styled.div`
+    display: flex;
+`

@@ -132,6 +132,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SidebarWrapper = styled.div`
+    min-height: 100%;
 
     @media only screen and (max-width:768px) {
         width: 100vw;
@@ -165,6 +166,8 @@ const IconWrapper = styled.div`
     align-items: center;
     height: 12vh;
     cursor: pointer;
+    padding: 0.15em;
+    margin-bottom: 2em;
 
     @media only screen and (max-width:768px) {
         display: none
@@ -174,6 +177,7 @@ const IconWrapper = styled.div`
 const Icon = styled.img`
     height: ${props => props.collapsed ? '50%' : '96px'};
     width: auto;
+    color: #555555;
     transition: height 0.1s;
 `
 
@@ -194,6 +198,7 @@ const Menu = styled.ul`
     justify-content: flex-start;
     align-items: center;
     padding: 1em;
+    padding-bottom: 0.125em;
     transition: all 0.1s ease;
     height: 100%;
     
@@ -210,9 +215,8 @@ const Menu = styled.ul`
 
 const MenuItem = styled.li`
     list-style-type: none;
-    // width: 100%;
-    margin-bottom: 1rem;
     text-transform: capitalize;
+    margin-bottom: 3em;
 
     & p {
         display: ${props => props.collapsed ? 'none' : 'flex'};
@@ -222,6 +226,7 @@ const MenuItem = styled.li`
 
     &.foot {
         margin-top: auto;
+        margin-bottom: 0;
     }
 
     // mobile
@@ -232,16 +237,19 @@ const MenuItem = styled.li`
             display: none;
         }
     }
+
+    @media only screen and (min-width:769px) {
+        width: 100%;
+    }
 `
 
 const StyledNavLink = styled(NavLink)`
-    width: 100%;
     text-decoration: none;
-    color: white;
+    color: #858585;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.25em;
 
     & * {
         margin: 0;
@@ -269,5 +277,7 @@ const MenuIconWrapper = styled.div`
     justify-content: center;
     padding: 0.25em;
     min-width: 2em;
+    background-color: #2b2b2b;
+    padding: 0.5em;
     `
 

@@ -7,6 +7,7 @@ import ClientControlSection from './ClientControlSection'
 import ClientControlCommand from './ClientControlCommand'
 import ClientControlResponse from './ClientControlResponse';
 import ClientControlInformationTable from './ClientControlInformationTable';
+import Accordion from '../../Accordion/Accordion'
 import axios from "../../../axios";
 
 // TODO: get list of commands from DB
@@ -87,19 +88,20 @@ const ClientControl = () => {
             <div className="title">
                 <Title size={600} text1="COMMAND & CONTROL" open={true}/>
             </div>
-            <div className="client-control-form-wrapper">
+            <div>
                 {client !== undefined ?
-                    <>
-                        <ClientControlSection title="Client Information">
-                            <ClientControlInformationTable client={client}/>
-                        </ClientControlSection>
-                        <ClientControlSection title="Command">
-                            <ClientControlCommand client={client} commands={commands}/>
-                        </ClientControlSection>
-                        <ClientControlSection title="Response">
-                            <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
-                        </ClientControlSection>
-                    </> : <Spinner actions={"border"} color={"success"} type="grow"/>}
+                <>
+                    <Accordion title="Client Information">
+                        <ClientControlInformationTable client={client}/>
+                    </Accordion>
+                    <Accordion title="Command">
+                        <ClientControlCommand client={client} commands={commands}/>
+                    </Accordion>
+                    <Accordion title="Response">
+                        <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
+                    </Accordion>
+                </> : <Spinner actions={"border"} color={"success"} type="grow"/>
+                }
             </div>
         </div>
     );

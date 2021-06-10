@@ -16,7 +16,7 @@ rect:nth-child(2) {
 }
 
 .map {
-    width: 150vh;
-    height: 150vh;
+    width: 90%;
+    height: 90%;
     padding-bottom: 10%;
 }
