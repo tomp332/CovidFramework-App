@@ -1,3 +1,5 @@
+import styled from '@emotion/styled'
+
 const renderClientInfoTableRows = (rows) => {
     return rows.map(([label, data], i) => {
         if (label.toLowerCase() === "wifienabled")

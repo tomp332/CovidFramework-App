@@ -6,10 +6,11 @@ const ResponsiveTitle = (props) => {
         const sizes = {
             mobile: 300,
             tablet: 400,
-            small: 500,
-            large: 600,
-            extraLarge: 700
+            small: 450,
+            large: 450,
+            extraLarge: 500
         }
+    
 
         return {
             size: sizes[size],

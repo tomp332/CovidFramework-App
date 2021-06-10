@@ -22,6 +22,7 @@ const ResponsiveBarChart = (props) => {
 
 const BarGraph = ({ stats, height, width }) => {
     const { lowPrivs, highPrivs, offlineClients, onlineClients } = stats
+    console.log('curer', )
     return (
         <div className={"bar-graph"}>
             <Bar height={height} width={width} data={{
@@ -43,27 +44,27 @@ const BarGraph = ({ stats, height, width }) => {
                     borderWidth: 1
                 }]
             }}
-                 options={{
-                     scales: {},
-                     animation: false,
-                     plugins: {
-                         title: {
-                             display: true,
-                             text: 'Client statistics',
-                             align: "center",
-                             font: {
-                                 weight: 'bold',
-                                 size: 30,
-                                 fontColor: 'white'
-                             },
-                         },
-                         legend: {
-                             labels: {
-                                 color: "white"
-                             }
-                         }
-                     }
-                 }} type={'Doughnut'}/>
+                      options={{
+                          scales: {},
+                          animation: false,
+                          plugins: {
+                              title: {
+                                  display: true,
+                                  text: 'Client statistics',
+                                  align: "center",
+                                  font: {
+                                      weight: 'bold',
+                                      size: 30,
+                                      fontColor: 'white'
+                                  },
+                              },
+                              legend: {
+                                  labels: {
+                                      color: "white"
+                                  }
+                              }
+                          }
+                      }} type={'Doughnut'}/>
         </div>
     )
 }

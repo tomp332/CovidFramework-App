@@ -1,9 +1,9 @@
-import "./Clients.css";
 import React, {useEffect, useState} from 'react';
-import Title from "react-titles/Title6";
+import Title from "../Title/Title";
 import ClientsTable from "./ClientsTable";
 import {Spinner} from "reactstrap";
 import {getClients} from "../../api/api";
+import styled from '@emotion/styled'
 
 
 const Clients = () => {
@@ -23,18 +23,23 @@ const Clients = () => {
     }, []);
 
     return (
-        <div className="clientsPageWrapper">
-            <div className="title">
-                <Title size={300} text1="CLIENTS" open={true}/>
-            </div>
+        <Wrapper>
+            <Title text1="CLIENTS" open={true}/>
             {(data !== null) ? (
-                <div className={"clients-table"}>
-                    <ClientsTable data={data}/>
-                </div>
+                <ClientsTable data={data}/>
             ) : (
                 <Spinner actions={"border"} color={"success"} type="grow"/>
             )}
-        </div>
+        </Wrapper>
     );
 };
+
 export default Clients;
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    width: 100%;
+`

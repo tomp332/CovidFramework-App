@@ -1,4 +1,4 @@
-import "./Home.css";
+// import "./Home.css";
 import Title from '../Title/Title'
 import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
@@ -7,8 +7,7 @@ import styled from '@emotion/styled';
 import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
-import ApexChart from "./Graphs/ApexDoughnutChart";
-import ResponsiveBarChart from "./Graphs/ApexBarChart";
+import DoughnutChart from './Graphs/DoughnutChart'
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -31,16 +30,15 @@ const Home = () => {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
                     <div>
-                        <ApexChart stats={allStatistics}/>
-                        <ResponsiveBarChart stats={allStatistics}/>
+                        <DoughnutChart stats={allStatistics}/>
                     </div>
                 )
             } else { // no data to display, show text box
                 return (
-                    <>
+                    <div>
                         <NoDataMessage>Start infecting to view data..</NoDataMessage>
                         <Spinner actions={"border"} color={"success"} type="grow"/>
-                    </>
+                    </div>
                 )
             }
         } else {
@@ -57,7 +55,9 @@ const Home = () => {
     return (
         <div className="homePageWrapper">
             <Title text1="WELCOME" text2={user.username.toUpperCase()} open={true}/>
-            {renderCharts()}
+            <div>
+                {renderCharts()}
+            </div>
         </div>
 
     )
