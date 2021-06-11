@@ -1,6 +1,7 @@
 import {Form} from 'react-bootstrap';
 import React, {useState} from "react";
 import {sendCommand, uploadFile} from "../../../api/api";
+import styled from '@emotion/styled';
 
 
 const ClientControlCommand = ({client, commands}) => {
@@ -105,12 +106,12 @@ const ClientControlCommand = ({client, commands}) => {
             <div className="client-control-command-buttons">
                 <h6 style={{"color": "red"}}>{errors}</h6>
                 {sendingCommand ? (
-                    <button className="command-button" disabled={true}
-                            onClick={(e) => SendCommand(e)}>Sending..</button>
+                    <SendButton disabled={true}
+                            onClick={(e) => SendCommand(e)}>Sending..</SendButton>
 
                 ) : (
-                    <button className="command-button" disabled={!client.isConnected}
-                            onClick={(e) => SendCommand(e)}>Send</button>
+                    <SendButton disabled={!client.isConnected}
+                            onClick={(e) => SendCommand(e)}>Send</SendButton>
                 )}
             </div>
         </div>
@@ -118,3 +119,13 @@ const ClientControlCommand = ({client, commands}) => {
 }
 
 export default ClientControlCommand;
+
+const SendButton = styled.button`
+    padding: 0.5em;
+    min-width: 8em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+`

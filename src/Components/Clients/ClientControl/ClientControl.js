@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import Title from "react-titles/Title6";
+import Title from "../../Title/Title";
 import './ClientControl.css';
 import {Spinner} from "reactstrap";
 import ClientControlSection from './ClientControlSection'
@@ -9,6 +9,7 @@ import ClientControlResponse from './ClientControlResponse';
 import ClientControlInformationTable from './ClientControlInformationTable';
 import Accordion from '../../Accordion/Accordion'
 import axios from "../../../axios";
+import styled from '@emotion/styled';
 
 // TODO: get list of commands from DB
 const commands = {
@@ -86,9 +87,9 @@ const ClientControl = () => {
     return (
         <div className="controlPageWrapper">
             <div className="title">
-                <Title size={600} text1="COMMAND & CONTROL" open={true}/>
+                <Title text1="COMMAND & CONTROL" open={true}/>
             </div>
-            <div>
+            <Wrapper>
                 {client !== undefined ?
                 <>
                     <Accordion title="Client Information">
@@ -102,9 +103,13 @@ const ClientControl = () => {
                     </Accordion>
                 </> : <Spinner actions={"border"} color={"success"} type="grow"/>
                 }
-            </div>
+            </Wrapper>
         </div>
     );
 }
 
 export default ClientControl;
+
+const Wrapper = styled.div`
+    margin: 0 auto;
+`
