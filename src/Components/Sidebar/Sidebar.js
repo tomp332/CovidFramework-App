@@ -259,6 +259,7 @@ const StyledNavLink = styled(NavLink)`
 
     &.active {
         color: ${props => props.theme.colors.primary};
+        background-color: inherit;
     }
 
     &:hover {

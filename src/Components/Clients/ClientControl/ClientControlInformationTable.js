@@ -23,31 +23,54 @@ const renderClientInfoTableRows = (rows) => {
                 data = `Unknown`
         }
         return (
-            <div className="client-control-info-table-row" key={i.toString()}>
-                <div className='client-control-info-table-col label'>{label}</div>
-                {label === 'Status' ? (
-                    data ? (<div style={{'color': '#28a745', 'fontWeight': 'bold'}}
-                                 className='client-control-info-table-col data'>
-                        {data === true || data === false ? data.toString().toUpperCase() : data.toString()}</div>) : (
-                        <div style={{'color': 'red', 'fontWeight': 'bold'}}
-                             className='client-control-info-table-col data'>
-                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}</div>)
-                ) : (
-                    <div className='client-control-info-table-col data'>
-                        {data === true || data === false ? data.toString().charAt(0).toUpperCase() + data.toString().slice(1) : data.toString()}</div>
-                )}
+            <InfoSection key={i.toString()}>
+                <InfoLabel>{label}</InfoLabel>
+                {label === 'Status' ? 
+                    (data ? 
+                        (<InfoData style={{'color': '#28a745', 'fontWeight': 'bold'}}>
+                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}) 
+                        </InfoData>) : (
+                        <InfoData style={{'color': 'red', 'fontWeight': 'bold'}}>
+                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
+                        </InfoData>)
+                    ) : (
+                    <InfoData>
+                        {data === true || data === false ? data.toString().charAt(0).toUpperCase() + data.toString().slice(1) : data.toString()}
+                    </InfoData>)
+                }
 
-            </div>
+            </InfoSection>
         )
     })
 }
 
 const ClientControlInformationTable = ({client}) => {
     return (
-        <div className="client-control-info-table">
+        <Wrapper >
             {renderClientInfoTableRows(Object.entries(client))}
-        </div>
+        </Wrapper>
     )
 }
 
 export default ClientControlInformationTable
+
+const Wrapper = styled.div`
+    padding: 0.5em;
+`
+
+const InfoSection = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+`
+
+const InfoLabel = styled.div`
+    font-weight: 600;
+    text-transform: uppercase;
+`
+
+const InfoData = styled.div`
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-width: 0;
+`
