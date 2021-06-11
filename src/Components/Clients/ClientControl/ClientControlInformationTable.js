@@ -46,13 +46,17 @@ const renderClientInfoTableRows = (rows) => {
 
 const ClientControlInformationTable = ({client}) => {
     return (
-        <div >
+        <Wrapper >
             {renderClientInfoTableRows(Object.entries(client))}
-        </div>
+        </Wrapper>
     )
 }
 
 export default ClientControlInformationTable
+
+const Wrapper = styled.div`
+    padding: 0.5em;
+`
 
 const InfoSection = styled.div`
     display: grid;
