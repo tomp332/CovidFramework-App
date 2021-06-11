@@ -112,4 +112,5 @@ export default ClientControl;
 
 const Wrapper = styled.div`
     margin: 0 auto;
+    width: 75%;
 `

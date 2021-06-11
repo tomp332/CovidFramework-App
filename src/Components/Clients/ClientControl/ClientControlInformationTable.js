@@ -60,7 +60,11 @@ const Wrapper = styled.div`
 
 const InfoSection = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr))
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    
+    &:not(:last-child) {
+        border-bottom: 1px solid #eee;
+    }
 `
 
 const InfoLabel = styled.div`
