@@ -48,9 +48,6 @@ const menuItemList = [
     }
 ]
 
-
-
-
 const logOutDispatcher = (dispatch) => ({logUserOut: () => dispatch(logUserOut())})
 
 const stateSelector = createSelector(makeSelectAuthenticated, (isAuthenticated) => ({

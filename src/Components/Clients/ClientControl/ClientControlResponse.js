@@ -1,4 +1,3 @@
-import {NavLink} from "react-router-dom";
 import styled from "@emotion/styled";
 
 const responseBanner = (responseObject) => {
@@ -29,14 +28,6 @@ const ClientControlResponse = ({clientResponse, allResponses}) => {
                     className="client-control-response-textarea response"
                 />
                 <div className="client-control-command-buttons">
-                    <NavLink to={"/clients"}>
-                        <BackButton
-                            href="/clients"
-                            variant={"success"}
-                        >
-                            Back
-                        </BackButton>
-                    </NavLink>
                     <ClearButton >Clear</ClearButton>
                 </div>
             </div>
@@ -54,15 +45,4 @@ const ClearButton = styled.button`
     background-color: red;
     border: none;
     border-radius: 5px;
-`
-
-const BackButton = styled.button`
-    min-width: 8em;
-    margin-right: 1em;
-    padding: 0.5em;
-    font-weight: 600;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    background-color: grey;
 `

@@ -126,3 +126,14 @@ export const getSingleClient = async (clientId) => {
     })
         .then(data => data.data).catch(() => null)
 }
+
+export const getClientFiles = async (clientId) => {
+    return axios({
+        url: `/api/downloads/${clientId}`,
+        method: 'get',
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        },
+    })
+        .then(data => data).catch(() => null)
+}

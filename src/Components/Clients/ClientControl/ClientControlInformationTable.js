@@ -28,7 +28,7 @@ const renderClientInfoTableRows = (rows) => {
                 {label === 'Status' ? 
                     (data ? 
                         (<InfoData style={{'color': '#28a745', 'fontWeight': 'bold'}}>
-                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}) 
+                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
                         </InfoData>) : (
                         <InfoData style={{'color': 'red', 'fontWeight': 'bold'}}>
                             {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
@@ -69,7 +69,8 @@ const InfoSection = styled.div`
 
 const InfoLabel = styled.div`
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    padding-left: 3em;
 `
 
 const InfoData = styled.div`

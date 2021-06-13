@@ -95,7 +95,6 @@ function TableHeader() {
         <li className="item item-container table-header">
             <div className="attribute" data-name="#">#</div>
             <div className="attribute user-id" data-name="client id">CLIENT ID</div>
-            {/* Enclose semantically similar attributes as a div hierarchy */}
             <div className="attribute-container user-information">
                 <div className="attribute" data-name="username">USERNAME</div>
                 <div className="attribute" data-name="admin">ADMIN</div>
