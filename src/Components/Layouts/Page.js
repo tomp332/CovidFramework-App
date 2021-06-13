@@ -32,10 +32,9 @@ const MainContent = styled.div`
     justify-self: center;
     margin-left: 158.1px;
 
-
-
     @media only screen and (max-width:768px) {
         padding: 1em 0;
+        margin-top: 90px;
     }
 `
 

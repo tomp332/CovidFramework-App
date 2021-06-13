@@ -1,4 +1,3 @@
-// import "./Home.css";
 import Title from '../Title/Title'
 import React, {useEffect, useState} from "react";
 import {getStatistics} from "../../api/api";
@@ -29,9 +28,9 @@ const Home = () => {
         if (allStatistics !== {}) {
             if ((allStatistics?.onlineClients > 0) || (allStatistics?.offlineClients > 0)) { // there is data to display
                 return (
-                    <div>
+                    <>
                         <DoughnutChart stats={allStatistics}/>
-                    </div>
+                    </>
                 )
             } else { // no data to display, show text box
                 return (
@@ -53,22 +52,34 @@ const Home = () => {
     }
 
     return (
-        <div className="homePageWrapper">
+        <HomePageWrapper className="homePageWrapper">
             <Title text1="WELCOME" text2={user.username.toUpperCase()} open={true}/>
-            <div>
+            <ChartsWrapper>
                 {renderCharts()}
-            </div>
-        </div>
+            </ChartsWrapper>
+        </HomePageWrapper>
 
     )
 }
 export default Home;
 
 
+const HomePageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
 const NoDataMessage = styled.h3`
   color: black;
-  margin: auto;
+  margin: 2em auto;
   background: #98d14a;
   padding: 0.3em;
   border-radius: 5px;
+`
+
+const ChartsWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 `
