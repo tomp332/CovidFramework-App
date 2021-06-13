@@ -9,7 +9,6 @@ const DoughnutChart = ({ stats, width }) => {
 
     const series = (stats && Object.values(stats)) || []
     const labels = (stats && Object.keys(stats)) || []
-    console.log('WIDTH', width)
     const options = {
       chart: {
         type: 'pie',
