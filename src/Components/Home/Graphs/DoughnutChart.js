@@ -1,8 +1,6 @@
 import React from 'react'
 import Chart from "react-apexcharts"
-import withMediaQuery from '../../HighOrderComponents/withMediaQuery'
 import styled from '@emotion/styled'
-import { faPeopleArrows } from '@fortawesome/free-solid-svg-icons'
 
 
 const DoughnutChart = ({ stats, width }) => {
@@ -80,8 +78,9 @@ const DoughnutChart = ({ stats, width }) => {
 }
 
 
+
 const ChartWrapper = styled.div`
-  background-color: #efefef;
+  background-color: transparent;
   border-radius: 5px;
   border: 1px solid #aaa;
   margin: 1em;

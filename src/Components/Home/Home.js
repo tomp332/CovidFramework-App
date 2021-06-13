@@ -7,6 +7,7 @@ import {makeSelectUser} from "../../redux/selectors/userSelector";
 import {createSelector} from "reselect";
 import {useSelector} from "react-redux";
 import DoughnutChart from './Graphs/DoughnutChart'
+import BarChart from "./Graphs/BarChart";
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
     user
@@ -30,6 +31,7 @@ const Home = () => {
                 return (
                     <>
                         <DoughnutChart stats={allStatistics}/>
+                        <BarChart stats={allStatistics}/>
                     </>
                 )
             } else { // no data to display, show text box

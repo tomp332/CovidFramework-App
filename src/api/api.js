@@ -129,7 +129,7 @@ export const getSingleClient = async (clientId) => {
 
 export const getClientFiles = async (clientId) => {
     return axios({
-        url: `/api/downloads/${clientId}`,
+        url: `/clients/files/${clientId}`,
         method: 'get',
         headers: {
             'x-access-token': localStorage.getItem('token')

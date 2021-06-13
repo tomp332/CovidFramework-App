@@ -1,7 +1,7 @@
 import {getClientFiles} from "../../../api/api";
 import {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faBook, faFile} from '@fortawesome/free-solid-svg-icons'
+import {faFile} from '@fortawesome/free-solid-svg-icons'
 import styled from "@emotion/styled";
 
 const {useEffect} = require("react");
@@ -18,17 +18,20 @@ const RetrievedFiles = ({clientId}) => {
                 }
             }).catch()
         }
-        getAllClientFiles()
+        let handle = setInterval(getAllClientFiles, 2000);
+        return () => {
+            setClientFiles([])
+            clearInterval(handle);
+        };
     }, [clientId])
     return (
         <Wrapper>
             {clientFiles.length > 0 ? (
                 <ul>{clientFiles.map((file) =>
                     <li>
-                        {/*https://localhost:3000/api/downloads/${clientId}/${file}*/}
                         <MainLink>
                             <FontAwesomeIcon icon={faFile} />
-                            <FileLink target={'_blank'} href={""}>{file}</FileLink>
+                            <FileLink target={'_blank'} href={`https://localhost:3000/clients/files/${clientId}/${file}`}>{file}</FileLink>
                         </MainLink>
                     </li>
                 )}</ul>
