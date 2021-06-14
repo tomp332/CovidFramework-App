@@ -19,4 +19,5 @@ rect:nth-child(2) {
     width: 90%;
     height: 90%;
     padding-bottom: 10%;
+    position: fixed;
 }

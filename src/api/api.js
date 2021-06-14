@@ -157,3 +157,23 @@ export const downloadFile = async (e, clientId, file) => {
             link.click();
         }).catch(() => null)
 }
+
+export const downloadAgent = async (e) => {
+    e.preventDefault()
+    return axios({
+        url: `clients/files/agent`,
+        method: 'get',
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        },
+        responseType: 'blob',
+    })
+        .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'agent.exe');
+            document.body.appendChild(link);
+            link.click();
+        }).catch(() => null)
+}
