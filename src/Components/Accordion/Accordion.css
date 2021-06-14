@@ -31,9 +31,9 @@
 
 /* Style the accordion content title */
 .accordion__title {
-    font-family: "Open Sans", sans-serif;
+    font-family:  'Segoe UI',sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 20px;
   }
   
   /* Style the accordion chevron icon */
