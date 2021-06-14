@@ -28,7 +28,7 @@ const renderClientInfoTableRows = (rows) => {
                 {label === 'Status' ? 
                     (data ? 
                         (<InfoData style={{'color': '#28a745', 'fontWeight': 'bold'}}>
-                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}) 
+                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
                         </InfoData>) : (
                         <InfoData style={{'color': 'red', 'fontWeight': 'bold'}}>
                             {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
@@ -60,12 +60,17 @@ const Wrapper = styled.div`
 
 const InfoSection = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr))
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    
+    &:not(:last-child) {
+        border-bottom: 1px solid #eee;
+    }
 `
 
 const InfoLabel = styled.div`
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    padding-left: 3em;
 `
 
 const InfoData = styled.div`

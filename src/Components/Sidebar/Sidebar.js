@@ -48,9 +48,6 @@ const menuItemList = [
     }
 ]
 
-
-
-
 const logOutDispatcher = (dispatch) => ({logUserOut: () => dispatch(logUserOut())})
 
 const stateSelector = createSelector(makeSelectAuthenticated, (isAuthenticated) => ({
@@ -98,7 +95,7 @@ const Sidebar = () => {
         <SidebarWrapper>
             <Nav collapsed={menuCollapse}>
                     <IconWrapper>
-                        <Icon collapsed={menuCollapse} onClick={() => setMenuCollapse(!menuCollapse)} alt={""} src={logoLarge}/>
+                        <Icon collapsed={menuCollapse} alt={""} src={logoLarge}/>
                     </IconWrapper>
                     <MenuWrapper collapsed={menuCollapse}>
                         <Menu collapsed={menuCollapse} isAuthenticated={isAuthenticated}>
@@ -133,7 +130,8 @@ export default Sidebar;
 
 const SidebarWrapper = styled.div`
     min-height: 100%;
-
+    position: fixed;
+    z-index: 9999;
     @media only screen and (max-width:768px) {
         width: 100vw;
         flex: 0 1 auto;

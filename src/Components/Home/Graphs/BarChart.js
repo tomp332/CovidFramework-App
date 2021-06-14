@@ -1,71 +1,157 @@
 import React from 'react'
-import {Bar} from 'react-chartjs-2'
-import withMediaQuery from '../../HighOrderComponents/withMediaQuery'
+import Chart from "react-apexcharts"
+import styled from '@emotion/styled'
 
 
+const BarChart = ({ stats, width }) => {
 
-const ResponsiveBarChart = (props) => {
-    return withMediaQuery(BarGraph, (size, chartProps=props) => {
-        const sizes = {
-            mobile: { width: 100, height: 100},
-            tablet: { width: 200, height: 200},
-            small: { width: 300, height: 300},
-            large: { width: 400, height: 400},
-            extraLarge: { width: 500, height: 500}
+    const series = (stats && Object.values(stats)) || []
+    const labels = (stats && Object.keys(stats)) || []
+    const options = {
+        series: [{
+            name: 'Inflation',
+            data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 10,
+                dataLabels: {
+                    position: 'top', // top, center, bottom
+                },
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val + "%";
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '12px',
+                colors: ["#304758"]
+            }
+        },
+        xaxis: {
+            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            position: 'top',
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            crosshairs: {
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        colorFrom: '#D8E3F0',
+                        colorTo: '#BED1E6',
+                        stops: [0, 100],
+                        opacityFrom: 0.4,
+                        opacityTo: 0.5,
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+            }
+        },
+        yaxis: {
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: false,
+                formatter: function (val) {
+                    return val + "%";
+                }
+            }
+        },
+        title: {
+            text: 'Monthly Inflation in Argentina, 2002',
+            floating: true,
+            offsetY: 330,
+            align: 'center',
+            style: {
+                color: '#444'
+            }},
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }, {
+                breakpoint: 768,
+                options: {
+                    chart: {
+                        width: 300
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }, {
+                breakpoint: 1024,
+                options: {
+                    chart: {
+                        width: 400
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }, {
+                breakpoint: 1200,
+                options: {
+                    chart: {
+                        width: 500
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }, {
+                breakpoint: 4096,
+                options: {
+                    chart: {
+                        width: 600
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }]
         }
-        return {
-            ...sizes[size],
-            ...chartProps
-        }
-    })
-}
 
-const BarGraph = ({ stats, height, width }) => {
-    const { lowPrivs, highPrivs, offlineClients, onlineClients } = stats
-    console.log('curer', )
     return (
-        <div className={"bar-graph"}>
-            <Bar height={height} width={width} data={{
-                labels: ['Low privileges', 'High privileges', 'Disconnected', 'Connected'],
-                datasets: [{
-                    data: [lowPrivs, highPrivs, offlineClients, onlineClients],
-                    backgroundColor: [
-                        '#FFA07A',
-                        'rgba(54, 162, 235, 1)',
-                        'red',
-                        'green'
-                    ],
-                    borderColor: [
-                        '#FFA07A',
-                        'rgba(54, 162, 235, 1)',
-                        'red',
-                        'green'
-                    ],
-                    borderWidth: 1
-                }]
-            }}
-                      options={{
-                          scales: {},
-                          animation: false,
-                          plugins: {
-                              title: {
-                                  display: true,
-                                  text: 'Client statistics',
-                                  align: "center",
-                                  font: {
-                                      weight: 'bold',
-                                      size: 30,
-                                      fontColor: 'white'
-                                  },
-                              },
-                              legend: {
-                                  labels: {
-                                      color: "white"
-                                  }
-                              }
-                          }
-                      }} type={'Doughnut'}/>
-        </div>
+        <ChartWrapper>
+            <Chart
+                options={options}
+                series={series}
+                type="bar"
+            />
+        </ChartWrapper>
     )
 }
-export default ResponsiveBarChart;
+
+
+
+const ChartWrapper = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  margin: 1em;
+`
+export default BarChart

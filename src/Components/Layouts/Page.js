@@ -14,8 +14,8 @@ const Page = ({ children }) => {
 }
 
 const PageWrapper = styled.div` 
-
     width: 100%;
+
     display: flex;
 
     @media only screen and (max-width:768px) {
@@ -27,13 +27,14 @@ const PageWrapper = styled.div`
 
 const MainContent = styled.div`
     flex: 1 1 auto;
-    padding-top: 2em;
+    padding: 2em;
     margin: 0 auto;
     justify-self: center;
-
+    margin-left: 158.1px;
 
     @media only screen and (max-width:768px) {
         padding: 1em 0;
+        margin-top: 90px;
     }
 `
 

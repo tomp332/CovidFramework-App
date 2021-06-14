@@ -126,3 +126,34 @@ export const getSingleClient = async (clientId) => {
     })
         .then(data => data.data).catch(() => null)
 }
+
+export const getClientFiles = async (clientId) => {
+    return axios({
+        url: `/clients/files/${clientId}`,
+        method: 'get',
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        },
+    })
+        .then(data => data).catch(() => null)
+}
+
+export const downloadFile = async (e, clientId, file) => {
+    e.preventDefault()
+    return axios({
+        url: `clients/files/${clientId}/${file}`,
+        method: 'get',
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        },
+        responseType: 'blob',
+    })
+        .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file');
+            document.body.appendChild(link);
+            link.click();
+        }).catch(() => null)
+}

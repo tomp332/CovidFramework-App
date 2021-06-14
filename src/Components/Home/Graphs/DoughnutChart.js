@@ -1,6 +1,6 @@
 import React from 'react'
 import Chart from "react-apexcharts"
-import withMediaQuery from '../../HighOrderComponents/withMediaQuery'
+import styled from '@emotion/styled'
 
 
 const DoughnutChart = ({ stats, width }) => {
@@ -12,33 +12,77 @@ const DoughnutChart = ({ stats, width }) => {
         type: 'pie',
         width
       }, 
-      labels
+      labels,
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }, {
+        breakpoint: 768,
+        options: {
+          chart: {
+            width: 300
+          },
+          legend: {
+            position: 'right'
+          }
+        }
+      }, {
+        breakpoint: 1024,
+        options: {
+          chart: {
+            width: 400
+          },
+          legend: {
+            position: 'right'
+          }
+        }
+      }, {
+        breakpoint: 1200,
+        options: {
+          chart: {
+            width: 500
+          },
+          legend: {
+            position: 'right'
+          }
+        }
+      }, {
+        breakpoint: 4096,
+        options: {
+          chart: {
+            width: 600
+          },
+          legend: {
+            position: 'right'
+          }
+        }
+      }]
     }
 
     return (
-        <Chart
-          options={options}
-          series={series}
-          type="pie"
-        />
+      <ChartWrapper>
+          <Chart
+            options={options}
+            series={series}
+            type="pie"
+          />
+      </ChartWrapper>
     )
 }
-const ResponsiveDonutChart = (props) => {
-  return withMediaQuery(DoughnutChart, (size, graphProps=props) => {
 
-    const sizes = {
-      mobile: 300,
-      tablet: 400,
-      small: 450,
-      large: 450,
-      extraLarge: 500
-    }
 
-    return {
-      ...graphProps,
-      width: sizes[size],
-  }
-  })
-}
 
-export default ResponsiveDonutChart
+const ChartWrapper = styled.div`
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  margin: 1em;
+`
+export default DoughnutChart

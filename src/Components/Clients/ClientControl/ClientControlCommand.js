@@ -128,4 +128,5 @@ const SendButton = styled.button`
     cursor: pointer;
     color: #fff;
     font-weight: 600;
+    background-color: #98d14a;
 `

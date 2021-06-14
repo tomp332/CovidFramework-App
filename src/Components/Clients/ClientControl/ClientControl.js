@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import Title from "../../Title/Title";
 import './ClientControl.css';
 import {Spinner} from "reactstrap";
-import ClientControlSection from './ClientControlSection'
 import ClientControlCommand from './ClientControlCommand'
 import ClientControlResponse from './ClientControlResponse';
 import ClientControlInformationTable from './ClientControlInformationTable';
 import Accordion from '../../Accordion/Accordion'
 import axios from "../../../axios";
 import styled from '@emotion/styled';
+import RetrievedFiles from './RetrievedFiles'
 
 // TODO: get list of commands from DB
 const commands = {
@@ -101,9 +101,20 @@ const ClientControl = () => {
                     <Accordion title="Response">
                         <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
                     </Accordion>
+                    <Accordion title="Files">
+                       <RetrievedFiles clientId={id}/>
+                    </Accordion>
                 </> : <Spinner actions={"border"} color={"success"} type="grow"/>
                 }
             </Wrapper>
+            <NavLink to={"/clients"}>
+                <MainBackButton
+                    href="/clients"
+                    variant={"success"}
+                >
+                    Back
+                </MainBackButton>
+            </NavLink>
         </div>
     );
 }
@@ -112,4 +123,16 @@ export default ClientControl;
 
 const Wrapper = styled.div`
     margin: 0 auto;
+    width: 75%;
+`
+const MainBackButton = styled.button`
+    min-width: 8em;
+    padding: 0.5em;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #98d14a;
+    margin-top: 2em;
+    margin-bottom: 2em;
 `
