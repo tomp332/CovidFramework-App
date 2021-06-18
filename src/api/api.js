@@ -141,12 +141,6 @@ export const getClientFiles = async (clientId) => {
 
 export const downloadFile = async (e, clientId, file) => {
     e.preventDefault()
-    // axios.get(`clients/files/${clientId}/${file}`)
-    //     .then(data => {
-    //         console.log(data)
-    //         download(data.data, file)
-    //     })
-    //     .catch()
     return axios({
         url: `clients/files/${clientId}/${file}`,
         method: 'get',
