@@ -49,6 +49,7 @@ const ClientControlCommand = ({client, commands}) => {
                 const formData = new FormData();
                 formData.append("name", fileName);
                 formData.append("file", file);
+                setErrors(client.client_id)
                 let response = await uploadFile(formData, client.client_id);
                 if (!response) {
                     setErrors("Unable to upload file, please try again");
