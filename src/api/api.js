@@ -1,4 +1,5 @@
 import axios from "../axios";
+import download from 'js-file-download';
 
 export const logout = async () => {
     const result = await axios({
@@ -140,6 +141,12 @@ export const getClientFiles = async (clientId) => {
 
 export const downloadFile = async (e, clientId, file) => {
     e.preventDefault()
+    // axios.get(`clients/files/${clientId}/${file}`)
+    //     .then(data => {
+    //         console.log(data)
+    //         download(data.data, file)
+    //     })
+    //     .catch()
     return axios({
         url: `clients/files/${clientId}/${file}`,
         method: 'get',
@@ -149,12 +156,13 @@ export const downloadFile = async (e, clientId, file) => {
         responseType: 'blob',
     })
         .then(response => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', file);
-            document.body.appendChild(link);
-            link.click();
+            download(response.data, file)
+            // const url = window.URL.createObjectURL(new Blob([response.data]));
+            // const link = document.createElement('a');
+            // link.href = url;
+            // link.setAttribute('download', file);
+            // document.body.appendChild(link);
+            // link.click();
         }).catch(() => null)
 }
 
