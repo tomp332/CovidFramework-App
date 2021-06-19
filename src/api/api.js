@@ -57,10 +57,9 @@ export const sendCommand = async (clientId, command) => {
     return result.status === 200;
 }
 
-export const uploadFile = async (formData, clientId) => {
+export const uploadFile = async (formData) => {
     const result = await axios.post("/api/commands/upload", formData, {
         headers: {
-            "client_id": clientId,
             "Content-Type": "multipart/form-data",
             "x-access-token": localStorage.getItem('token')
         },
