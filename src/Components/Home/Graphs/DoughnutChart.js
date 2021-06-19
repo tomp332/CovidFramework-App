@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 
 
 const DoughnutChart = ({ stats, width }) => {
-
+    console.log(stats)
     const series = (stats && Object.values(stats)) || []
     const labels = (stats && Object.keys(stats)) || []
     const options = {
@@ -80,7 +80,7 @@ const DoughnutChart = ({ stats, width }) => {
 
 
 const ChartWrapper = styled.div`
-  background-color: transparent;
+  background-color: #151313;
   border-radius: 5px;
   border: 1px solid #aaa;
   margin: 1em;
