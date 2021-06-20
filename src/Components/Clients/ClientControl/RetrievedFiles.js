@@ -34,7 +34,7 @@ const RetrievedFiles = ({clientId}) => {
                     <li>
                         <MainLink>
                             <FontAwesomeIcon icon={faFile}/>
-                            <FileLink href={`/clients/${clientId}`} onClick={(e) =>
+                            <FileLink href={`/clients/control/${clientId}`} onClick={(e) =>
                                 downloadFile(e, clientId, file)
                             }
                             >{file}</FileLink>
