@@ -1,5 +1,5 @@
-import {downloadFile, getClientFiles} from "../../../api/api";
-import {useState} from "react";
+import {downloadAgent, downloadFile, getClientFiles} from "../../../api/api";
+import React, {useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFile} from '@fortawesome/free-solid-svg-icons'
 import styled from "@emotion/styled";
@@ -34,10 +34,10 @@ const RetrievedFiles = ({clientId}) => {
                     <li>
                         <MainLink>
                             <FontAwesomeIcon icon={faFile}/>
-                            <FileLink href={`/clients/control/${clientId}`} onClick={(e) =>
-                                downloadFile(e, clientId, file)
-                            }
-                            >{file}</FileLink>
+                            <DownloadAgentButton
+                                value="Download Agent"
+                                type="button" onClick={(e) => downloadFile(e, clientId, file)}>{file}
+                            </DownloadAgentButton>
                         </MainLink>
                     </li>
                 )}</ul>
@@ -68,6 +68,10 @@ const MainLink = styled.div`
   margin: 0 1.2em;
   padding-right: 20em;
 `
-const FileLink = styled.a`
+const DownloadAgentButton = styled.button`
+  font-size: 1.24em;
+  background-color: transparent;
+  border: none;
+  color: blue;
   padding: 0.5em;
 `
