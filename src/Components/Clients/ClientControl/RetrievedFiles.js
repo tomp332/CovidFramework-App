@@ -34,10 +34,10 @@ const RetrievedFiles = ({clientId}) => {
                     <li>
                         <MainLink>
                             <FontAwesomeIcon icon={faFile}/>
-                            <DownloadAgentButton
+                            <DownloadFile
                                 value="Download Agent"
                                 type="button" onClick={(e) => downloadFile(e, clientId, file)}>{file}
-                            </DownloadAgentButton>
+                            </DownloadFile>
                         </MainLink>
                     </li>
                 )}</ul>
@@ -68,7 +68,7 @@ const MainLink = styled.div`
   margin: 0 1.2em;
   padding-right: 20em;
 `
-const DownloadAgentButton = styled.button`
+const DownloadFile = styled.button`
   font-size: 1.24em;
   background-color: transparent;
   border: none;
