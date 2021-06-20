@@ -1,5 +1,4 @@
 import axios from "../axios";
-import download from 'js-file-download';
 
 export const logout = async () => {
     const result = await axios({
@@ -149,7 +148,6 @@ export const downloadFile = async (e, clientId, file) => {
         responseType: 'blob',
     })
         .then(response => {
-            // download(response.data, file)
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
