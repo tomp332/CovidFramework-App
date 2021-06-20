@@ -141,7 +141,7 @@ export const getClientFiles = async (clientId) => {
 export const downloadFile = async (e, clientId, file) => {
     e.preventDefault()
     return axios({
-        url: `clients/files/${clientId}/${file}`,
+        url: `/clients/files/${clientId}/${file}`,
         method: 'get',
         headers: {
             'x-access-token': localStorage.getItem('token')
