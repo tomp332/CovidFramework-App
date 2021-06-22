@@ -56,6 +56,21 @@ export const sendCommand = async (clientId, command) => {
     return result.status === 200;
 }
 
+export const sendPSCommand = async (clientId, command) => {
+    const result = await axios({
+        method: 'post',
+        headers: {
+            'x-access-token': localStorage.getItem('token')
+        },
+        url: "/api/commands/ps/add",
+        data: {
+            client_id: clientId,
+            command: command
+        }
+    });
+    return result.status === 200;
+}
+
 export const uploadFile = async (formData) => {
     const result = await axios.post("/api/commands/upload", formData, {
         headers: {
@@ -128,7 +143,7 @@ export const getSingleClient = async (clientId) => {
 
 export const getClientFiles = async (clientId) => {
     return axios({
-        url: `/clients/files/${clientId}`,
+        url: `/api/files/${clientId}`,
         method: 'get',
         headers: {
             'x-access-token': localStorage.getItem('token')
@@ -140,7 +155,7 @@ export const getClientFiles = async (clientId) => {
 export const downloadFile = async (e, clientId, file) => {
     e.preventDefault()
     return axios({
-        url: `/clients/files/${clientId}/${file}`,
+        url: `/api/files/${clientId}/${file}`,
         method: 'get',
         headers: {
             'x-access-token': localStorage.getItem('token')

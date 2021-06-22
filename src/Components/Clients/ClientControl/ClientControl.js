@@ -63,9 +63,8 @@ const ClientControl = () => {
                         'Content-Type': 'application/json',
                         "x-access-token": localStorage.getItem('token')
                     },
-                    url: `/api/response`,
-                    method: 'post',
-                    data: JSON.stringify({id: id})
+                    url: `/api/response/${id}`,
+                    method: 'get',
                 })
                     .then(data => {
                         if (Object.keys(data.data).length !== 0) {
@@ -108,7 +107,7 @@ const ClientControl = () => {
                 }
             </Wrapper>
             <NavLink to={"/clients"}>
-                <MainBackButton
+                <MainBackButton id="auto-complete-button"
                     href="/clients"
                     variant={"success"}
                 >

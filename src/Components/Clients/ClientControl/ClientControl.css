@@ -236,3 +236,7 @@ button:disabled {
 .download-file-wrapper {
     margin-bottom: 0.75em;
 }
+#auto-complete-button:hover,.active{
+    background-color: #b3e778;
+    box-shadow: 0 1px #666;
+}

@@ -4,7 +4,6 @@ import styled from '@emotion/styled'
 
 
 const DoughnutChart = ({ stats, width }) => {
-    console.log(stats)
     const series = (stats && Object.values(stats)) || []
     const labels = (stats && Object.keys(stats)) || []
     const options = {
@@ -13,6 +12,9 @@ const DoughnutChart = ({ stats, width }) => {
         width
       }, 
       labels,
+      dataLabels: {
+        colors: ['white', 'white', 'white']
+      },
       responsive: [{
         breakpoint: 480,
         options: {

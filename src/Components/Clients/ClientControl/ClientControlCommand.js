@@ -1,9 +1,10 @@
 import {Form} from 'react-bootstrap';
 import React, {useState} from "react";
 import {sendCommand, uploadFile} from "../../../api/api";
-import styled from '@emotion/styled';
 import {Input} from "reactstrap";
-
+import styled from "@emotion/styled";
+import PowershellModal from "./PowershellModal";
+import './ClientControl.css'
 
 const ClientControlCommand = ({client, commands}) => {
     const [fileName, setFileName] = useState(null);
@@ -13,6 +14,15 @@ const ClientControlCommand = ({client, commands}) => {
     const [errors, setErrors] = useState(null);
     const [sendingCommand, setSendingCommand] = useState(false)
     const [defaultPaths, setDefaultPaths] = useState("Enter remote path")
+
+    function validatePathInput(path){
+        if(path !== "" && path !== null){
+            let lastChar = path.slice(path.length - 1)
+            if(lastChar !== '\\' && lastChar !== '/'&& lastChar !== '')
+                return true
+        }
+        return false
+    }
 
     async function SendCommand(e) {
         e.preventDefault()
@@ -27,16 +37,21 @@ const ClientControlCommand = ({client, commands}) => {
                 if (currentCommand.includes('upload') || currentCommand.includes('change-image')) {
                     if (await UploadFile(e)) {
                         tempCommand = currentCommand + " " + fileName
-                        response = await sendCommand(client.client_id, tempCommand);
+                        await sendCommand(client.client_id, tempCommand);
                     } else
                         setErrors("Unable to upload file, please try again")
                 } else if (currentCommand.includes('download')) {
-                    tempCommand = currentCommand + " " + additionalInput
-                    response = await sendCommand(client.client_id, tempCommand);
-                } else
+                    if(validatePathInput(additionalInput)){
+                        tempCommand = currentCommand + " " + additionalInput
+                        await sendCommand(client.client_id, tempCommand);
+                    }
+                    else
+                        setErrors("No file was specified");
+                } else{
                     response = await sendCommand(client.client_id, currentCommand)
-                if (!response) {
-                    setErrors("Unable to send command to server, please try again");
+                    if (!response) {
+                        setErrors("Unable to send command to server, please try again");
+                    }
                 }
             }
             setSendingCommand(false)
@@ -51,7 +66,7 @@ const ClientControlCommand = ({client, commands}) => {
                 const formData = new FormData();
                 formData.append("name", fileName);
                 formData.append("file", file);
-                formData.append("id",client.client_id)
+                formData.append("id", client.client_id)
                 let response = await uploadFile(formData);
                 if (!response) {
                     setErrors("Unable to upload file, please try again");
@@ -78,7 +93,9 @@ const ClientControlCommand = ({client, commands}) => {
         })
     }
 
-
+    const onSelectedPowershell = () => {
+        return (<PowershellModal clientId={client.client_id}/>)
+    }
     return (
         <div className="client-control-info-table-row client-command">
             <select disabled={!client.isConnected} className="client-control-command-select" onChange={(e) => {
@@ -103,29 +120,32 @@ const ClientControlCommand = ({client, commands}) => {
                             <Form.Label>Remote path:</Form.Label>
                             <AutoCompleteDiv>
                                 <SmallLabel>One backslash between directories only</SmallLabel>
-                                <AutoCompleteButton onClick={() => setDefaultPaths(`C:\\`)}>C:\</AutoCompleteButton>
-                                <AutoCompleteButton
-                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Desktop`)}>Desktop</AutoCompleteButton>
-                                <AutoCompleteButton
-                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Documents`)}>Documents</AutoCompleteButton>
-                                <AutoCompleteButton onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Pictures`)}>Pictures</AutoCompleteButton>
+                                <AutoCompleteButton id="auto-complete-button"
+                                                    onClick={() => setDefaultPaths(`C:\\`)}>C:\</AutoCompleteButton>
+                                <AutoCompleteButton id="auto-complete-button"
+                                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Desktop`)}>Desktop</AutoCompleteButton>
+                                <AutoCompleteButton id="auto-complete-button"
+                                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Documents`)}>Documents</AutoCompleteButton>
+                                <AutoCompleteButton id="auto-complete-button"
+                                                    onClick={() => setDefaultPaths(`C:\\Users\\${client.username}\\Pictures`)}>Pictures</AutoCompleteButton>
                             </AutoCompleteDiv>
                             <Input value={defaultPaths} onChange={(e) => {
                                 let replaceableString = String.raw`${e.target.value}`.replace(/\\/g, "\\\\");
                                 setDefaultPaths(e.target.value)
                                 setAdditionalInput(replaceableString)
-                            }} type="text"/>
-                        </div> : null
+                            }
+                            } type="text"/>
+                        </div> :
+                        currentCommand === 'StartPS' ? (onSelectedPowershell()) : null
             }
             <div className="client-control-command-buttons">
-                <h6 style={{"color": "red"}}>{errors}</h6>
+                <Errors>{errors}</Errors>
                 {sendingCommand ? (
-                    <SendButton disabled={true}
-                            onClick={(e) => SendCommand(e)}>Sending..</SendButton>
-
+                    <SendButton id="auto-complete-button" disabled={true}
+                                onClick={(e) => SendCommand(e)}>Sending..</SendButton>
                 ) : (
-                    <SendButton disabled={!client.isConnected}
-                            onClick={(e) => SendCommand(e)}>Send</SendButton>
+                    <SendButton id="auto-complete-button" disabled={!client.isConnected}
+                                onClick={(e) => SendCommand(e)}>Send</SendButton>
                 )}
             </div>
         </div>
@@ -134,6 +154,10 @@ const ClientControlCommand = ({client, commands}) => {
 
 export default ClientControlCommand;
 
+const Errors = styled.h6`
+  color: red;
+  margin: 0 auto;
+`
 const SendButton = styled.button`
   padding: 0.5em;
   min-width: 8em;
@@ -159,7 +183,9 @@ const AutoCompleteButton = styled.button`
   color: #fff;
   font-weight: 600;
   background-color: #98d14a;
+
 `
+
 const AutoCompleteDiv = styled.div`
   padding-bottom: 0.5vh;
 `
