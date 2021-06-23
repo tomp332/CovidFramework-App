@@ -54,6 +54,7 @@ ol.collection {
     color: #fafafa;
     text-decoration: none;
 }
+
 /* 2 Column Card Layout */
 @media screen and (max-width: 879px) {
     .collection-container {
@@ -69,7 +70,7 @@ ol.collection {
     }
 
     /* Don't display the first item, since it is used to display the header for tabular layouts*/
-    .collection-container>li:first-child {
+    .collection-container > li:first-child {
         display: none;
     }
 
@@ -86,7 +87,7 @@ ol.collection {
 }
 
 /* 1 Column Card Layout */
-@media screen and (max-width:481px) {
+@media screen and (max-width: 481px) {
     .collection-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -134,6 +135,7 @@ ol.collection {
     .user-ip {
         --column-width-min: 4em;
     }
+
     /* In order to maximize row lines, only display one line for a cell */
     .attribute {
         border-right: 1px solid gray;
@@ -144,7 +146,7 @@ ol.collection {
         text-overflow: ellipsis;
     }
 
-    .collection-container>.item-container:first-child {
+    .collection-container > .item-container:first-child {
         background-color: #444444;
         color: #fafafa;
     }
@@ -154,7 +156,7 @@ ol.collection {
     }
 
     /* Center header labels */
-    .collection-container>.item-container:first-child .attribute {
+    .collection-container > .item-container:first-child .attribute {
         display: flex;
         align-items: center;
         justify-content: center;

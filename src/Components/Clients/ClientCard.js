@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const ClientCard = ({ data }) => {
+const ClientCard = ({data}) => {
     const {
         client_id,
         username,
@@ -26,7 +26,7 @@ const ClientCard = ({ data }) => {
 export default ClientCard
 
 const CardWrapper = styled.div`
-    border: 1px solid ${({ isConnected, theme }) => isConnected ? theme.colors.primary: 'red'};
+    border: 1px solid ${({isConnected, theme}) => isConnected ? theme.colors.primary : 'red'};
     background: #fefefe;
     border-radius: 5px;
 `

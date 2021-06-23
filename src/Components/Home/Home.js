@@ -72,9 +72,9 @@ export default Home;
 
 
 const HomePageWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const NoDataMessage = styled.h3`
@@ -86,9 +86,9 @@ const NoDataMessage = styled.h3`
 `
 
 const ChartsWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 const DownloadAgentButton = styled.button`

@@ -24,7 +24,7 @@ const ClientsTable = ({data}) => {
     }
 
     const renderClientRows = () => {
-        return data.map(({ client_id, username, lastActive, isConnected, isAdmin, public_ip }, i) => {
+        return data.map(({client_id, username, lastActive, isConnected, isAdmin, public_ip}, i) => {
             return (
                 <li className="item item-container  table-content">
                     <div className="attribute" data-name="#">{i + 1}</div>
@@ -32,23 +32,24 @@ const ClientsTable = ({data}) => {
                     {/* Enclose semantically similar attributes as a div hierarchy */}
                     <div className="attribute-container user-information">
                         <div className="attribute" data-name="USERNAME">{username}</div>
-                        <div className="attribute" data-name="ADMIN">{isAdmin ? 'Yes': 'No'}</div>
+                        <div className="attribute" data-name="ADMIN">{isAdmin ? 'Yes' : 'No'}</div>
                     </div>
                     <div className="attribute user-ip" data-name="PUBLIC IP">{public_ip}</div>
                     <div className="attribute-container activity">
                         <div className="attribute" data-name="LAST ACTIVE">{lastActive}</div>
-                        <div className={`attribute is-connected ${isConnected ? 'true' : ''}`} data-name="CONNECTION STATUS">{isConnected ? 'Connected': 'Disconnected'}</div>
+                        <div className={`attribute is-connected ${isConnected ? 'true' : ''}`}
+                             data-name="CONNECTION STATUS">{isConnected ? 'Connected' : 'Disconnected'}</div>
                     </div>
                     <div className="attribute action-buttons">
                         <button className="command-button">
-                            <NavLink to={`/control/${client_id}`} style={{ textDecoration: 'none', color: 'white' }}>
-                                
+                            <NavLink to={`/control/${client_id}`} style={{textDecoration: 'none', color: 'white'}}>
+
                                 Command
                             </NavLink>
                         </button>
                         <button className="kill-button" onClick={() => KillClient(client_id)}>Kill</button>
                     </div>
-             </li>
+                </li>
             )
         })
     }

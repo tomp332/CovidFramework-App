@@ -25,18 +25,18 @@ const renderClientInfoTableRows = (rows) => {
         return (
             <InfoSection key={i.toString()}>
                 <InfoLabel>{label}</InfoLabel>
-                {label === 'Status' ? 
-                    (data ? 
-                        (<InfoData style={{'color': '#28a745', 'fontWeight': 'bold'}}>
-                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
-                        </InfoData>) : (
-                        <InfoData style={{'color': 'red', 'fontWeight': 'bold'}}>
-                            {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
-                        </InfoData>)
+                {label === 'Status' ?
+                    (data ?
+                            (<InfoData style={{'color': '#28a745', 'fontWeight': 'bold'}}>
+                                {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
+                            </InfoData>) : (
+                                <InfoData style={{'color': 'red', 'fontWeight': 'bold'}}>
+                                    {data === true || data === false ? data.toString().toUpperCase() : data.toString()}
+                                </InfoData>)
                     ) : (
-                    <InfoData>
-                        {data === true || data === false ? data.toString().charAt(0).toUpperCase() + data.toString().slice(1) : data.toString()}
-                    </InfoData>)
+                        <InfoData>
+                            {data === true || data === false ? data.toString().charAt(0).toUpperCase() + data.toString().slice(1) : data.toString()}
+                        </InfoData>)
                 }
 
             </InfoSection>
@@ -46,7 +46,7 @@ const renderClientInfoTableRows = (rows) => {
 
 const ClientControlInformationTable = ({client}) => {
     return (
-        <Wrapper >
+        <Wrapper>
             {renderClientInfoTableRows(Object.entries(client))}
         </Wrapper>
     )

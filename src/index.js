@@ -8,10 +8,9 @@ import rootReducer from './redux/reducers/index'
 import {composeWithDevTools} from 'redux-devtools-extension';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
-import { GlobalStyles, ThemeProvider } from './theme'
+import {GlobalStyles, ThemeProvider} from './theme'
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
-
 
 
 ReactDOM.render(

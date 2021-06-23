@@ -4,14 +4,16 @@ import "react-pro-sidebar/dist/css/styles.css";
 import {NavLink} from "react-router-dom";
 import logoLarge from '../../media/logoLarge.png';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome,
-         faUsers,
-         faMapMarkerAlt, 
-         faBook, 
-         faCog, 
-         faSignInAlt, 
-         faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {
+    faBook,
+    faCog,
+    faHome,
+    faMapMarkerAlt,
+    faSignInAlt,
+    faSignOutAlt,
+    faUsers
+} from '@fortawesome/free-solid-svg-icons'
 
 import styled from '@emotion/styled'
 import {createSelector} from "reselect";
@@ -94,32 +96,32 @@ const Sidebar = () => {
     return (
         <SidebarWrapper>
             <Nav collapsed={menuCollapse}>
-                    <IconWrapper>
-                        <Icon collapsed={menuCollapse} alt={""} src={logoLarge}/>
-                    </IconWrapper>
-                    <MenuWrapper collapsed={menuCollapse}>
-                        <Menu collapsed={menuCollapse} isAuthenticated={isAuthenticated}>
-                            {renderMenuItem()}
-                            {!isAuthenticated ?
-                                <MenuItem className="foot" collapsed={menuCollapse}>
-                                    <StyledNavLink to="/login">
-                                        <MenuIconWrapper>
-                                            <FontAwesomeIcon icon={faSignInAlt}/>
-                                        </MenuIconWrapper>               
-                                        <p>Login</p>
-                                    </StyledNavLink>
-                                </MenuItem> :
-                                <MenuItem onClick={logoutUser} className="foot" collapsed={menuCollapse}>
-                                    <StyledNavLink to="/">
-                                        <MenuIconWrapper>
-                                            <FontAwesomeIcon icon={faSignOutAlt}/>
-                                        </MenuIconWrapper>
-                                        <p>Logout</p>
-                                    </StyledNavLink>
-                                </MenuItem>
-                            }
-                        </Menu>
-                    </MenuWrapper>
+                <IconWrapper>
+                    <Icon collapsed={menuCollapse} alt={""} src={logoLarge}/>
+                </IconWrapper>
+                <MenuWrapper collapsed={menuCollapse}>
+                    <Menu collapsed={menuCollapse} isAuthenticated={isAuthenticated}>
+                        {renderMenuItem()}
+                        {!isAuthenticated ?
+                            <MenuItem className="foot" collapsed={menuCollapse}>
+                                <StyledNavLink to="/login">
+                                    <MenuIconWrapper>
+                                        <FontAwesomeIcon icon={faSignInAlt}/>
+                                    </MenuIconWrapper>
+                                    <p>Login</p>
+                                </StyledNavLink>
+                            </MenuItem> :
+                            <MenuItem onClick={logoutUser} className="foot" collapsed={menuCollapse}>
+                                <StyledNavLink to="/">
+                                    <MenuIconWrapper>
+                                        <FontAwesomeIcon icon={faSignOutAlt}/>
+                                    </MenuIconWrapper>
+                                    <p>Logout</p>
+                                </StyledNavLink>
+                            </MenuItem>
+                        }
+                    </Menu>
+                </MenuWrapper>
 
             </Nav>
         </SidebarWrapper>

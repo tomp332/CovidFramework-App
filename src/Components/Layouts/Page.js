@@ -2,14 +2,14 @@ import React from 'react'
 import Sidebar from '../Sidebar/Sidebar';
 import styled from '@emotion/styled'
 
-const Page = ({ children }) => {
+const Page = ({children}) => {
     return (
         <PageWrapper>
             <Sidebar/>
             <MainContent>
-                { children }
+                {children}
             </MainContent>
-        </PageWrapper>    
+        </PageWrapper>
     )
 }
 

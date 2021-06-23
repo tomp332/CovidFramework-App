@@ -90,26 +90,26 @@ const ClientControl = () => {
             </div>
             <Wrapper>
                 {client !== undefined ?
-                <>
-                    <Accordion title="Client Information">
-                        <ClientControlInformationTable client={client}/>
-                    </Accordion>
-                    <Accordion title="Command">
-                        <ClientControlCommand client={client} commands={commands}/>
-                    </Accordion>
-                    <Accordion title="Response">
-                        <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
-                    </Accordion>
-                    <Accordion title="Files">
-                       <RetrievedFiles clientId={id}/>
-                    </Accordion>
-                </> : <Spinner actions={"border"} color={"success"} type="grow"/>
+                    <>
+                        <Accordion title="Client Information">
+                            <ClientControlInformationTable client={client}/>
+                        </Accordion>
+                        <Accordion title="Command">
+                            <ClientControlCommand client={client} commands={commands}/>
+                        </Accordion>
+                        <Accordion title="Response">
+                            <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
+                        </Accordion>
+                        <Accordion title="Files">
+                            <RetrievedFiles clientId={id}/>
+                        </Accordion>
+                    </> : <Spinner actions={"border"} color={"success"} type="grow"/>
                 }
             </Wrapper>
             <NavLink to={"/clients"}>
                 <MainBackButton id="auto-complete-button"
-                    href="/clients"
-                    variant={"success"}
+                                href="/clients"
+                                variant={"success"}
                 >
                     Back
                 </MainBackButton>
@@ -121,17 +121,17 @@ const ClientControl = () => {
 export default ClientControl;
 
 const Wrapper = styled.div`
-    margin: 0 auto;
-    width: 75%;
+  margin: 0 auto;
+  width: 75%;
 `
 const MainBackButton = styled.button`
-    min-width: 8em;
-    padding: 0.5em;
-    font-weight: 600;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    background-color: #98d14a;
-    margin-top: 2em;
-    margin-bottom: 2em;
+  min-width: 8em;
+  padding: 0.5em;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background-color: #98d14a;
+  margin-top: 2em;
+  margin-bottom: 2em;
 `

@@ -1,10 +1,11 @@
-import {downloadAgent, downloadFile, getClientFiles} from "../../../api/api";
+import {downloadFile, getClientFiles} from "../../../api/api";
 import React, {useState} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFile} from '@fortawesome/free-solid-svg-icons'
 import styled from "@emotion/styled";
 import {Spinner} from "reactstrap";
 import './RetrievedFiles.css'
+
 const {useEffect} = require("react");
 
 const RetrievedFiles = ({clientId}) => {
@@ -42,11 +43,11 @@ const RetrievedFiles = ({clientId}) => {
                     </li>
                 )}</ul>
             ) : (
-                    <FilesWrapper>
-                        <FileTitle>Loading files.. </FileTitle>
-                        <Spinner actions={"border"} color={"success"} type="grow" size={"sm"}/>
-                    </FilesWrapper>
-                )
+                <FilesWrapper>
+                    <FileTitle>Loading files.. </FileTitle>
+                    <Spinner actions={"border"} color={"success"} type="grow" size={"sm"}/>
+                </FilesWrapper>
+            )
             }
         </Wrapper>
     )

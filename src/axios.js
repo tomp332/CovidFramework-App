@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {logUserOut} from "./redux/actions/userActions";
 import {store} from './index'
+
 let instance
 
 if (process.env.NODE_ENV === 'development') {
@@ -11,10 +12,10 @@ if (process.env.NODE_ENV === 'development') {
     instance = axios.create({});
 }
 
-instance.interceptors.response.use((response) =>{
+instance.interceptors.response.use((response) => {
     return response
-}, function(error){ // refresh JWT token needed
-    if(error.response.status  >= 401 || error.response.status  === 403 ){
+}, function (error) { // refresh JWT token needed
+    if (error.response.status >= 401 || error.response.status === 403) {
         store.dispatch(logUserOut());
     }
 })

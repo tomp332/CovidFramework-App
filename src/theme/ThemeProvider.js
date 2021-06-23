@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@emotion/react'
+import {ThemeProvider} from '@emotion/react'
 
 export const theme = {
     colors: {
@@ -27,6 +27,6 @@ export const theme = {
     }
 }
 
-const GlobalThemeProvider = props => <ThemeProvider {...props} theme={theme} />
+const GlobalThemeProvider = props => <ThemeProvider {...props} theme={theme}/>
 
 export default GlobalThemeProvider

@@ -28,7 +28,7 @@ const ClientControlResponse = ({clientResponse, allResponses}) => {
                     className="client-control-response-textarea response"
                 />
                 <div className="client-control-command-buttons">
-                    <ClearButton >Clear</ClearButton>
+                    <ClearButton>Clear</ClearButton>
                 </div>
             </div>
         </div>

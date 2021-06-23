@@ -1,7 +1,7 @@
 import React from 'react'
 import Chart from "react-apexcharts";
 
-const ApexChart = ({ stats }) => {
+const ApexChart = ({stats}) => {
 
     const series = (stats && Object.values(stats)) || []
     const labels = (stats && Object.keys(stats)) || []

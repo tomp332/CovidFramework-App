@@ -8,7 +8,7 @@ const Index = () => {
     return (
         <PageWrapper>
             <Title text1="THE COVID" text2="FRAMEWORK" open={true}></Title>
-            <LoginButton to="/login">Login</LoginButton> 
+            <LoginButton to="/login">Login</LoginButton>
         </PageWrapper>
     );
 };

@@ -1,4 +1,4 @@
-import { Global, css } from '@emotion/react'
+import {css, Global} from '@emotion/react'
 import Background from '../media/background.jpg'
 
 const styles = css`
@@ -37,6 +37,6 @@ const styles = css`
     // }
 `
 
-const GlobalStyles = props => <Global {...props} styles={styles} />
+const GlobalStyles = props => <Global {...props} styles={styles}/>
 
 export default GlobalStyles

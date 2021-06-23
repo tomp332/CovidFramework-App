@@ -3,7 +3,7 @@ import Chart from "react-apexcharts"
 import styled from '@emotion/styled'
 
 
-const BarChart = ({ stats, width }) => {
+const BarChart = ({stats, width}) => {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
@@ -11,12 +11,12 @@ const BarChart = ({ stats, width }) => {
     const labels = (stats && Object.keys(stats)) || []
     const options = {
         chart: {
-            id:'basic-bar',
+            id: 'basic-bar',
             type: 'bar',
             width
         },
-        xaxis:{
-          categories:monthNames,
+        xaxis: {
+            categories: monthNames,
         },
         responsive: [{
             breakpoint: 480,
@@ -81,7 +81,6 @@ const BarChart = ({ stats, width }) => {
         </ChartWrapper>
     )
 }
-
 
 
 const ChartWrapper = styled.div`
