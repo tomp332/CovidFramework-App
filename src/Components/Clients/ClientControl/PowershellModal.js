@@ -14,6 +14,7 @@ const PowershellModal = (props) => {
     const handleClose = (e) => {
         setShow(false)
         props.onClose(e.target.value);
+        setAllResponses([])
     }
 
     const handleShow = () => {setShow(true);}
@@ -41,10 +42,14 @@ const PowershellModal = (props) => {
 
     useEffect(() => {
         let handle = setInterval(getResponse, 2000);
+        if(!show)
+            return () => {
+                clearInterval(handle);
+            };
         return () => {
             clearInterval(handle);
         };
-    })
+    },[show])
 
 
     function firstCommandWrapper(e) {
