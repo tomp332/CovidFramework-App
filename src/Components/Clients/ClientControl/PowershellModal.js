@@ -10,8 +10,17 @@ const PowershellModal = (props) => {
     const [show, setShow] = useState(false);
     const [allResponses, setAllResponses] = useState([]);
     const [currentCommand, setCurrentCommand] = useState(null)
-    const handleClose = () => setShow(false);
-    const handleShow = () =>  setShow(true);
+
+    const handleClose = (e) => {
+        setShow(false)
+        props.onClose(e.target.value);
+    }
+
+    const handleShow = () => {setShow(true);}
+
+    function handleOpenConsole(event) {
+        props.onOpen(event.target.value);
+    }
 
     const getResponse = () => {
         axios({
@@ -38,14 +47,15 @@ const PowershellModal = (props) => {
     })
 
 
-    function firstCommandWrapper() {
-        sendCommand(props.clientId, "StartPS").then(r => r).catch(e =>console.log(e.message))
+    function firstCommandWrapper(e) {
+        sendCommand(props.clientId, "StartPS").then(r => r).catch(e => console.log(e.message))
+        handleOpenConsole(e)
         handleShow()
     }
 
-    function closeWrapper(){
-        sendPSCommand(props.clientId, "exit").then(r => r).catch(e =>console.log(e.message))
-        handleClose()
+    function closeWrapper(e) {
+        sendPSCommand(props.clientId, "exit").then(r => r).catch(e => console.log(e.message))
+        handleClose(e)
     }
 
     async function sendCommandWrapper() {
@@ -55,7 +65,7 @@ const PowershellModal = (props) => {
 
     return (
         <>
-            <LaunchPowershellButton id="auto-complete-button" onClick={firstCommandWrapper}>
+            <LaunchPowershellButton id="auto-complete-button" onClick={e=>firstCommandWrapper(e)}>
                 Launch Interactive Session
             </LaunchPowershellButton>
             <Modal backdrop={'static'} size={"xl"} show={show} onHide={handleClose} animation={false}>
@@ -70,7 +80,7 @@ const PowershellModal = (props) => {
                     <Form.Control disabled as="textarea" rows={10} value={allResponses}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={closeWrapper}>
+                    <Button variant="secondary" onClick={e=>closeWrapper(e)}>
                         Close
                     </Button>
                     <SendCommandButton variant="primary" onClick={sendCommandWrapper}>

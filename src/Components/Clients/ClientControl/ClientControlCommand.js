@@ -15,10 +15,10 @@ const ClientControlCommand = ({client, commands}) => {
     const [sendingCommand, setSendingCommand] = useState(false)
     const [defaultPaths, setDefaultPaths] = useState("Enter remote path")
 
-    function validatePathInput(path){
-        if(path !== "" && path !== null){
+    function validatePathInput(path) {
+        if (path !== "" && path !== null) {
             let lastChar = path.slice(path.length - 1)
-            if(lastChar !== '\\' && lastChar !== '/'&& lastChar !== '')
+            if (lastChar !== '\\' && lastChar !== '/' && lastChar !== '')
                 return true
         }
         return false
@@ -41,13 +41,12 @@ const ClientControlCommand = ({client, commands}) => {
                     } else
                         setErrors("Unable to upload file, please try again")
                 } else if (currentCommand.includes('download')) {
-                    if(validatePathInput(additionalInput)){
+                    if (validatePathInput(additionalInput)) {
                         tempCommand = currentCommand + " " + additionalInput
                         await sendCommand(client.client_id, tempCommand);
-                    }
-                    else
+                    } else
                         setErrors("No file was specified");
-                } else{
+                } else {
                     response = await sendCommand(client.client_id, currentCommand)
                     if (!response) {
                         setErrors("Unable to send command to server, please try again");
@@ -93,13 +92,30 @@ const ClientControlCommand = ({client, commands}) => {
         })
     }
 
+    function onOpenConsole() {
+        setSendingCommand('ps');
+    }
+
+    function onCloseConsole() {
+        setSendingCommand(true);
+    }
+
     const onSelectedPowershell = () => {
-        return (<PowershellModal clientId={client.client_id}/>)
+        console.log(sendingCommand)
+        return (
+            <>
+                <PowershellModal clientId={client.client_id} onOpen={onOpenConsole} onClose={onCloseConsole}/>
+            </>
+        )
     }
     return (
         <div className="client-control-info-table-row client-command">
             <select disabled={!client.isConnected} className="client-control-command-select" onChange={(e) => {
                 setCurrentCommand(e.target.value)
+                if(e.target.value === 'StartPS')
+                    setSendingCommand('ps')
+                else
+                    setSendingCommand(false)
             }}>
                 <option disabled defaultValue={"stayhome"}>Select Command</option>
                 {commands && renderCommandOptions()}
@@ -136,17 +152,22 @@ const ClientControlCommand = ({client, commands}) => {
                             }
                             } type="text"/>
                         </div> :
-                        currentCommand === 'StartPS' ? (onSelectedPowershell()) : null
+                        currentCommand === 'StartPS' ? (
+                            <>
+                                {onSelectedPowershell()}
+                            </>
+                        ) : null
             }
             <div className="client-control-command-buttons">
                 <Errors>{errors}</Errors>
                 {sendingCommand ? (
                     <SendButton id="auto-complete-button" disabled={true}
                                 onClick={(e) => SendCommand(e)}>Sending..</SendButton>
-                ) : (
-                    <SendButton id="auto-complete-button" disabled={!client.isConnected}
+                ) : sendingCommand === 'ps' ? (
+                    <SendButton id="auto-complete-button" disabled={true}
                                 onClick={(e) => SendCommand(e)}>Send</SendButton>
-                )}
+                ) : <SendButton id="auto-complete-button" disabled={!client.isConnected}
+                                  onClick={(e) => SendCommand(e)}>Send</SendButton>}
             </div>
         </div>
     )

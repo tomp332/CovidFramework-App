@@ -38,11 +38,11 @@ const ClientControlResponse = ({clientResponse, allResponses}) => {
 export default ClientControlResponse;
 
 const ClearButton = styled.button`
-    min-width: 8em;
-    padding: 0.5em;
-    font-weight: 600;
-    color: #fff;
-    background-color: red;
-    border: none;
-    border-radius: 5px;
+  min-width: 8em;
+  padding: 0.5em;
+  font-weight: 600;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
 `
