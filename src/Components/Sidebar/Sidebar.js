@@ -94,7 +94,7 @@ const Sidebar = () => {
     }
 
     return (
-        <SidebarWrapper>
+        <SidebarWrapper className="sidebar-wrapper">
             <Nav collapsed={menuCollapse}>
                 <IconWrapper>
                     <Icon collapsed={menuCollapse} alt={""} src={logoLarge}/>

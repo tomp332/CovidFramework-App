@@ -32,7 +32,7 @@ function App() {
         }
     }, [])
     return (
-        <AppWrapper>
+        <AppWrapper className="app">
             <ReactRouter/>
         </AppWrapper>
     );

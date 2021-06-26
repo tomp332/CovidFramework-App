@@ -75,6 +75,7 @@ ol.collection {
     }
 
     .attribute::before {
+        align-items: center;
         content: attr(data-name);
         color: #000000;
     }
@@ -83,6 +84,20 @@ ol.collection {
     .attribute {
         display: grid;
         grid-template-columns: minmax(9em, 30%) 1fr;
+    }
+
+    .attribute.is-connected {
+        align-items: center;
+    }
+
+    .attribute.action-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 1em;
+    }
+
+    .attribute.action-buttons button {
+        padding: 1em 2em
     }
 }
 
