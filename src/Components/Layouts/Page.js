@@ -4,9 +4,9 @@ import styled from '@emotion/styled'
 
 const Page = ({children}) => {
     return (
-        <PageWrapper>
+        <PageWrapper className="page-wrapper">
             <Sidebar/>
-            <MainContent>
+            <MainContent className="main-content">
                 {children}
             </MainContent>
         </PageWrapper>
@@ -15,13 +15,13 @@ const Page = ({children}) => {
 
 const PageWrapper = styled.div` 
     width: 100%;
-
     display: flex;
 
     @media only screen and (max-width:768px) {
         flex-direction: column;
         flex: 1 1;
         align-items: center;
+        height: auto;
     }
 `
 
@@ -35,6 +35,7 @@ const MainContent = styled.div`
     @media only screen and (max-width:768px) {
         padding: 1em 0;
         margin-top: 90px;
+        margin-left: auto;
     }
 `
 
