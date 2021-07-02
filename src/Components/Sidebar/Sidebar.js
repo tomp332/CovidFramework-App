@@ -133,10 +133,15 @@ export default Sidebar;
 const SidebarWrapper = styled.div`
     min-height: 100%;
     position: fixed;
-    z-index: 9999;
+    
     @media only screen and (max-width:768px) {
         width: 100vw;
         flex: 0 1 auto;
+
+    }
+
+    @media only screen and (min-width:769px) {
+        z-index: 9999;
     }
 `
 const Nav = styled.nav`
