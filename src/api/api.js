@@ -175,7 +175,7 @@ export const downloadFile = async (e, clientId, file) => {
 export const downloadAgent = async (e) => {
     e.preventDefault()
     return axios({
-        url: `clients/files/agent`,
+        url: `api/files/agent`,
         method: 'get',
         headers: {
             'x-access-token': localStorage.getItem('token')

@@ -131,7 +131,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 const SidebarWrapper = styled.div`
-    min-height: 100%;
+
     position: fixed;
     
     @media only screen and (max-width:768px) {
@@ -142,6 +142,7 @@ const SidebarWrapper = styled.div`
 
     @media only screen and (min-width:769px) {
         z-index: 9999;
+        min-height: 100%;
     }
 `
 const Nav = styled.nav`
