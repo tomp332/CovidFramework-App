@@ -59,7 +59,6 @@ const Home = () => {
             <ChartsWrapper>
                 {renderCharts()}
             </ChartsWrapper>
-            {/*<button className="button" onClick={(e) => downloadAgent(e)}>Download Agent</button>*/}
             <DownloadAgentButton
                 value="Download Agent"
                 type="button" onClick={(e) => downloadAgent(e)}>Download Agent
