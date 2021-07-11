@@ -202,7 +202,7 @@ rect:nth-child(2) {
 .client-control-clear-button{
     display: flex;
     justify-content: flex-end;
-    padding-right: 2vh;
+    padding-right: 1vh;
     background: #efefef;
 }
 .client-control-clear-button button:hover{
