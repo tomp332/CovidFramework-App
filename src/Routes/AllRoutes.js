@@ -31,7 +31,7 @@ const ReactRouter = () => {
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/control/:id" component={ClientControl}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/map" component={Map}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/docs" component={Docs}/>
-                <ProtectedRoute isAuthenticated={isAuthenticated} path="/settings" component={Settings}/>
+                {/*<ProtectedRoute isAuthenticated={isAuthenticated} path="/settings" component={Settings}/>*/}
             </Switch>
         </Page>
     );

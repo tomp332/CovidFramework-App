@@ -43,11 +43,11 @@ const menuItemList = [
         label: 'docs',
         link: '/docs'
     },
-    {
-        icon: faCog,
-        label: 'settings',
-        link: '/settings'
-    }
+    // {
+    //     icon: faCog,
+    //     label: 'settings',
+    //     link: '/settings'
+    // }
 ]
 
 const logOutDispatcher = (dispatch) => ({logUserOut: () => dispatch(logUserOut())})
