@@ -100,6 +100,9 @@ const ClientControl = () => {
                         </Accordion>
                         <Accordion title="Response">
                             <ClientControlResponse clientResponse={clientResponse} allResponses={allResponses}/>
+                            <div className="client-control-clear-button">
+                                <ClearButton onClick={()=>{setAllResponses([])}}>Clear</ClearButton>
+                            </div>
                         </Accordion>
                         <Accordion title="Files">
                             <RetrievedFiles clientId={id}/>
@@ -135,4 +138,13 @@ const MainBackButton = styled.button`
   background-color: #98d14a;
   margin-top: 2em;
   margin-bottom: 2em;
+`
+const ClearButton = styled.button`
+  min-width: 8em;
+  padding: 0.5em;
+  font-weight: 600;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
 `

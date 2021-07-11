@@ -8,8 +8,8 @@ const responseBanner = (responseObject) => {
     )
 }
 
-const ClientControlResponse = ({clientResponse, allResponses}) => {
 
+const ClientControlResponse = ({clientResponse, allResponses}) => {
     let responseString = '';
     const displayResponse = () => {
         allResponses.forEach(resp => {
@@ -17,6 +17,7 @@ const ClientControlResponse = ({clientResponse, allResponses}) => {
         });
         return (clientResponse && responseString)
     }
+
 
     return (
         <div className="client-control-info-table">
@@ -27,9 +28,6 @@ const ClientControlResponse = ({clientResponse, allResponses}) => {
                     disabled
                     className="client-control-response-textarea response"
                 />
-                <div className="client-control-command-buttons">
-                    <ClearButton>Clear</ClearButton>
-                </div>
             </div>
         </div>
     )
