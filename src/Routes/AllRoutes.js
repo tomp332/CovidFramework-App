@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router';
+import {Redirect, Route, Switch} from 'react-router';
 import Home from '../Components/Home/Home';
 import Clients from '../Components/Clients/Clients';
 import Docs from "../Components/Docs/Docs";
@@ -24,13 +24,16 @@ const ReactRouter = () => {
     return (
         <Page>
             <Switch>
-                <Route path="/" exact component={Index}/>
+                <Route path="/" exact component={Index}>
+                    {isAuthenticated && <Redirect to="/home" />}
+                </Route>
                 <Route path="/login" component={Login}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/home" component={Home}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/clients" component={Clients}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/control/:id" component={ClientControl}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/map" component={Map}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/docs" component={Docs}/>
+                <Route component={Index}/>
                 {/*<ProtectedRoute isAuthenticated={isAuthenticated} path="/settings" component={Settings}/>*/}
             </Switch>
         </Page>
