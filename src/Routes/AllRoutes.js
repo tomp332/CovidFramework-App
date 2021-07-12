@@ -3,7 +3,6 @@ import {Redirect, Route, Switch} from 'react-router';
 import Home from '../Components/Home/Home';
 import Clients from '../Components/Clients/Clients';
 import Docs from "../Components/Docs/Docs";
-import Settings from "../Components/Actions/Settings/Settings";
 import Map from '../Components/GoogleMap/Map';
 import './AllRoutes.css';
 import Login from "../Components/Actions/Login/Login";
@@ -25,7 +24,7 @@ const ReactRouter = () => {
         <Page>
             <Switch>
                 <Route path="/" exact component={Index}>
-                    {isAuthenticated && <Redirect to="/home" />}
+                    {isAuthenticated && <Redirect to="/home"/>}
                 </Route>
                 <Route path="/login" component={Login}/>
                 <ProtectedRoute isAuthenticated={isAuthenticated} path="/home" component={Home}/>

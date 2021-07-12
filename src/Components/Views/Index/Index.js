@@ -7,7 +7,7 @@ import Title from '../../Title/Title'
 const Index = () => {
     return (
         <PageWrapper>
-            <Title text1="THE COVID" text2="FRAMEWORK" open={true}></Title>
+            <Title text1="THE COVID" text2="FRAMEWORK" open={true}/>
             <LoginButton to="/login">Login</LoginButton>
         </PageWrapper>
     );
