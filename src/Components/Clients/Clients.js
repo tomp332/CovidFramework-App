@@ -24,7 +24,7 @@ const Clients = () => {
 
     return (
         <Wrapper>
-            <Title text1="CLIENTS" open={true}/>
+            <Title text1="CLIENTS" text2={'_'.repeat(100)} open={true}/>
             {(data !== null) ? (
                 <ClientsTable data={data}/>
             ) : (

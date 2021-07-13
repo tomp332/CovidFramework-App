@@ -39,7 +39,7 @@
 /* Style the accordion chevron icon */
 .accordion__icon {
     margin-left: auto;
-    transition: transform 0.6s ease;
+    /*transition: transform 0.1s ease;*/
 }
 
 /* Style to rotate icon when state is active */

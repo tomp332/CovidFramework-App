@@ -12,12 +12,13 @@ function Accordion(props) {
     //setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
     function toggleAccordion() {
         setActiveState(setActive === "" ? "active" : "");
-        setHeightState(
-            setActive === "active" ? "0px" : `100%`
-        );
         setRotateState(
             setActive === "active" ? "accordion__icon" : "accordion__icon rotate"
         );
+        setHeightState(
+            setActive === "active" ? "0px" : `100%`
+        );
+
     }
 
 

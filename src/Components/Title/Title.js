@@ -1,14 +1,14 @@
-import Title from 'react-titles/Title6'
+import Title from 'react-titles/Title2'
 import withMediaQuery from '../HighOrderComponents/withMediaQuery'
-
+import './Title.css'
 const ResponsiveTitle = (props) => {
     return withMediaQuery(Title, (size, titleProps = props) => {
         const sizes = {
-            mobile: 300,
+            mobile: 200,
             tablet: 400,
-            small: 450,
+            small: 300,
             large: 450,
-            extraLarge: 500
+            extraLarge: 300
         }
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
 import styled from '@emotion/styled';
-import Title from "react-titles/Title6";
+import Title from '../../Title/Title'
 import {Link, useHistory} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from 'formik';
 import "./Login.css"; // keep this until we figure out how to get emotion to animate
@@ -27,7 +27,7 @@ const Login = () => {
     return (
         <LoginPageWrapper>
             <div className="title">
-                <Title size={300} text1="LOGIN" open={true}/>
+                <Title text1={"LOGIN"} text2={'_'.repeat(100)} open={true}/>
             </div>
             <Formik
                 initialValues={{username: '', password: ''}}
