@@ -8,7 +8,7 @@ const ResponsiveTitle = (props) => {
             tablet: 400,
             small: 300,
             large: 450,
-            extraLarge: 300
+            extraLarge: 450
         }
 
 

@@ -23,6 +23,7 @@ const PageWrapper = styled.div`
     width: 100%;
     height: 100%;
     margin: auto;
+    min-height: 100vh;  
 `
 
 const LoginButton = styled(Link)`

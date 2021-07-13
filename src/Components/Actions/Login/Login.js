@@ -111,7 +111,7 @@ const StyledForm = styled(Form)`
   align-content: center;
   margin: 10% auto;
   background-color: #1d1d1d;
-  min-width: 25%;
+  min-width: 30%;
   border-radius: 5px;
   box-shadow: 5px 5px 5px 0 rgba(151, 208, 73, 0.6);
   padding: 2em;
@@ -147,6 +147,7 @@ const LoginButton = styled.button`
   border: none;
   font-size: 1.25em;
   background-color: rgba(153, 209, 75, 0.8);
+  margin-top: 1.5em;
 `
 
 const StyledErrorMessage = styled(ErrorMessage)`
