@@ -111,16 +111,13 @@ const LaunchPowershellButton = styled.button`
   background-color: #98d14a;
 `
 
-const SendCommandButton = styled.button`
-  padding: 0.3em;
-  margin-left: 5px;
-  min-width: 2em;
-  width: 4em;
-  height: 3.7vh;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  font-weight: 600;
+const SendCommandButton = styled(Button)`
   background-color: #98d14a;
+  filter:brightness(0.95);
+  border-color:#98d14a;
+  &:hover{
+    filter:brightness(1);
+    background-color: #98d14a;
+    border-color:#98d14a;
+  }
 `

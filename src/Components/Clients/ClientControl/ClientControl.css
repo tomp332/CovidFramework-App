@@ -204,6 +204,7 @@ rect:nth-child(2) {
     justify-content: flex-end;
     padding-right: 1vh;
     background: #efefef;
+    padding-bottom: 0.5em;
 }
 .client-control-clear-button button:hover{
     background-color: #dd1d1d;
