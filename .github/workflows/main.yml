@@ -6,5 +6,5 @@ jobs:
     steps:
     - uses: docker/build-push-action@v2.6.1
     - name: docker build covid-app
-      run: docker build . -t covidframework-server-image:latest
+      run: docker build ../../Dockerfile -t covidframework-server-image:latest
       
