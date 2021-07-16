@@ -7,7 +7,6 @@ import logoLarge from '../../media/logoLarge.png';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faBook,
-    faCog,
     faHome,
     faMapMarkerAlt,
     faSignInAlt,
