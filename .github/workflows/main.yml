@@ -11,7 +11,7 @@ jobs:
       - name: Build Image
         uses: docker/build-push-action@v2
         with:
-          tags: CovidFramework-app:v1
+          tags: covid-app:v1
           file: ../../Dockerfile
       
    
