@@ -67,7 +67,7 @@ jobs:
 #           labels: ${{ steps.docker_meta.outputs.labels }}
       -
         name: Docker build
-        run: docker build --file ../../Dockerfile -t app:v1
+        run: docker build -t app:v1 --file ../../Dockerfile
       -
         name: Docker push
         run: docker push CovidFramework-App/app:v1
