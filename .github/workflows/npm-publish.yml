@@ -1,0 +1,10 @@
+name: Covid-Framework-build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: docker/build-push-action@v2.6.1
+    - name: docker build covid-app
+      run: docker build . -t covidframework-server-image:latest
+      
