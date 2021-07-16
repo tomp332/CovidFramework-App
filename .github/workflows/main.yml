@@ -1,5 +1,10 @@
 name: Covid-Framework-build
-on: [push]
+on:
+  push:
+    branches: [main]
+  release:
+    types:
+      - published
 jobs:
   build:
     runs-on: ubuntu-latest
