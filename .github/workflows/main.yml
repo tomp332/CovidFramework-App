@@ -1,4 +1,4 @@
-name: Covid-Framework-build
+name: Covid-Framework-App-build
 on:
   push:
     branches: [main]
@@ -8,7 +8,7 @@ on:
     types:
       - published
 jobs:
-   docker:
+   App-Build:
       runs-on: ubuntu-latest
       steps:
         -
