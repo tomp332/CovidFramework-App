@@ -58,7 +58,7 @@ const stateSelector = createSelector(makeSelectAuthenticated, (isAuthenticated) 
 const Sidebar = () => {
     const {logUserOut} = logOutDispatcher(useDispatch())
     const {isAuthenticated} = useSelector(stateSelector)
-    const [menuCollapse, setMenuCollapse] = useState(false);
+    const [menuCollapse] = useState(false);
     const logoutUser = async () => {
         logUserOut()
     }
