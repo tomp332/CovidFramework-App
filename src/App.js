@@ -6,6 +6,7 @@ import {createSelector} from "reselect";
 import {makeSelectUser} from "./redux/selectors/userSelector";
 import {useDispatch, useSelector} from "react-redux";
 import styled from '@emotion/styled'
+import {BrowserRouter} from "react-router-dom";
 
 
 const stateSelector = createSelector(makeSelectUser, (user) => ({
@@ -32,9 +33,11 @@ function App() {
         }
     }, [])
     return (
-        <AppWrapper className="app">
-            <ReactRouter/>
-        </AppWrapper>
+        <BrowserRouter>
+            <AppWrapper className="app">
+                <ReactRouter/>
+            </AppWrapper>
+        </BrowserRouter>
     );
 }
 

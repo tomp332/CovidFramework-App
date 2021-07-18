@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import Home from '../Components/Home/Home';
 import Clients from '../Components/Clients/Clients';
 import Docs from "../Components/Docs/Docs";
@@ -23,16 +23,17 @@ const ReactRouter = () => {
     return (
         <Page>
             <Switch>
-                <Route path="/" exact component={Index}>
+                <Route exact path="/" component={Index}>
                     {isAuthenticated && <Redirect to="/home"/>}
                 </Route>
-                <Route path="/login" component={Login}/>
-                <ProtectedRoute isAuthenticated={isAuthenticated} path="/home" component={Home}/>
-                <ProtectedRoute isAuthenticated={isAuthenticated} path="/clients" component={Clients}/>
-                <ProtectedRoute isAuthenticated={isAuthenticated} path="/control/:id" component={ClientControl}/>
-                <ProtectedRoute isAuthenticated={isAuthenticated} path="/map" component={Map}/>
-                <ProtectedRoute isAuthenticated={isAuthenticated} path="/docs" component={Docs}/>
-                <Route component={Index}/>
+                <Route exact path="/login" component={Login}/>
+                <ProtectedRoute isAuthenticated={isAuthenticated} exact path="/home" component={Home}/>
+                <ProtectedRoute isAuthenticated={isAuthenticated} exact path="/clients" component={Clients}/>
+                <ProtectedRoute isAuthenticated={isAuthenticated} exact path="/map" component={Map}/>
+                <ProtectedRoute isAuthenticated={isAuthenticated} exact path="/docs" component={Docs}/>
+                <ProtectedRoute isAuthenticated={isAuthenticated} exact path="/control/:id"
+                                component={ClientControl}/>
+                <Route exact component={Index}/>
                 {/*<ProtectedRoute isAuthenticated={isAuthenticated} path="/settings" component={Settings}/>*/}
             </Switch>
         </Page>

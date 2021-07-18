@@ -43,7 +43,6 @@ const ClientsTable = ({data}) => {
                     <div className="attribute action-buttons">
                         <button className="command-button">
                             <NavLink to={`/control/${client_id}`} style={{textDecoration: 'none', color: 'white'}}>
-
                                 Command
                             </NavLink>
                         </button>
