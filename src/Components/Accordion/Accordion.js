@@ -9,7 +9,7 @@ function Accordion(props) {
     const [setHeight, setHeightState] = useState("0px");
     const [setRotate, setRotateState] = useState("accordion__icon");
     const content = useRef(null);
-    //setActive === "active" ? "0px" : `${content.current.scrollHeight}px`
+
     function toggleAccordion() {
         setActiveState(setActive === "" ? "active" : "");
         setRotateState(
