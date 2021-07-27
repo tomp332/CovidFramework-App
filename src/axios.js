@@ -6,7 +6,7 @@ let instance
 
 if (process.env.NODE_ENV === 'development') {
     instance = axios.create({
-        baseURL: `${process.env.REACT_APP_PROTOCOL}${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_REMOTE_PORT}`
+        baseURL: `https://${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_REMOTE_PORT}`
     });
 } else {
     instance = axios.create({});
