@@ -1,3 +1,4 @@
+# First part
 FROM node:16.2.0 as build
 WORKDIR /covidframework-app
 COPY package.json .
@@ -8,13 +9,16 @@ COPY . .
 RUN npm run-script build
 
 
-# production environment
+# Second part copy important files
 FROM nginx:stable-alpine
+# Copy certs from covid-volume made externally
 COPY .cert/covidframework.com /usr/share/ca-certificates
 COPY --from=build /covidframework-app/build /usr/share/nginx/html
-# new
+
+# Nginx confs
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY proxy.conf /etc/nginx/conf.d/proxy.conf
 
+#Main
 EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
