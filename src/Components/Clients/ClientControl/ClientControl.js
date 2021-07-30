@@ -10,6 +10,7 @@ import Accordion from '../../Accordion/Accordion'
 import axios from "../../../axios";
 import styled from '@emotion/styled';
 import RetrievedFiles from './RetrievedFiles'
+import {killClient} from "../../../api/api";
 
 // TODO: get list of commands from DB
 const commands = {
@@ -118,6 +119,12 @@ const ClientControl = () => {
                 >
                     Back
                 </MainBackButton>
+                <MainKillButton id="main-kill-button"
+                                onClick={()=>killClient(id)}
+                                variant={"success"}
+                >
+                    Kill
+                </MainKillButton>
             </NavLink>
         </div>
     );
@@ -139,6 +146,16 @@ const MainBackButton = styled.button`
   background-color: #98d14a;
   margin-top: 2em;
   margin-bottom: 2em;
+`
+const MainKillButton = styled.button`
+  min-width: 8em;
+  padding: 0.5em;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff0000;
+  margin: 2vh;
 `
 const ClearButton = styled.button`
   min-width: 8em;

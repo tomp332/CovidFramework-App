@@ -251,3 +251,8 @@ button:disabled {
     background-color: #b3e778;
     box-shadow: 0 1px #666;
 }
+
+#main-kill-button:hover, .active {
+    background-color: #dd1d1d;
+    box-shadow: 0 1px red;
+}
