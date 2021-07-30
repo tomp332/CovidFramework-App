@@ -252,7 +252,7 @@ button:disabled {
     box-shadow: 0 1px #666;
 }
 
-#main-kill-button:hover, .active {
+#main-kill-button:hover {
     background-color: #dd1d1d;
     box-shadow: 0 1px red;
 }
