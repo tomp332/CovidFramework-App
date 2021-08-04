@@ -9,9 +9,10 @@ COPY ../ .
 RUN npm run-script build
 
 FROM node:alpine
+WORKDIR /covidframework-app-local
 RUN npm install -g npm@latest
-RUN npm install http-server
-COPY ../.cert/localhost .cert/localhost
+RUN npm install -g http-server
+COPY ../.cert/localhost /covidframework-app-local/.cert/localhost
 WORKDIR /covidframework-app-local/build
 
 #Main
