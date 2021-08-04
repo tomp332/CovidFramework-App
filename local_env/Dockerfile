@@ -8,7 +8,7 @@ RUN npm install --force --silent
 COPY ../ .
 RUN npm run-script build
 
-FROM node
+FROM node:16.2.0
 RUN npm install -g npm@latest
 RUN npm install http-server
 COPY ../.cert/localhost .cert/localhost
