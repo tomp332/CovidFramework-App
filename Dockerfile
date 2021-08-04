@@ -8,7 +8,6 @@ RUN npm install --force --silent
 COPY . .
 RUN npm run-script build
 
-
 # Second part copy important files
 FROM nginx:stable-alpine
 # Copy certs from covid-volume made externally
