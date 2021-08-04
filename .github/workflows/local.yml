@@ -1,5 +1,4 @@
-
-name: Build local env image for APP
+name: Local image build
 on:
   push:
     branches: [ feature/local-env ]
