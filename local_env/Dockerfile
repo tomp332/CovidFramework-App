@@ -6,15 +6,18 @@ RUN npm install -g npm@latest
 RUN npm config set strict-ssl false
 RUN npm install --force --silent
 COPY ../ .
-RUN npm run-script build
+COPY ../.cert/localhost .cert/localhost
 
-FROM node:alpine
-WORKDIR /covidframework-app-local
-RUN npm install -g npm@latest
-RUN npm install -g http-server
-COPY ../.cert/localhost /covidframework-app-local/.cert/localhost
-WORKDIR /covidframework-app-local/build
+#RUN npm run-script build
+#
+#FROM node:alpine
+#WORKDIR /covidframework-app-local
+#RUN npm install -g npm@latest
+#RUN npm install -g http-server
+#COPY ../.cert/localhost /covidframework-app-local/.cert/localhost
+#WORKDIR /covidframework-app-local/build
 
 #Main
 EXPOSE 443
-CMD ["http-server", "-p" ,"443", "--cert", "../.cert/localhost/RootCA.crt", "--key", "../.cert/localhost/RootCA.key"]
+CMD ["npm", "start"]
+#CMD ["http-server", "-p" ,"443", "--cert", "../.cert/localhost/RootCA.crt", "--key", "../.cert/localhost/RootCA.key"]
