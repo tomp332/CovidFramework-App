@@ -1,23 +1,27 @@
-# First part
+# First stage
 FROM node:16.2.0 as build
 WORKDIR /covidframework-app-local
 COPY ../package.json .
 RUN npm install -g npm@latest
 RUN npm config set strict-ssl false
 RUN npm install --force --silent
-COPY ../ .
-COPY ../.cert/localhost .cert/localhost
+COPY ../. .
+RUN npm run-script build
 
-#RUN npm run-script build
-#
-#FROM node:alpine
-#WORKDIR /covidframework-app-local
-#RUN npm install -g npm@latest
-#RUN npm install -g http-server
-#COPY ../.cert/localhost /covidframework-app-local/.cert/localhost
-#WORKDIR /covidframework-app-local/build
+#Second stage create nginx
+FROM nginx:alpine
+COPY --from=build /covidframework-app-local/build /usr/share/nginx/html
+# Copy certificates
+COPY ../.cert/localhost /usr/share/nginx/
+# Copy env file
+COPY ../.env /usr/share/nginx/html
+
+
+# Nginx confs
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY proxy.conf /etc/nginx/conf.d/proxy.conf
 
 #Main
 EXPOSE 443
-CMD ["npm", "start"]
-#CMD ["http-server", "-p" ,"443", "--cert", "../.cert/localhost/RootCA.crt", "--key", "../.cert/localhost/RootCA.key"]
+CMD ["nginx", "-g", "daemon off;"]
+
