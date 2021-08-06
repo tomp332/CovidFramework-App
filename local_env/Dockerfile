@@ -18,8 +18,8 @@ COPY ../.env /usr/share/nginx/html
 
 
 # Nginx confs
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY proxy.conf /etc/nginx/conf.d/proxy.conf
+COPY nginx_local.conf /etc/nginx/conf.d/default.conf
+COPY proxy_local.conf /etc/nginx/conf.d/proxy.conf
 
 #Main
 EXPOSE 443
