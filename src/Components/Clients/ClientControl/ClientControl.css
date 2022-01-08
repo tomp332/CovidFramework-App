@@ -1,0 +1,260 @@
+.send-command-button {
+    margin: -3px 2px;
+}
+
+.kill-command-button {
+    margin: -3px 2px;
+}
+
+.status-column {
+    margin: 3px auto;
+    width: auto;
+}
+
+.client-status-connected {
+    color: #98d14a;
+    font-weight: bold;
+}
+
+.client-status-disconnected {
+    color: red;
+}
+
+.controlPageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+rect:nth-child(2) {
+    stroke: #98d14a;
+}
+
+.title {
+    justify-content: start;
+    margin: 2em auto;
+}
+
+/*Entire command form*/
+.command-form {
+    color: white !important;
+    width: 50%;
+    border: 1px solid red;
+}
+
+/*User info container*/
+.user-info-card {
+    color: black !important;
+    background: #97d049;
+}
+
+.user-info-card {
+    text-align: center;
+    color: black !important;
+    width: 100% !important;
+    height: 100%;
+    background: #e9f2ed !important;
+}
+
+.user-info-card .container {
+    text-align: center;
+    padding: 8px;
+    height: 100vh;
+}
+
+.user-info-card .row {
+    padding: 3px;
+}
+
+.property-name {
+    text-align: left !important;
+    margin-left: 20px;
+}
+
+.response {
+    background: #e9f2ed !important;
+}
+
+.spinner-grow {
+    margin: 30vh auto !important;
+    display: flex !important;
+}
+
+.small-titles {
+    font-size: 3vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.small-titles label {
+    font-size: 2vh;
+}
+
+#upload-file {
+    font-size: 2vh;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+#title3 {
+    padding-top: 0 !important;
+}
+
+#send-button {
+    margin: 0 auto;
+    display: inherit;
+}
+
+#send-errors {
+    color: red;
+}
+
+/* ClientControl Form */
+
+.client-control-form-wrapper {
+    /* padding: 1em; */
+    width: 50%;
+    /* border: 1px solid pink; */
+    color: #000;
+    margin-bottom: 1em;
+}
+
+.client-control-info-section {
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.client-control-info-section {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+.client-control-section-inner {
+    /* border: 1px solid lime; */
+    display: flex;
+    flex-direction: column;
+}
+
+.client-control-info-table-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+}
+
+.client-control-info-table-col {
+    padding: 0.75rem;
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+}
+
+.client-control-info-table-row:nth-child(2n) {
+    background-color: #fefefe;
+}
+
+.client-control-info-table-row:nth-child(2n + 1) {
+    background-color: #efefef;
+}
+
+.client-control-info-table-col.label {
+    border-right: 1px solid white;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20%;
+}
+
+.client-control-section-title {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border: 1px solid orange; */
+    margin-bottom: 0;
+    padding: 0.25em;
+    color: #000;
+    font-size: 2em;
+}
+
+.client-control-info-table-col.label {
+    font-weight: 600;
+}
+
+.client-control-command-select {
+    flex-basis: 100%;
+    padding: 0.75em;
+    margin: 0.5em 0;
+}
+
+.client-command,
+.client-response {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5em 0.5em 0.5em;
+}
+
+.client-control-command-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5em;
+}
+
+.client-control-clear-button {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 1vh;
+    background: #efefef;
+    padding-bottom: 0.5em;
+}
+
+.client-control-clear-button button:hover {
+    background-color: #dd1d1d;
+    box-shadow: 0 1px #666;
+}
+
+button:disabled {
+    background-color: #aad87c;
+}
+
+.client-control-response-textarea {
+    width: 100%;
+    min-height: 15em;
+    margin: 0.5em 0;
+    border: none;
+    background-color: none;
+}
+
+.cancel {
+    background-color: #cf142b;
+}
+
+.upload-file-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1em;
+    align-items: center;
+}
+
+.upload-file-wrapper.client-control-command-buttons.command-button {
+    height: 1.85em;
+}
+
+.btsrp-form-wrapper {
+    width: 80%;
+    margin-bottom: 0.5em;
+}
+
+.download-file-wrapper {
+    margin-bottom: 0.75em;
+}
+
+#auto-complete-button:hover, .active {
+    background-color: #b3e778;
+    box-shadow: 0 1px #666;
+}
+
+#main-kill-button:hover {
+    background-color: #dd1d1d;
+    box-shadow: 0 1px red;
+}

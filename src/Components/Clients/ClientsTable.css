@@ -1,0 +1,186 @@
+.modal-dialog {
+    margin: 12rem auto !important;
+}
+
+li {
+    list-style: none;
+}
+
+ol.collection {
+    margin: 5em auto;
+    padding: 0px;
+    min-width: 50%;
+    width: 95%;
+}
+
+.table-content {
+    background: #fafafa;
+    text-align: center;
+}
+
+.is-connected {
+    background-color: #D11A2A;
+    color: #fafafa;
+}
+
+.is-connected.true {
+    background-color: #3cb371;
+    color: #fafafa;
+}
+
+.action-buttons {
+    display: grid;
+    align-items: center;
+}
+
+.action-buttons .command-button {
+    min-width: 5em;
+    max-width: 10em;
+    padding: 0.125em 0.125em;
+    margin-left: 1em;
+    background-color: #007bff;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+}
+
+.action-buttons .kill-button {
+    min-width: 5em;
+    padding: 0.125em 0.125em;
+    margin-left: 1em;
+    background-color: #D11A2A;
+    border-radius: 5px;
+    border: none;
+    color: #fafafa;
+    text-decoration: none;
+}
+
+/* 2 Column Card Layout */
+@media screen and (max-width: 879px) {
+    .collection-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    .item {
+        border: 1px solid gray;
+        border-radius: 2px;
+        padding: 10px;
+    }
+
+    /* Don't display the first item, since it is used to display the header for tabular layouts*/
+    .collection-container > li:first-child {
+        display: none;
+    }
+
+    .attribute::before {
+        align-items: center;
+        content: attr(data-name);
+        color: #000000;
+    }
+
+    /* Attribute name for first column, and attribute value for second column. */
+    .attribute {
+        display: grid;
+        grid-template-columns: minmax(9em, 30%) 1fr;
+    }
+
+    .attribute.is-connected {
+        align-items: center;
+    }
+
+    .attribute.action-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 1em;
+    }
+
+    .attribute.action-buttons button {
+        padding: 1em 2em
+    }
+}
+
+/* 1 Column Card Layout */
+@media screen and (max-width: 481px) {
+    .collection-container {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tabular Layout */
+@media screen and (min-width: 880px) {
+    /* The maximum column width, that can wrap */
+    .item-container {
+        display: grid;
+        grid-template-columns: 2em 8em 4fr 4fr 2fr 15em;
+    }
+
+    .attribute-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(var(--column-width-min), 1fr));
+    }
+
+    /* Definition of wrapping column width for attribute groups. */
+    .user-information {
+        --column-width-min: 8em;
+    }
+
+    .user-id {
+        --column-width-min: 5em;
+    }
+
+    .activity {
+        --column-width-min: 10em;
+    }
+
+    .actions {
+        --column-width-min: 10em;
+    }
+
+    .action-buttons {
+        display: flex;
+    }
+
+    .action-buttons button {
+        flex: 1 1;
+    }
+
+    .user-ip {
+        --column-width-min: 4em;
+    }
+
+    /* In order to maximize row lines, only display one line for a cell */
+    .attribute {
+        border-right: 1px solid gray;
+        border-bottom: 1px solid gray;
+        padding: 2px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .collection-container > .item-container:first-child {
+        background-color: #444444;
+        color: #fafafa;
+    }
+
+    .item-container:hover {
+        background-color: rgb(200, 227, 252);
+    }
+
+    /* Center header labels */
+    .collection-container > .item-container:first-child .attribute {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-overflow: initial;
+        overflow: auto;
+        white-space: normal;
+    }
+}
+
+.table-header * {
+    text-transform: capitalize;
+}

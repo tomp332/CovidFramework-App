@@ -1,0 +1,15 @@
+.loading {
+    animation: loading 3s infinite;
+    background-image: linear-gradient(to right, #98d14a 0%, #b3e778 20%, #98d14a 40%, #98d14a 100%);
+}
+
+@keyframes loading {
+    0% {
+        background-position: -600px 0;
+        background-color: red;
+    }
+    100% {
+        background-position: 600px 0;
+        background-color: lightgrey;
+    }
+}
